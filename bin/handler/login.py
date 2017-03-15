@@ -1,5 +1,4 @@
 #coding: utf-8
-
 from zbase.web import core
 from zbase.web.validator import with_validator_self, Field, T_REG, T_INT, T_STR
 
@@ -56,4 +55,5 @@ class LoginHandler(core.Handler):
 
     def POST(self, *args):
         ret = self._post_handler(args)
+        log.debug("ret: %s", ret)
         return ret
