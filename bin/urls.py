@@ -16,5 +16,5 @@ urls = (
     #api
     ('^/store/v1/api/login$', login.LoginHandler),
     ('^/store/v1/api/store_info$', storeinfo.StoreInfoHandler),
-    ('^/store/v1/api/store_to_comsumer$', train.StoreToComsumer),
+    ('^/store/v1/api/store_to_consumer$', train.StoreToComsumer),
 )
