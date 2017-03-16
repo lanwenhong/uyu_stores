@@ -9,7 +9,7 @@ from uyubase.uyu.define import UYU_SYS_ROLE_STORE
 from zbase.base.dbpool import with_database
 
 from uyubase.base.response import success, error, UAURET
-from uyubase.uyu.define import UYU_SYS_ROLE_OP, UYU_USER_ROLE_SUPER,UYU_OP_ERR
+from uyubase.uyu.define import UYU_SYS_ROLE_OP, UYU_USER_ROLE_SUPER, UYU_OP_ERR, UYU_USER_ROLE_STORE
 
 from runtime import g_rt
 from config import cookie_conf
@@ -34,7 +34,7 @@ class LoginHandler(core.Handler):
 
         return is_prepayment
 
-    @uyu_set_cookie(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
+    @uyu_set_cookie(g_rt.redis_pool, cookie_conf, UYU_USER_ROLE_STORE)
     @with_validator_self
     def _post_handler(self, *args):
         params = self.validator.data

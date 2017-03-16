@@ -2,7 +2,7 @@
 
 from handler import store
 from handler import login
-from handler import storeinfo
+from handler import storeinfo, train
 
 urls = (
     ('^/store/v1/page/index$', store.StoreH5Main),
@@ -16,4 +16,5 @@ urls = (
     #api
     ('^/store/v1/api/login$', login.LoginHandler),
     ('^/store/v1/api/store_info$', storeinfo.StoreInfoHandler),
+    ('^/store/v1/api/store_to_comsumer$', train.StoreToComsumer),
 )
