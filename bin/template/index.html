@@ -8,19 +8,19 @@
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
-    <script type="text/javascript" src="../dist/js/libs/flexible.debug.js"></script>
-    <link rel="stylesheet" href="../dist/css/home.css">
+    <script type="text/javascript" src="/static/js/libs/flexible.debug.js"></script>
+    <link rel="stylesheet" href="/static/css/home.css">
 </head>
 <body>
 <div id="wap" class="js_register_index">
     <section class="section_top">
         <div class="top_div left_head_div">
             <!--默认头像-->
-            <img src="../dist/img/ic_default_head.png">
+            <img src="/static/img/ic_default_head.png">
         </div>
         <div class="top_div right_head_info">
-            <p id="store_name">风清扬{{message}}</p>
-            <p id="store_left_times">剩余可用次数: <span>1000</span>次</p>
+            <p id="store_name">风清扬{{store_name}}</p>
+            <p id="store_left_times">剩余可用次数: <span>{{store_left_times}}</span>次</p>
         </div>
         <div class="clearfix"></div>
     </section>
@@ -32,11 +32,11 @@
             <div class="stat_info statistics_num">
                 <ul class="info_top">
                     <li>已分配</li>
-                    <li><span>10</span>次</li>
+                    <li><span>{{month_distribute}}</span>次</li>
                 </ul>
                 <ul>
                     <li>收入</li>
-                    <li><span>10000</span>元</li>
+                    <li><span>{{month_earned_money}}</span>元</li>
                 </ul>
             </div>
         </div>
@@ -46,11 +46,11 @@
             <div class="stat_info statistics_num">
                 <ul class="info_top">
                     <li>已分配</li>
-                    <li><span>10</span>次</li>
+                    <li><span>{{day_distribute}}</span>次</li>
                 </ul>
                 <ul>
                     <li>收入</li>
-                    <li><span>10000</span>元</li>
+                    <li><span>{{day_earned_money}}</span>元</li>
                 </ul>
             </div>
         </div>
@@ -58,7 +58,7 @@
     </section>
 
     <section class="section_bottom">
-        <dl class="hang js_goto_small_busy">
+        <dl class="hang js_goto_distribute_record">
             <dt>分配记录<br/><span class="grey">查看已经分配的次数</span></dt>
             <dd><span class="arrow"></span></dd>
         </dl>
@@ -74,5 +74,5 @@
 
 </div>
 </body>
-<script src="../dist/js/libs/require.2.3.3.min.js" type="text/javascript" data-main="../dist/js/uyusys/home.js" defer async="true"></script>
+<script src="/static/js/libs/require.2.3.3.min.js" type="text/javascript" data-main="/static/js/uyusys/home.js" defer async="true"></script>
 </html>
