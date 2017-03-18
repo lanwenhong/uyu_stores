@@ -11,17 +11,17 @@ define(function() {　
             var ua = navigator.userAgent
             return (/Android/i).test(ua)
         }
-        // var isIos = function () {
-        //   var ua = navigator.userAgent
-        //   return (/Mac OS X/i).test(ua)
-        // }
+    var isIos = function () {
+      var ua = navigator.userAgent
+      return (/Mac OS X/i).test(ua)
+    }
 
     // IOS
     function setupWebViewJavascriptBridge(callback) {
         // console.log('-> setupWebViewJavascriptBridge run...')
-        if (window.QFPAY) {
+        if (window.WebViewJavascriptBridge) {
             // console.log('-> setupWebViewJavascriptBridge is 注入...')
-            return callback(window.QFPAY)
+            return callback(window.WebViewJavascriptBridge)
         }
         if (window.WVJBCallbacks) {
             // console.log('-> WVJBCallbacks push callback...')
@@ -39,11 +39,11 @@ define(function() {　
 
     // Android
     function connectWebViewJavascriptBridge(callback) {
-        if (window.QFPAY) {
-            callback(window.QFPAY)
+        if (window.WebViewJavascriptBridge) {
+            callback(window.WebViewJavascriptBridge)
         } else {
             document.addEventListener('WebViewJavascriptBridgeReady', function() {
-                callback(window.QFPAY)
+                callback(window.WebViewJavascriptBridge)
             }, false)
         }
     }
@@ -55,7 +55,6 @@ define(function() {　
     }
 
     function callback(bridge) {
-        // console.log('-> setupWebViewJavascriptBridge callback run...')
 
         if (isAndroid()) {
             bridge.init(function(message, responseCallback) {
@@ -74,32 +73,11 @@ define(function() {　
          * @return {[type]}       [description]
          */
         JSBridge.H5CallNative = function(param) {
-            // console.log('--> JS Call H5CallNative param:', param)
-
-            // bridge.callHandler('testObjcCallback', param.data, function (response) {
-
-            // var data = {
-            //   schema: 'near-merchant-native',
-            //   path: 'https://o2.qfpay.com/merchant/v2/settleinfo',
-            //   action: 'get',
-            //   params: param.data
-            // }
-            bridge.call(param.name, param.data, function(response) {
-                // console.log('JS call OC OK!!!', response)
+            bridge.callHandler(param.name, param.data, function(response) {
                 param.callback && param.callback(response)
             })
         }
 
-        // Native 调 H5事件 QFNativeCallH5
-        // bridge.registerHandler('QFNativeCallH5', function (data, responseCallback) {
-        //   // console.log('ObjC called testJavascriptHandler with（原生调用JS testJavascriptHandler()）', data)
-        //   var responseData = {
-        //     'Javascript Says': 'Right back atcha!'
-        //   }
-        //   // console.log('JS responding with（JS响应）', responseData)
-        //   // 回调
-        //   responseCallback(responseData)
-        // })
 
         // 执行环境未准备好之前的事件队列
         runActionQueue()
@@ -112,7 +90,6 @@ define(function() {　
         }
     }
 
-    //module.exports = JSBridge
     return {
         JSBridge: JSBridge,
     };　

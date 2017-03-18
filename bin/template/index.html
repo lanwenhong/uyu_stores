@@ -1,3 +1,4 @@
+# coding: utf-8
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +20,8 @@
             <img src="/static/img/ic_default_head.png">
         </div>
         <div class="top_div right_head_info">
-            <p id="store_name">风清扬{{store_name}}</p>
-            <p id="store_left_times">剩余可用次数: <span>{{store_left_times}}</span>次</p>
+            <p id="store_name"></p>
+            <p>剩余可用次数: <span id="store_left_times">0</span>次</p>
         </div>
         <div class="clearfix"></div>
     </section>
@@ -32,11 +33,11 @@
             <div class="stat_info statistics_num">
                 <ul class="info_top">
                     <li>已分配</li>
-                    <li><span>{{month_distribute}}</span>次</li>
+                    <li><span id="month_distribute">0</span>次</li>
                 </ul>
                 <ul>
                     <li>收入</li>
-                    <li><span>{{month_earned_money}}</span>元</li>
+                    <li><span id="month_earned_money">0</span>元</li>
                 </ul>
             </div>
         </div>
@@ -46,11 +47,11 @@
             <div class="stat_info statistics_num">
                 <ul class="info_top">
                     <li>已分配</li>
-                    <li><span>{{day_distribute}}</span>次</li>
+                    <li><span id="day_distribute">0</span>次</li>
                 </ul>
                 <ul>
                     <li>收入</li>
-                    <li><span>{{day_earned_money}}</span>元</li>
+                    <li><span id="day_earned_money">0</span>元</li>
                 </ul>
             </div>
         </div>
@@ -58,15 +59,15 @@
     </section>
 
     <section class="section_bottom">
-        <dl class="hang js_goto_distribute_record">
+        <dl class="hang js_goto_record">
             <dt>分配记录<br/><span class="grey">查看已经分配的次数</span></dt>
             <dd><span class="arrow"></span></dd>
         </dl>
-        <dl class="hang js_goto_personal_busy">
+        <dl class="hang js_goto_distribute">
             <dt>分配训练次数<br/><span class="grey">为客户分配训练次数</span></dt>
             <dd><span class="arrow"></span></dd>
         </dl>
-        <dl class="hang js_goto_enterprise_busy">
+        <dl class="hang js_goto_bills">
             <dt>账单<br/><span class="grey">分成模式才有</span></dt>
             <dd><span class="arrow"></span></dd>
         </dl>

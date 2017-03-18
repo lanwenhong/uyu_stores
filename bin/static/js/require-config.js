@@ -1,5 +1,6 @@
 require.config({
-    baseUrl: "../dist/js",
+    // baseUrl: "../dist/js",
+    baseUrl: "/static/js",
     paths: {
         "jquery": ["libs/jquery-2.1.4.min", "libs/jquery-1.7.2.min", "http://libs.baidu.com/jquery/2.0.3/jquery"],
         "zepto": "libs/zepto.min",

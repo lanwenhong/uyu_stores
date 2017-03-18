@@ -4,12 +4,10 @@ define(["add_bounced"],function(add_bounced) {　
     //关闭弹框
     add_bounced.close_tip();
     //ajax规则
-    var baseUrl = "http://121.40.177.111:8082";
+    var baseUrl = "http://121.40.177.111:8182";
 
     function ajax_rule(url, type, dataType, data, zhecengid, success_func, error_func) {
         var requestUrl = baseUrl + url;
-        alert("url", url);
-
         $.ajax({
             url: requestUrl,
             type: type,

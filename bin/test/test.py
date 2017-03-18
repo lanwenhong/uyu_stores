@@ -27,9 +27,9 @@ def test_store_info():
     log.info(ret)
 
 def test_store_to_comsumer():
-    SERVER   = [{'addr':('127.0.0.1', 8082), 'timeout':20},]
+    SERVER   = [{'addr':('127.0.0.1', 8182), 'timeout':20},]
     client = HttpClient(SERVER, client_class = RequestsClient)
-    send = {"busicd": "STORE_ALLOT_TO_COMSUMER", "se_userid": 1178, "consumer_mobile": 16756789090, "training_times": 11}
+    send = {"busicd": "STORE_ALLOT_TO_COMSUMER", "se_userid": 1178, "consumer_mobile": 16756789090, "training_times": 1}
     headers = {'cookie': 'sessionid=58af802a-15c7-4d96-8a2e-7b6b641c53ba'}
     ret = client.post('/store/v1/api/store_to_consumer', send, headers=headers)
     x = json.loads(ret)

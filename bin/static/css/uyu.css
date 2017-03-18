@@ -658,7 +658,7 @@ input.border_red {
   content: "";
   width: 100%;
   height: 100%;
-  background-image: url("../../dist/img/load.png");
+  background-image: url("../img/load.png");
   background-position: 50%;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -962,10 +962,10 @@ section.section_list ul li:nth-child(1) {
 section.section_reglist li {
   height: 1.4rem;
 }
-section.section_reglist .bill_dev {
+section.section_reglist .record_dev {
   float: left;
 }
-section.section_reglist .bill_icon {
+section.section_reglist .record_icon {
   margin: 0.2rem 15px 0.2rem 0;
   width: 1rem;
   height: 1rem;
@@ -973,11 +973,8 @@ section.section_reglist .bill_icon {
   border: 1px solid #e5e5e5;
   overflow: hidden;
 }
-section.section_reglist .bill_name {
-  width: 40%;
-}
-section.section_reglist .bill_times {
-  width: 40%;
+section.section_reglist .record_times {
+  float: right;
   padding-right: 15px;
 }
 section.section_reglist span {
@@ -1026,10 +1023,10 @@ section.section_master .master_icon {
   overflow: hidden;
 }
 section.section_master .master_name {
-  width: 6.425rem;
+  width: 50%;
 }
 section.section_master .master_edit {
-  width: 2rem;
+  width: 20%;
   height: 1.4rem;
 }
 section.section_master span {
@@ -1248,7 +1245,7 @@ section.section_info dl.hang dd span.arrow {
   width: 10%;
   display: block;
   float: right;
-  background: url('../../dist/img/ic_next.png') center center no-repeat;
+  background: url('../img/ic_next.png') center center no-repeat;
   background-size: 0.3rem auto;
   width: 0.3rem;
   height: 0.6rem;

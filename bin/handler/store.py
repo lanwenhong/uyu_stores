@@ -10,7 +10,7 @@ class StoreH5Main(core.Handler):
 
 class StoreH5EyeSight(core.Handler):
     def GET(self):
-        self.write(template.render('eyesight.html'))
+        self.write(template.render('eye_sight.html'))
 
 
 class StoreH5Train(core.Handler):
@@ -21,20 +21,20 @@ class StoreH5Train(core.Handler):
 
 class StoreH5Dev(core.Handler):
     def GET(self):
-        self.write(template.render("devices.html"))
+        self.write(template.render("dev.html"))
 
 
 
 class StoreH5Bill(core.Handler):
     def GET(self):
-        self.write(template.render("bills.html"))
+        self.write(template.render("bill.html"))
 
 
 class StoreH5DisRecord(core.Handler):
     def GET(self):
-        self.write(template.render("distribute_records.html"))
+        self.write(template.render("dis_record.html"))
 
 
 class StoreH5DisComsumerInfo(core.Handler):
     def GET(self):
-        self.write(template.render("distribute_consumer_info.html"))
+        self.write(template.render("dis_consumer_info.html"))
