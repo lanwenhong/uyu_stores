@@ -35,7 +35,17 @@ def test_store_to_comsumer():
     x = json.loads(ret)
     print x["resperr"]
 
+def test_load_consumer():
+    SERVER   = [{'addr':('127.0.0.1', 8182), 'timeout':20},]
+    client = HttpClient(SERVER, client_class = RequestsClient)
+    send = {"se_userid": 1178, "mobile": "16756789090"}
+    headers = {'cookie': 'sessionid=58af802a-15c7-4d96-8a2e-7b6b641c53ba'}
+    ret = client.post('/store/v1/api/load_consumer', send, headers=headers)
+    log.info(ret)
+
+
 if __name__ == '__main__':
     #test_login()
     #test_store_info()
-    test_store_to_comsumer()
+    #test_store_to_comsumer()
+    test_load_consumer()
