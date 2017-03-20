@@ -43,14 +43,20 @@ require(['../require-config'], function() {
             });
 
             $('.js_search').on('click', function() {
-                var refer_tel = $('.js_search_phone').val();
-                var req={
-                    mobile:refer_tel
-                }
-                ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', getInfoData, '.zheceng', function (respData) {
-                    $("#consumer_name").text(respData["username"]);
-                    $("#consumer_phone").text(respData["phone_num"]);
-                });
+                native.getUserIdFromObjC({}, function (cb) {
+                    var refer_tel = $('.js_search_phone').val();
+                    var store_user_id = cb['userid'];
+		    var req = {
+		       se_userid:store_user_id,
+                       mobile:refer_tel
+                    }
+alert("kkkkkdddd");
+                    ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', req, '.zheceng', function (respData) {
+                        alert(JSON.stringify(respData));
+			$(".consumer_name").val(respData["username"]);
+                        $(".consumer_phone").val(respData["mobile"]);
+                    });
+		});
             });
 
                 //获取userid
