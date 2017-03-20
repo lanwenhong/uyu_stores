@@ -1,5 +1,6 @@
 *.pyc
-test.*
 .DS_Store
 *.swp
+zbase
+uyubase
 
