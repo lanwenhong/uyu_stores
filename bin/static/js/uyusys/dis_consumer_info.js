@@ -22,7 +22,38 @@ require(['../require-config'], function() {
                     }
                 }
             });
-            //获取userid
+
+
+            $('.js_search_phone').on('input', function() {
+                var refer_tel = $('.js_search_phone').val();
+
+                if (refer_tel !== null && refer_tel !== undefined){
+                    if(refer_tel.length > 11){
+                        $('.js_search_phone').val(refer_tel.substring(0, 11));
+
+                        refer_tel = $('.js_search_phone').val();
+                        yanzheng('.js_search_phone');
+                    }else if(refer_tel.length == 11){
+                        //电话号码刚好11位
+                        yanzheng('.js_search_phone');
+                    }else {
+                        //取消验证
+                    }
+                }
+            });
+
+            $('.js_search').on('click', function() {
+                var refer_tel = $('.js_search_phone').val();
+                var req={
+                    mobile:refer_tel
+                }
+                ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', getInfoData, '.zheceng', function (respData) {
+                    $("#consumer_name").text(respData["username"]);
+                    $("#consumer_phone").text(respData["phone_num"]);
+                });
+            });
+
+                //获取userid
             $('.consumer_phone').on('input', function() {
                 var refer_tel = $('.consumer_phone').val();
 
@@ -41,6 +72,7 @@ require(['../require-config'], function() {
                 }
 
             });
+
 
             $('.consumer_buy_times').on('input', function() {
                 var times = $('.consumer_buy_times').val();
