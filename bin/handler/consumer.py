@@ -16,7 +16,7 @@ from uyubase.base.usession import uyu_check_session, USession
 from runtime import g_rt
 from config import cookie_conf
 
-from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER
+from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER, UYU_USER_STATE_OK
 
 import logging, datetime
 log = logging.getLogger()
@@ -35,19 +35,19 @@ class LoadConsumerHandler(core.Handler):
             return error(UAURET.SESSIONERR)
         params = self.validator.data
         uu = UUser() 
-        uu.load_user_by_mobile(self, params["mobile"])
+        uu.load_user_by_mobile(params["mobile"])
         if len(uu.udata) == 0:
             return error(UAURET.USERERR)
         
-        if uu.state!= UYU_USER_STATE_OK or uu.user_type != UYU_USER_ROLE_COMSUMER:
+        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
             return error(UAURET.USERERR)
 
         ret = {}
         ret["userid"] = uu.udata["id"]
         ret["mobile"] = uu.udata["phone_num"]
-        ret["username"] = uu.udate.get("username", "")
+        ret["username"] = uu.udata.get("username", "")
         ret["nick_name"] = uu.udata.get("nick_name", "")
         return success(ret)
 
     def POST(self, *args):
-        return _post_handler()
+        return self._post_handler()
