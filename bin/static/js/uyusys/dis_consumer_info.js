@@ -10,6 +10,7 @@ require(['../require-config'], function() {
                 if (!val_exp.test(val)) {
                     native.alert({msg:"手机号不合法"}, function (cb) {
                     });
+                    return;
                 } else {
 
                 }
@@ -46,20 +47,18 @@ require(['../require-config'], function() {
                 native.getUserIdFromObjC({}, function (cb) {
                     var refer_tel = $('.js_search_phone').val();
                     var store_user_id = cb['userid'];
-		    var req = {
-		       se_userid:store_user_id,
-                       mobile:refer_tel
+                    var req = {
+                        se_userid:store_user_id,
+                        mobile:refer_tel
                     }
-alert("kkkkkdddd");
                     ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', req, '.zheceng', function (respData) {
-                        alert(JSON.stringify(respData));
-			$(".consumer_name").val(respData["username"]);
+                        $(".consumer_name").val(respData["username"]);
                         $(".consumer_phone").val(respData["mobile"]);
                     });
-		});
+                });
             });
 
-                //获取userid
+            //获取userid
             $('.consumer_phone').on('input', function() {
                 var refer_tel = $('.consumer_phone').val();
 
@@ -123,8 +122,6 @@ alert("kkkkkdddd");
                             fetch_left_Times();
                         });
                     });
-
-
                 }
             });
         });
