@@ -1143,7 +1143,6 @@ section.section_info dl.hang:after {
 section.section_info dl.hang dt {
   float: left;
   background-color: #1ba1e2;
-  width: 60%;
   position: relative;
 }
 section.section_info dl.hang dt span.right_arrow {
@@ -1165,7 +1164,7 @@ section.section_info dl.hang dt span.right_arrow i {
 }
 section.section_info dl.hang dd {
   float: right;
-  width: 40%;
+  width: 60%;
   text-align: right;
   line-height: 1rem;
 }
