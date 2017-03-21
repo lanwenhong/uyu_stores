@@ -113,7 +113,7 @@ require(['../require-config'], function() {
                     native.alert({msg:"你输入的次数不合法"}, function (cb) {
                     });
                     return;
-                } 
+                }
                 if (refer_tel !== null && refer_tel !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
 
                     native.getUserIdFromObjC({}, function (cb) {
