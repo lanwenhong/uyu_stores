@@ -82,8 +82,8 @@ require(['../require-config'], function() {
             $('.consumer_buy_times').on('input', function() {
                 var times = $('.consumer_buy_times').val();
                 if (times !== null && times !== undefined){
-                    if(times.length > 4){
-                        $('.consumer_buy_times').val(times.substring(0, 4));
+                    if(times.length > 6){
+                        $('.consumer_buy_times').val(times.substring(0, 6));
                     }
                 }
 
@@ -107,7 +107,14 @@ require(['../require-config'], function() {
             $(".js_distribute_times").on("click", function () {
                 var refer_tel = $('.consumer_phone').val();
                 var buy_times = $('.consumer_buy_times').val();
-                if (refer_tel !== null && refer_tel !== undefined && buy_times !== null && buy_times !== undefined){
+
+                var val_exp = /^\d{6}$/;
+                if (!val_exp.test(buy_times)) {
+                    native.alert({msg:"你输入的次数不合法"}, function (cb) {
+                    });
+                    return;
+                } 
+                if (refer_tel !== null && refer_tel !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
 
                     native.getUserIdFromObjC({}, function (cb) {
                         var store_user_id = cb['userid'];
