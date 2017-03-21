@@ -47,7 +47,6 @@ require(['../require-config'], function() {
 
                     var openUrl = location.protocol + '//' + location.host + '/store/v1/page/dis_record.html'
                     if (window.WebViewJavascriptBridge !== "undefined") {
-                        alert("open_url");
                         var openUrlData ={
                             url:openUrl
                         };

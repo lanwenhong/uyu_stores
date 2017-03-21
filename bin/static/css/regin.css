@@ -260,10 +260,10 @@ span.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 span.content_sub.disa {
@@ -278,9 +278,9 @@ span.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -290,10 +290,10 @@ a.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 a.content_sub1 {
@@ -303,9 +303,9 @@ a.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }

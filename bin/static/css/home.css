@@ -204,7 +204,7 @@ body.bg_white {
   color: #ff0001;
 }
 .orange {
-  color: #FE9B20;
+  color: #318D50;
 }
 i.i_normal {
   font-style: normal;
@@ -214,7 +214,7 @@ a.orange:link,
 a.orange:visited,
 a.orange:hover {
   text-decoration: none;
-  color: #FE9B20;
+  color: #318D50;
   cursor: pointer;
 }
 header {
@@ -260,10 +260,10 @@ span.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 span.content_sub.disa {
@@ -278,9 +278,9 @@ span.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -290,10 +290,10 @@ a.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 a.content_sub1 {
@@ -303,9 +303,9 @@ a.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -876,7 +876,7 @@ section.section_bottom dl.hang dt span.right_arrow {
   border-radius: 100%;
   text-align: center;
   line-height: 0.45rem;
-  background: #FE9B20;
+  background: #318D50;
   top: 0.25rem;
   right: 0;
   display: none;
