@@ -108,7 +108,7 @@ require(['../require-config'], function() {
                 var refer_tel = $('.consumer_phone').val();
                 var buy_times = $('.consumer_buy_times').val();
 
-                var val_exp = /^[1-9]*$/;
+                var val_exp = /^[0-9]*$/;
                 if (!val_exp.test(buy_times)) {
                     native.alert({msg:"你输入的次数不合法"}, function (cb) {
                     });
