@@ -12,7 +12,7 @@ require(['../require-config'], function() {
             // 用于记录按下的点
             var start;
             // 网页在移动端运行时的监听
-            $(".eye_sight").addEventListener('touchstart', function(e){
+            $(".eye_sight").addEventListener('touchstart', function(event){
                     lastXForMobile = e.changedTouches[0].pageX;
                     pressedObj = this; // 记录被按下的对象
                     // 记录开始按下时的点
@@ -22,7 +22,7 @@ require(['../require-config'], function() {
                         y: touches.pageY  // 纵坐标
                     };
                 });
-            $(".eye_sight").addEventListener('touchmove',function(e){
+            $(".eye_sight").addEventListener('touchmove',function(event){
                     // 计算划动过程中x和y的变化量
                 var touches = event.touches[0];
                 delta = {
@@ -34,7 +34,7 @@ require(['../require-config'], function() {
                     event.preventDefault();
                 }
             });
-            $(".eye_sight").addEventListener('touchend', function(e){
+            $(".eye_sight").addEventListener('touchend', function(event){
                 if (lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
                     $(lastLeftObj).animate({marginLeft:"0"}, 500); // 右滑
                     lastLeftObj = null; // 清空上一个左滑的对象
