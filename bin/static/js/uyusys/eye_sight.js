@@ -2,8 +2,56 @@
  * Created by mac on 17/3/15.
  */
 require(['../require-config'], function() {
-    require(["zepto", "yangzheng", "ajax_rule","vue"],function($, yangzheng, ajax_rule, vue){
+    require(["zepto", "ajax_rule"],function($, ajax_rule){
         $(document).ready(function() {
+
+            var lastX, lastXForMobile;
+            // 用于记录被按下的对象
+            var pressedObj;  // 当前左滑的对象
+            var lastLeftObj; // 上一个左滑的对象
+            // 用于记录按下的点
+            var start;
+            // 网页在移动端运行时的监听
+            $(".eye_sight").addEventListener('touchstart', function(e){
+                    lastXForMobile = e.changedTouches[0].pageX;
+                    pressedObj = this; // 记录被按下的对象
+                    // 记录开始按下时的点
+                    var touches = event.touches[0];
+                    start = {
+                        x: touches.pageX, // 横坐标
+                        y: touches.pageY  // 纵坐标
+                    };
+                });
+            $(".eye_sight").addEventListener('touchmove',function(e){
+                    // 计算划动过程中x和y的变化量
+                var touches = event.touches[0];
+                delta = {
+                    x: touches.pageX - start.x,
+                    y: touches.pageY - start.y
+                };
+                // 横向位移大于纵向位移，阻止纵向滚动
+                if (Math.abs(delta.x) > Math.abs(delta.y)) {
+                    event.preventDefault();
+                }
+            });
+            $(".eye_sight").addEventListener('touchend', function(e){
+                if (lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
+                    $(lastLeftObj).animate({marginLeft:"0"}, 500); // 右滑
+                    lastLeftObj = null; // 清空上一个左滑的对象
+                }
+                var diffX = e.changedTouches[0].pageX - lastXForMobile;
+                if (diffX < -150) {
+                    $(pressedObj).animate({left:"-4rem"}, 500); // 左滑
+                    lastLeftObj && lastLeftObj != pressedObj &&
+                    $(lastLeftObj).animate({left:"0"}, 500); // 已经左滑状态的按钮右滑
+                    lastLeftObj = pressedObj; // 记录上一个左滑的对象
+                } else if (diffX > 150) {
+                    if (pressedObj == lastLeftObj) {
+                        $(pressedObj).animate({left:"0"}, 500); // 右滑
+                        lastLeftObj = null; // 清空上一个左滑的对象
+                    }
+                }
+            });
         });
     });
 });
