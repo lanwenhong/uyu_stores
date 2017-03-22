@@ -10,18 +10,18 @@ log = logger.install('stdout')
 
 
 def test_login():
-    SERVER   = [{'addr':('127.0.0.1', 8082), 'timeout':20},]
+    SERVER   = [{'addr':('127.0.0.1', 8382), 'timeout':20},]
     client = HttpClient(SERVER, client_class = RequestsClient)
-    send = {"mobile": "13600000013", "password": "000013"}
+    send = {"mobile": "17889807865", "password": "807865"}
     ret = client.post('/store/v1/api/login', send)
     log.info(ret)
     print client.client.headers
 
 def test_store_info():
-    SERVER   = [{'addr':('127.0.0.1', 8082), 'timeout':20},]
+    SERVER   = [{'addr':('127.0.0.1', 8382), 'timeout':20},]
     client = HttpClient(SERVER, client_class = RequestsClient)
-    send = {"se_userid": 1178, "userid": 1178}
-    headers = {'cookie': 'sessionid=8ccf8089-6da7-4be8-97b7-f59db6211b0d'}
+    send = {"se_userid": 1203, "userid": 1203}
+    headers = {'cookie': 'sessionid=7dcf5197-5413-4690-87f5-dd26315110a7'}
 
     ret = client.get('/store/v1/api/store_info', send, headers=headers)
     log.info(ret)
@@ -46,6 +46,6 @@ def test_load_consumer():
 
 if __name__ == '__main__':
     #test_login()
-    #test_store_info()
+    test_store_info()
     #test_store_to_comsumer()
-    test_load_consumer()
+    #test_load_consumer()
