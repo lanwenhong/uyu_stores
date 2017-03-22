@@ -1041,20 +1041,20 @@ section.section_master .edit_btn {
   text-align: center;
   line-height: 1.4rem;
 }
-section.section_bill_list span {
-  margin: 0 auto;
-  display: block;
-  width: 40%;
-  line-height: 0.6rem;
-}
-section.section_bill_list .left_span {
+section.section_bill_list .left_content {
   float: left;
   text-align: left;
 }
-section.section_bill_list .right_span {
-  margin-right: 15px;
+section.section_bill_list .right_content {
   float: right;
   text-align: right;
+  margin-right: 15px;
+}
+section.section_bill_list p {
+  line-height: 0.8rem;
+}
+section.section_bill_list span {
+  color: #318D50;
 }
 section.distribute_find {
   width: 100%;
