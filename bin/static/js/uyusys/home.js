@@ -97,6 +97,7 @@ require(['../require-config'], function() {
                         se_userid: store_user_id,
                         userid: store_user_id
                     };
+
                     ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
                         $("#store_name").text(respData["store_name"]);
                         $("#store_left_times").text(respData["remain_times"]);
