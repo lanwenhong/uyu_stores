@@ -1,5 +1,4 @@
-#coding: utf-8
-
+# -*- coding: utf-8 -*-
 import traceback
 from zbase.web import core
 from zbase.web import template
@@ -18,45 +17,7 @@ import tools
 log = logging.getLogger()
 
 
-class StoreH5Main(core.Handler):
-    def GET(self):
-        self.write(template.render('index.html'))
-
-
-class StoreH5EyeSight(core.Handler):
-    def GET(self):
-        self.write(template.render('eye_sight.html'))
-
-
-class StoreH5Train(core.Handler):
-    def GET(self):
-        self.write(template.render("train.html"))
-
-
-
-class StoreH5Dev(core.Handler):
-    def GET(self):
-        self.write(template.render("dev.html"))
-
-
-
-class StoreH5Bill(core.Handler):
-    def GET(self):
-        self.write(template.render("bill.html"))
-
-
-class StoreH5DisRecord(core.Handler):
-    def GET(self):
-        self.write(template.render("dis_record.html"))
-
-
-class StoreH5DisComsumerInfo(core.Handler):
-    def GET(self):
-        self.write(template.render("dis_consumer_info.html"))
-
-
-class StoreAllocateHandler(core.Handler):
-
+class EyesightInfoHandler(core.Handler):
     _get_handler_fields = [
         Field('page', T_INT, False),
         Field('maxnum', T_INT, False),
@@ -94,10 +55,16 @@ class StoreAllocateHandler(core.Handler):
     @with_database('uyu_core')
     def _query_handler(self):
 
-        where = {'store_id': self.store_id, 'busicd': define.BUSICD_CHAN_ALLOT_TO_COSUMER}
+        where = {'store_id': self.store_id, 'is_valid': define.UYU_STORE_EYESIGHT_BIND}
         other = ' order by ctime desc'
-        keep_fields = ['orderno', 'consumer_id', 'training_times', 'training_amt', 'status']
-        ret = self.db.select(table='training_operator_record', fields=keep_fields, where=where)
+        keep_fields = [
+            'store_eyesight_bind.id', 'store_eyesight_bind.eyesight_id',
+            'store_eyesight_bind.ctime', 'auth_user.username']
+        ret = self.db.select_join(
+            table1='store_eyesight_bind',
+            table2='auth_user',
+            on={'store_eyesight_bind.eyesight_id': 'auth_user.id'},
+            fields=keep_fields, where=where, other=other)
         return ret
 
     def GET(self):
@@ -108,4 +75,3 @@ class StoreAllocateHandler(core.Handler):
                log.warn(e)
                log.warn(traceback.format_exc())
                return error(UAURET.SERVERERR)
-
