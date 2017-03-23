@@ -56,10 +56,13 @@ require(['../require-config'], function() {
                 }
             });
 
-            native.pullUpRefresh(function (resp) {
-                alert("kkkkkkkkk");
-                vukk.next_list_page();
-            });
+            function registeUpdateView(){
+                native.pullUpRefresh(function (resp) {
+                    vukk.next_list_page();
+                    registeUpdateView();
+                });
+            }
+
         });
     });
 });
