@@ -62,6 +62,8 @@ require(['../require-config'], function() {
                     registeUpdateView();
                 });
             }
+            registeUpdateView();
+
 
         });
     });
