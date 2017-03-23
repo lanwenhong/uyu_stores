@@ -44,7 +44,7 @@ class EyesightInfoHandler(core.Handler):
             start, end = tools.gen_ret_range(curr_page, max_page_num)
             info_data = self._query_handler()
 
-            data['info'] = info_data[start:end]
+            data['info'] = self._trans_record(info_data[start:end])
             return success(data)
         except Exception as e:
             log.warn(e)
@@ -59,7 +59,8 @@ class EyesightInfoHandler(core.Handler):
         other = ' order by ctime desc'
         keep_fields = [
             'store_eyesight_bind.id', 'store_eyesight_bind.eyesight_id',
-            'store_eyesight_bind.ctime', 'auth_user.username']
+            'store_eyesight_bind.ctime', 'auth_user.username', 'auth_user.phone_num'
+        ]
         ret = self.db.select_join(
             table1='store_eyesight_bind',
             table2='auth_user',
@@ -67,9 +68,20 @@ class EyesightInfoHandler(core.Handler):
             fields=keep_fields, where=where, other=other)
         return ret
 
+    @with_database('uyu_core')
+    def _trans_record(self, data):
+        if not data:
+            return []
+
+        for item in data:
+            item['ctime'] = datetime.datetime.strftime(item['ctime'], '%Y-%m-%d %H:%M:%S') if item['ctime'] else ''
+
+        return data
+
     def GET(self):
            try:
                data = self._get_handler()
+               log.debug('return data:%s', data)
                return data
            except Exception as e:
                log.warn(e)
