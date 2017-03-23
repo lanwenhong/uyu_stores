@@ -23,12 +23,14 @@ require(['../require-config'], function() {
                     },
                     methods: {
                         fetch_store_info: function () {
-                            var getInfoData = {
+                            var listReq = {
                                 se_userid: store_user_id,
-                                userid: store_user_id
+                                maxnum: "10",
+                                page:''+page
                             };
-                            ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
+                            ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                                 var eyesightArr = respData['info'];
+                                alert("kkkkk");
                                 for (var i = 0; i < eyesightArr.length; i++){
                                     this.eye_sights.push(eyesightArr[i]);
                                 }
@@ -37,8 +39,7 @@ require(['../require-config'], function() {
                     }
                 });
             }
-
-
+            createVueWithUserId(localStorage.getItem("userid"));
         });
     });
 });
