@@ -10,6 +10,7 @@ require(['../require-config'], function() {
                 if (!val_exp.test(val)) {
                     native.alert({msg:"手机号不合法"}, function (cb) {
                     });
+                    return;
                 } else {
 
                 }
@@ -46,20 +47,18 @@ require(['../require-config'], function() {
                 native.getUserIdFromObjC({}, function (cb) {
                     var refer_tel = $('.js_search_phone').val();
                     var store_user_id = cb['userid'];
-		    var req = {
-		       se_userid:store_user_id,
-                       mobile:refer_tel
+                    var req = {
+                        se_userid:store_user_id,
+                        mobile:refer_tel
                     }
-alert("kkkkkdddd");
                     ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', req, '.zheceng', function (respData) {
-                        alert(JSON.stringify(respData));
-			$(".consumer_name").val(respData["username"]);
+                        $(".consumer_name").val(respData["username"]);
                         $(".consumer_phone").val(respData["mobile"]);
                     });
-		});
+                });
             });
 
-                //获取userid
+            //获取userid
             $('.consumer_phone').on('input', function() {
                 var refer_tel = $('.consumer_phone').val();
 
@@ -83,8 +82,8 @@ alert("kkkkkdddd");
             $('.consumer_buy_times').on('input', function() {
                 var times = $('.consumer_buy_times').val();
                 if (times !== null && times !== undefined){
-                    if(times.length > 4){
-                        $('.consumer_buy_times').val(times.substring(0, 4));
+                    if(times.length > 6){
+                        $('.consumer_buy_times').val(times.substring(0, 6));
                     }
                 }
 
@@ -108,7 +107,14 @@ alert("kkkkkdddd");
             $(".js_distribute_times").on("click", function () {
                 var refer_tel = $('.consumer_phone').val();
                 var buy_times = $('.consumer_buy_times').val();
-                if (refer_tel !== null && refer_tel !== undefined && buy_times !== null && buy_times !== undefined){
+
+                var val_exp = /^[0-9]*$/;
+                if (!val_exp.test(buy_times)) {
+                    native.alert({msg:"你输入的次数不合法"}, function (cb) {
+                    });
+                    return;
+                }
+                if (refer_tel !== null && refer_tel !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
 
                     native.getUserIdFromObjC({}, function (cb) {
                         var store_user_id = cb['userid'];
@@ -123,8 +129,6 @@ alert("kkkkkdddd");
                             fetch_left_Times();
                         });
                     });
-
-
                 }
             });
         });

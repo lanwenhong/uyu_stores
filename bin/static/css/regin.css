@@ -237,7 +237,7 @@ header a.title_a {
   display: inline-block;
   font-size: 0.7rem;
   margin-left: 0.5rem;
-  color: #3A9C62;
+  color: #318D50;
   width: 0.6rem;
   height: 1.2rem;
   cursor: pointer;
@@ -260,10 +260,10 @@ span.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 span.content_sub.disa {
@@ -278,9 +278,9 @@ span.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -290,10 +290,10 @@ a.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 a.content_sub1 {
@@ -303,9 +303,9 @@ a.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -345,7 +345,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   width: 100%;
   max-width: 10rem;
   padding: 0 0 0;
-  background: #3A9C62;
+  background: #318D50;
 }
 .section_footer span.content_sub {
   display: inline-block;
@@ -353,10 +353,10 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #3A9C62;
+  background: #318D50;
   color: white;
   border-radius: 0px;
-  border: 1px solid #3A9C62;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 .section_footer span.content_sub.disa {
@@ -387,6 +387,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   font-size: 17px;
   text-align: center;
   position: relative;
+  color: #318D50;
 }
 .alert_con_t span {
   position: absolute;
@@ -421,7 +422,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   cursor: pointer;
   font-weight: normal;
   display: inline-block;
-  background: #3A9C62;
+  background: #318D50;
   border-radius: 3px;
   transtion: all 1s;
   color: white;
@@ -430,7 +431,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
        box-sizing: border-box;
 }
 .alert_con_close:hover {
-  background: orange;
+  background: #318D50;
 }
 .alert_con_foot {
   width: 100%;

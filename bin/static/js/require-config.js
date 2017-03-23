@@ -3,6 +3,7 @@ require.config({
     baseUrl: "/static/js",
     paths: {
         "jquery": ["libs/jquery-2.1.4.min", "libs/jquery-1.7.2.min", "http://libs.baidu.com/jquery/2.0.3/jquery"],
+        "jquerySwipe":"libs/jquery.touchSwipe.min",
         "zepto": "libs/zepto.min",
         "mobile": "libs/date/jquery.mobile-1.4.5.min",
         "mobiscroll": "libs/date/mobiscroll", //通过shim绑定关联模块jquery

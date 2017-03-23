@@ -237,7 +237,7 @@ header a.title_a {
   display: inline-block;
   font-size: 0.7rem;
   margin-left: 0.5rem;
-  color: #3A9C62;
+  color: #318D50;
   width: 0.6rem;
   height: 1.2rem;
   cursor: pointer;
@@ -260,10 +260,10 @@ span.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 span.content_sub.disa {
@@ -278,9 +278,9 @@ span.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -290,10 +290,10 @@ a.content_sub {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #ff9424;
+  background: #318D50;
   color: white;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 a.content_sub1 {
@@ -303,9 +303,9 @@ a.content_sub1 {
   line-height: 44px;
   text-align: center;
   background: #F7F7F7;
-  color: #ff9424;
+  color: #318D50;
   border-radius: 3px;
-  border: 1px solid #ff9424;
+  border: 1px solid #318D50;
   margin-top: 0.2rem;
   font-size: 17px;
 }
@@ -345,7 +345,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   width: 100%;
   max-width: 10rem;
   padding: 0 0 0;
-  background: #3A9C62;
+  background: #318D50;
 }
 .section_footer span.content_sub {
   display: inline-block;
@@ -353,10 +353,10 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   height: 44px;
   line-height: 44px;
   text-align: center;
-  background: #3A9C62;
+  background: #318D50;
   color: white;
   border-radius: 0px;
-  border: 1px solid #3A9C62;
+  border: 1px solid #318D50;
   font-size: 17px;
 }
 .section_footer span.content_sub.disa {
@@ -387,6 +387,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   font-size: 17px;
   text-align: center;
   position: relative;
+  color: #318D50;
 }
 .alert_con_t span {
   position: absolute;
@@ -421,7 +422,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   cursor: pointer;
   font-weight: normal;
   display: inline-block;
-  background: #3A9C62;
+  background: #318D50;
   border-radius: 3px;
   transtion: all 1s;
   color: white;
@@ -430,7 +431,7 @@ html body .ui-group-theme-a footer a.tex_c:visited {
        box-sizing: border-box;
 }
 .alert_con_close:hover {
-  background: orange;
+  background: #318D50;
 }
 .alert_con_foot {
   width: 100%;
@@ -1008,52 +1009,77 @@ section.section_dev_list .device_status {
   padding-right: 15px;
   text-align: right;
 }
-section.section_master li {
+section.section_eye_sight li {
+  position: relative;
   height: 1.4rem;
 }
-section.section_master .master_dev {
+section.section_eye_sight .eye_sight {
+  width: 100%;
+  position: absolute;
+  background-color: white;
+  z-index: 10;
+}
+section.section_eye_sight .eye_sight div {
   float: left;
 }
-section.section_master .master_icon {
-  margin: 0.2rem 15px 0.2rem 0;
+section.section_eye_sight .eye_sight .eye_sight_icon {
   width: 1rem;
   height: 1rem;
+  margin-right: 15px;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
   border: 1px solid #e5e5e5;
   overflow: hidden;
 }
-section.section_master .master_name {
-  width: 50%;
+section.section_eye_sight .eye_sight .eye_sight_icon img {
+  width: 1rem;
+  height: 1rem;
 }
-section.section_master .master_edit {
-  width: 20%;
-  height: 1.4rem;
+section.section_eye_sight .eye_sight .eye_sight_info {
+  margin-top: 0.2rem;
 }
-section.section_master span {
+section.section_eye_sight .eye_sight .eye_sight_info span {
   display: block;
   line-height: 0.5rem;
+  text-align: left;
 }
-section.section_master .ma_name {
-  margin: 0.2rem 0 0;
+section.section_eye_sight .eye_sight_op {
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
-section.section_master .edit_btn {
+section.section_eye_sight .eye_sight_op div {
+  float: right;
+}
+section.section_eye_sight .eye_sight_op .eye_sight_cancel {
+  background-color: lightgrey;
+}
+section.section_eye_sight .eye_sight_op .eye_sight_delete {
+  background-color: red;
+}
+section.section_eye_sight .eye_sight_op span {
+  display: block;
+  color: white;
+  width: 2rem;
   text-align: center;
   line-height: 1.4rem;
 }
-section.section_bill_list span {
-  margin: 0 auto;
-  display: block;
-  width: 40%;
-  line-height: 0.6rem;
-}
-section.section_bill_list .left_span {
+section.section_bill_list .left_content {
   float: left;
   text-align: left;
 }
-section.section_bill_list .right_span {
-  margin-right: 15px;
+section.section_bill_list .right_content {
   float: right;
   text-align: right;
+  margin-right: 15px;
+}
+section.section_bill_list p {
+  line-height: 0.8rem;
+}
+section.section_bill_list span {
+  color: #318D50;
 }
 section.distribute_find {
   width: 100%;
@@ -1103,7 +1129,7 @@ section.section_find div {
   float: left;
   line-height: .7rem;
   text-align: center;
-  background-color: #3A9C62;
+  background-color: #318D50;
   border-radius: 5px;
 }
 section.section_find span {
@@ -1142,7 +1168,6 @@ section.section_info dl.hang:after {
 }
 section.section_info dl.hang dt {
   float: left;
-  width: 30%;
   position: relative;
 }
 section.section_info dl.hang dt span.right_arrow {
@@ -1164,7 +1189,7 @@ section.section_info dl.hang dt span.right_arrow i {
 }
 section.section_info dl.hang dd {
   float: right;
-  width: 70%;
+  width: 60%;
   text-align: right;
   line-height: 1rem;
 }

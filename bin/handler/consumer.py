@@ -36,6 +36,8 @@ class LoadConsumerHandler(core.Handler):
         params = self.validator.data
         uu = UUser() 
         uu.load_user_by_mobile(params["mobile"])
+        log.debug('##len:%s', len(uu.udata))
+        log.debug('##udata:%s', uu.udata)
         if len(uu.udata) == 0:
             return error(UAURET.USERERR)
         

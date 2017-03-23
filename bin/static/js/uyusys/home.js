@@ -40,14 +40,15 @@ require(['../require-config'], function() {
                 //         }
                 //     });
                 // }
-
+                native.updateView(function (resp) {
+                    alert("kkkkkkk");
+                });
 
                 //注册点击事件
                 $(".js_goto_record").on("click", function () {
 
                     var openUrl = location.protocol + '//' + location.host + '/store/v1/page/dis_record.html'
                     if (window.WebViewJavascriptBridge !== "undefined") {
-                        alert("open_url");
                         var openUrlData ={
                             url:openUrl
                         };
@@ -77,7 +78,7 @@ require(['../require-config'], function() {
                 });
 
                 $(".js_goto_bills").on("click", function () {
-                    var openUrl = location.protocol + '//' + location.host + '/store/v1/page/bill.html'
+                   var openUrl = location.protocol + '//' + location.host + '/store/v1/page/bill.html'
                     if (window.WebViewJavascriptBridge !== "undefined") {
                         var openUrlData ={
                             url:openUrl
@@ -98,6 +99,7 @@ require(['../require-config'], function() {
                         se_userid: store_user_id,
                         userid: store_user_id
                     };
+
                     ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
                         $("#store_name").text(respData["store_name"]);
                         $("#store_left_times").text(respData["remain_times"]);
