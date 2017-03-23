@@ -40,6 +40,7 @@ define(["jsbridge"], function(jsbridge) {
         });
     }
     var pullUpRefresh = function (cb) {
+        alert("123");
         JSBridge.NativeCallH5({
             name:"pullUpRefresh",
             callback:function (res) {
@@ -50,7 +51,7 @@ define(["jsbridge"], function(jsbridge) {
     return {
         alert:alert,
         openUrl:openUrl,
-        getUserIdFromObjC: getUserIdFromObjC,
+        getUserIdFromObjC:getUserIdFromObjC,
         updateView:updateView,
         pullUpRefresh:pullUpRefresh
     };
