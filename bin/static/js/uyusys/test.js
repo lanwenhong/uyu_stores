@@ -36,9 +36,9 @@ function get__data(){
     get_data.page = 1;
     get_data.maxnum = 10;
 
-    // var url = '/store/v1/api/eyesight_list',
-    // var url = '/store/v1/api/device_list';
-    var url = '/store/v1/api/store_allocate_list';
+    // var url = '/store/v1/api/eyesight_list';
+    var url = '/store/v1/api/device_list';
+    // var url = '/store/v1/api/store_allocate_list';
 
    $.ajax({
        url: url,
@@ -53,6 +53,7 @@ function get__data(){
                var msg = resperr ? resperr : resmsg;
                console.log(msg);
            } else {
+               console.log(data);
                var info = data.data;
                console.log(info);
            }

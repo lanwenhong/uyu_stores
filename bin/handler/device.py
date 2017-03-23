@@ -43,7 +43,7 @@ class DeviceInfoHandler(core.Handler):
             start, end = tools.gen_ret_range(curr_page, max_page_num)
             info_data = self._query_handler()
 
-            data['info'] = info_data[start:end]
+            data['info'] = self._trans_record(info_data[start:end])
             return success(data)
         except Exception as e:
             log.warn(e)
@@ -56,13 +56,24 @@ class DeviceInfoHandler(core.Handler):
 
         where = {'store_id': self.store_id}
         other = ' order by ctime desc'
-        keep_fields = ['device_name', 'hd_version', 'blooth_tag']
+        keep_fields = ['device_name', 'hd_version', 'blooth_tag', 'status']
         ret = self.db.select(table='device', fields=keep_fields, where=where)
         return ret
+
+    @with_database('uyu_core')
+    def _trans_record(self, data):
+        if not data:
+            return data
+
+        for item in data:
+            item['status'] = define.UYU_DEVICE_MAP.get(item['status'], '')
+
+        return data
 
     def GET(self):
            try:
                data = self._get_handler()
+               log.debug('return data: %s', data)
                return data
            except Exception as e:
                log.warn(e)
