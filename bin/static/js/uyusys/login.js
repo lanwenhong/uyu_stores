@@ -2,7 +2,7 @@
  * Created by mac on 17/3/23.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule", "native"],function($, ajax_rule, native){
+    require(["zepto", "ajax_rule"],function($, ajax_rule){
         $(function() {
             $(document).ready(function () {
                 var loginReq = {
