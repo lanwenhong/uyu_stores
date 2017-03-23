@@ -14,6 +14,7 @@ require(['../require-config'], function() {
             var page = 1;
 
             function createVueWithUserId(store_user_id) {
+alert(''+store_user_id);
                 var vukk = new vue({
                     el: '#wap',
                     data: {eye_sights:[],
