@@ -84,9 +84,9 @@ define(function() {
         }
 
         JSBridge.NativeCallH5 = function (param) {
-            alert("注册方法");
-            bridge.registerHandler(param.name, function (response) {
-                param.callback && param.callback(response)
+            bridge.registerHandler(param.name, function (data, responseCallback) {
+                param.callback && param.callback(data);
+                responseCallback({ret:"OK"});
             });
         }
 
