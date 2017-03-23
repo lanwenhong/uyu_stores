@@ -17,14 +17,16 @@ require(['../require-config'], function() {
 alert(''+store_user_id);
                 var vukk = new vue({
                     el: '#wap',
-                    data: {eye_sights:[],
+                    data: {
+			eye_sights: new Array(),
                     },
                     created: function () {
                         this.fetch_store_info();//获取店铺数据
                     },
                     methods: {
                         fetch_store_info: function () {
-                            var listReq = {
+                            var _this = this;
+			    var listReq = {
                                 se_userid: store_user_id,
                                 maxnum: "10",
                                 page:''+page
@@ -32,8 +34,7 @@ alert(''+store_user_id);
                             ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                                 var eyesightArr = respData['info'];
                                 for (var i = 0; i < eyesightArr.length; i++){
-                                    alert("kkk");
-                                    this.eye_sights.push(eyesightArr[i]);
+				    _this.eye_sights.push(eyesightArr[i]);
                                 }
                             });
                         },
