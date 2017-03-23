@@ -66,7 +66,7 @@ require(['../require-config'], function() {
                 };
                 ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                     page = page + 1;
-                    console.log(JSON.stringify(respData));
+                    alert(JSON.stringify(respData));
                 });
             })
 
