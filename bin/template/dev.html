@@ -16,7 +16,7 @@
 <div id="wap" class="js_regin_index">
     <section class="section_list section_dev_list">
         <ul class="js_one">
-            <li v-for="dev in devices">
+            <li v-cloak v-for="dev in devices">
                 <span class="device_name">{{dev.device_name}}</span>
                 <span class="device_status">状态:{{dev.status}}</span>
                 <div class="clearfix"></div>

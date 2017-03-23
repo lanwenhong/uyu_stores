@@ -719,3 +719,6 @@ body {
    -ms-user-select: none;
        user-select: none;
 }
+[v-cloak] {
+  display: none;
+}

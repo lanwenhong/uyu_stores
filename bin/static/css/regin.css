@@ -719,6 +719,9 @@ body {
    -ms-user-select: none;
        user-select: none;
 }
+[v-cloak] {
+  display: none;
+}
 /* layer begin */
 .ios-select-widget-box.olay {
   position: absolute;

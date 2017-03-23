@@ -719,6 +719,9 @@ body {
    -ms-user-select: none;
        user-select: none;
 }
+[v-cloak] {
+  display: none;
+}
 /* layer begin */
 .ios-select-widget-box.olay {
   position: absolute;
@@ -960,13 +963,13 @@ section.section_list ul li {
 section.section_list ul li:nth-child(1) {
   border: 0;
 }
-section.section_reglist li {
+section.section_record_list li {
   height: 1.4rem;
 }
-section.section_reglist .record_dev {
+section.section_record_list .record_dev {
   float: left;
 }
-section.section_reglist .record_icon {
+section.section_record_list .record_icon {
   margin: 0.2rem 15px 0.2rem 0;
   width: 1rem;
   height: 1rem;
@@ -974,19 +977,23 @@ section.section_reglist .record_icon {
   border: 1px solid #e5e5e5;
   overflow: hidden;
 }
-section.section_reglist .record_times {
+section.section_record_list .record_icon img {
+  width: 1rem;
+  height: 1rem;
+}
+section.section_record_list .record_times {
   float: right;
   padding-right: 15px;
 }
-section.section_reglist span {
+section.section_record_list span {
   display: block;
   text-align: left;
   line-height: 0.5rem;
 }
-section.section_reglist .consumer_name {
+section.section_record_list .consumer_name {
   margin: 0.2rem 0 0;
 }
-section.section_reglist .buy_times {
+section.section_record_list .buy_times {
   margin: 0 auto;
   display: block;
   text-align: right;

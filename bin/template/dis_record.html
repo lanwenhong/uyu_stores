@@ -19,7 +19,7 @@
     </p>
     <section class="section_list section_reglist">
         <ul class="js_one">
-            <li v-for="oneDistribute in allRecords">
+            <li v-cloak v-for="oneDistribute in allRecords">
                 <div class="record_dev record_icon"><img src="/static/img/ic_default_head.png"></div>
                 <div class="record_dev record_name">
                     <span class="consumer_name">{{oneDistribute.buyer}}</span>
