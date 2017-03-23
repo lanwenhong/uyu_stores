@@ -10,7 +10,7 @@ require(['../require-config'], function() {
                     password: '807865'
                 };
 
-                ajax_rule.ajax_rule('/store/v1/api/store_info', 'POST', 'json', loginReq, '.zheceng', function (respData) {
+                ajax_rule.ajax_rule('/store/v1/api/login', 'POST', 'json', loginReq, '.zheceng', function (respData) {
                     alert("登录成功");
                 });
             });
