@@ -1,19 +1,24 @@
-define(function() {　
-    var actionQueue = []
+define(function() {
+    var actionQueue = [];
+    var objcCallQueue = [];
     var JSBridge = {
         H5CallNative: function(param) {
             // 环境还未准备好,bridge 还未注入,H5跟 Native还不能交互,放进队列中
-            actionQueue.push(param)
+            actionQueue.push(param);
+        },
+        NativeCallH5:function (param) {
+            objcCallQueue.push(param);
         }
+
     }
 
     var isAndroid = function() {
-            var ua = navigator.userAgent
-            return (/Android/i).test(ua)
-        }
+        var ua = navigator.userAgent
+        return (/Android/i).test(ua)
+    }
     var isIos = function () {
-      var ua = navigator.userAgent
-      return (/Mac OS X/i).test(ua)
+        var ua = navigator.userAgent
+        return (/Mac OS X/i).test(ua)
     }
 
     // IOS
@@ -60,7 +65,7 @@ define(function() {　
             bridge.init(function(message, responseCallback) {
                 // console.log('JS got a message', message)
                 var data = { 'Javascript Responds': 'Wee!' }
-                    // console.log('JS responding with', data)
+                // console.log('JS responding with', data)
                 responseCallback(data)
             })
         }
@@ -78,9 +83,16 @@ define(function() {　
             })
         }
 
+        JSBridge.NativeCallH5 = function (param) {
+            bridge.registerHandler(param.name, function (response) {
+                param.callback && param.callback(response)
+            });
+        }
+
 
         // 执行环境未准备好之前的事件队列
-        runActionQueue()
+        runActionQueue();
+        runNativeCallQueue();
     }
 
     // 执行环境未准备好之前的事件队列
@@ -90,7 +102,13 @@ define(function() {　
         }
     }
 
+    function runNativeCallQueue() {
+        for (var index in objcCallQueue) {
+            JSBridge.NativeCallH5(objcCallQueue[index])
+        }
+    }
+
     return {
         JSBridge: JSBridge,
-    };　
+    };
 });
