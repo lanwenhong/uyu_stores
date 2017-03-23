@@ -78,6 +78,12 @@ class StoreInfoHandler(core.Handler):
         if t and a:
             return t, a
         return 0, 0
+    
+    @with_database('uyu_core')
+    def _get_prepayflag(self, channel_id):
+        dbret = self.db.select_one('stores', {"channel_id": channel_id})
+        return dbret.get("is_prepayment", 0)
+
         
     @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
     @with_validator_self
@@ -102,6 +108,7 @@ class StoreInfoHandler(core.Handler):
         ret["d_amt"] = d_amt
         ret["m_train"] = m_t
         ret["m_amt"] = m_amt
+        ret["is_prepayment"] = self._get_prepayflag(self.user.sdata["channel_id"])
 
         return success(ret)
 
