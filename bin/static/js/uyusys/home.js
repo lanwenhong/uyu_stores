@@ -47,7 +47,9 @@ require(['../require-config'], function() {
                     var openUrl = location.protocol + '//' + location.host + '/store/v1/page/dis_record.html'
                     if (window.WebViewJavascriptBridge !== "undefined") {
                         var openUrlData ={
-                            url:openUrl
+                            url:openUrl,
+                            pullDown:"1",
+                            pullUp:"1"
                         };
                         native.openUrl(openUrlData, function (cb) {
                             console.log("call back");
@@ -63,7 +65,9 @@ require(['../require-config'], function() {
 
                     if (window.WebViewJavascriptBridge !== "undefined") {
                         var openUrlData ={
-                            url:openUrl
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0"
                         };
                         native.openUrl(openUrlData, function (cb) {
                             console.log("call back");
@@ -78,7 +82,9 @@ require(['../require-config'], function() {
                     var openUrl = location.protocol + '//' + location.host + '/store/v1/page/bill.html'
                     if (window.WebViewJavascriptBridge !== "undefined") {
                         var openUrlData ={
-                            url:openUrl
+                            url:openUrl,
+                            pullDown:"1",
+                            pullUp:"1"
                         };
                         native.openUrl(openUrlData, function (cb) {
                             console.log("call back");

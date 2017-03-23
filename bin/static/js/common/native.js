@@ -39,10 +39,19 @@ define(["jsbridge"], function(jsbridge) {
             }
         });
     }
+    var pullUpRefresh = function (cb) {
+        JSBridge.NativeCallH5({
+            name:"pullUpRefresh",
+            callback:function (res) {
+                cb(res);
+            }
+        });
+    }
     return {
         alert:alert,
         openUrl:openUrl,
         getUserIdFromObjC: getUserIdFromObjC,
-        updateView:updateView
+        updateView:updateView,
+        pullUpRefresh:pullUpRefresh
     };
 });

@@ -6,34 +6,56 @@ require(['../require-config'], function() {
         $(document).ready(function() {
             var page = 1;
 
-            function createVueWithUserId(store_user_id) {
-                var vukk = new vue({
-                    el: '#wap',
-                    data: {
-                        eye_sights: new Array(),
+            var vukk = new vue({
+                el: '#wap',
+                data: {
+                    eye_sights: new Array(),
+                },
+                created: function () {
+                    this.frist_list_page();//获取店铺数据
+                },
+                methods: {
+                    frist_list_page: function () {
+                        var _this = this;
+                        var listReq = {
+                            se_userid: localStorage.getItem("userid"),
+                            maxnum: "10",
+                            page:''+page
+                        };
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                            var eyesightArr = respData['info'];
+                            for (var i = 0; i < eyesightArr.length; i++){
+                                _this.eye_sights.push(eyesightArr[i]);
+                            }
+                        });
                     },
-                    created: function () {
-                        this.fetch_store_info();//获取店铺数据
-                    },
-                    methods: {
-                        fetch_store_info: function () {
-                            var _this = this;
-                            var listReq = {
-                                se_userid: store_user_id,
-                                maxnum: "10",
-                                page:''+page
-                            };
-                            ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                                var eyesightArr = respData['info'];
+                    next_list_page:function () {
+                        var _this = this;
+                        var listReq = {
+                            se_userid: localStorage.getItem("userid"),
+                            maxnum: "10",
+                            page:''+page
+                        };
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                            var eyesightArr = respData['info'];
+                            if (eyesightArr.length == 10){
+                                page = page + 1;
                                 for (var i = 0; i < eyesightArr.length; i++){
                                     _this.eye_sights.push(eyesightArr[i]);
                                 }
-                            });
-                        },
+                            }else if (eyesightArr.length > 0){
+                                for (var i = 0; i < eyesightArr.length; i++){
+                                    _this.eye_sights.push(eyesightArr[i]);
+                                }
+                            }
+                        });
                     }
-                });
-            }
-            createVueWithUserId(localStorage.getItem("userid"));
+                }
+            });
+
+            native.pullUpRefresh(function (resp) {
+                vukk.next_list_page();
+            });
         });
     });
 });
