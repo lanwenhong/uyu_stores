@@ -5,7 +5,6 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "vue", "native"],function($, ajax_rule, vue, native){
         $(document).ready(function() {
             var page = 1;
-
             var vukk = new vue({
                 el: '#wap',
                 data: {
@@ -36,6 +35,7 @@ require(['../require-config'], function() {
                     },
                     next_list_page:function () {
                         var _this = this;
+                        alert("page = "+page);
                         var listReq = {
                             se_userid: localStorage.getItem("userid"),
                             maxnum: "10",
