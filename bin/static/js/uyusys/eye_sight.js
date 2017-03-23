@@ -30,8 +30,8 @@ require(['../require-config'], function() {
                             };
                             ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                                 var eyesightArr = respData['info'];
-                                alert("kkkkk");
                                 for (var i = 0; i < eyesightArr.length; i++){
+                                    alert("kkk");
                                     this.eye_sights.push(eyesightArr[i]);
                                 }
                             });
