@@ -31,8 +31,9 @@ alert(''+store_user_id);
                                 maxnum: "10",
                                 page:''+page
                             };
-                            ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                            ajax_rule.ajax_rule('/store/v1/api/device_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                                 var eyesightArr = respData['info'];
+				console.log(JSON.stringify(eyesightArr[0]));
                                 for (var i = 0; i < eyesightArr.length; i++){
 				    _this.eye_sights.push(eyesightArr[i]);
                                 }
