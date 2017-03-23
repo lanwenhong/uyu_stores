@@ -23,7 +23,7 @@ require(['../require-config'], function() {
                         };
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var eyesightArr = respData['info'];
-                            if (eyesightArr.length > 10){
+                            if (eyesightArr.length > 0){
                                 page = page + 1;
                             }else if (eyesightArr.length == 0){
 
@@ -45,7 +45,7 @@ require(['../require-config'], function() {
                             var eyesightArr = respData['info'];
 
                             alert("length"+eyesightArr.length + "eye_sights"+_this.eye_sights.length);
-                            if (eyesightArr.length > 10){
+                            if (eyesightArr.length > 0){
                                 page = page + 1;
                             }else if (eyesightArr.length == 0){
 
