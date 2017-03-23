@@ -5,7 +5,7 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "jquerySwipe"],function($, ajax_rule, jquerySwipe){
         $(document).ready(function() {
 
-            $(".eye_sight").swipe({
+            $(".eye_sight").swipeLeft({
                 swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
                     alert(direction);
                 }
