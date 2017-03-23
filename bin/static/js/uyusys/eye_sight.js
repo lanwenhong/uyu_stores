@@ -35,7 +35,6 @@ require(['../require-config'], function() {
                     },
                     next_list_page:function () {
                         var _this = this;
-                        alert("page = "+page);
                         var listReq = {
                             se_userid: localStorage.getItem("userid"),
                             maxnum: "10",
@@ -43,8 +42,6 @@ require(['../require-config'], function() {
                         };
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var eyesightArr = respData['info'];
-
-                            alert("length"+eyesightArr.length + "eye_sights"+_this.eye_sights.length);
                             if (eyesightArr.length > 0){
                                 page = page + 1;
                             }else if (eyesightArr.length == 0){
