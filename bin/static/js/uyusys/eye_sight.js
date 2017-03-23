@@ -2,7 +2,7 @@
  * Created by mac on 17/3/15.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule", "vue"],function($, ajax_rule, vue){
+    require(["zepto", "ajax_rule", "vue", "native"],function($, ajax_rule, vue, native){
         $(document).ready(function() {
             var page = 1;
 
@@ -24,6 +24,11 @@ require(['../require-config'], function() {
                         };
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var eyesightArr = respData['info'];
+                            if (eyesightArr.length > 10){
+                                page = page + 1;
+                            }else if (eyesightArr.length == 0){
+
+                            }
                             for (var i = 0; i < eyesightArr.length; i++){
                                 _this.eye_sights.push(eyesightArr[i]);
                             }
@@ -38,15 +43,13 @@ require(['../require-config'], function() {
                         };
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var eyesightArr = respData['info'];
-                            if (eyesightArr.length == 10){
+                            if (eyesightArr.length > 10){
                                 page = page + 1;
-                                for (var i = 0; i < eyesightArr.length; i++){
-                                    _this.eye_sights.push(eyesightArr[i]);
-                                }
-                            }else if (eyesightArr.length > 0){
-                                for (var i = 0; i < eyesightArr.length; i++){
-                                    _this.eye_sights.push(eyesightArr[i]);
-                                }
+                            }else if (eyesightArr.length == 0){
+
+                            }
+                            for (var i = 0; i < eyesightArr.length; i++){
+                                _this.eye_sights.push(eyesightArr[i]);
                             }
                         });
                     }
@@ -54,7 +57,6 @@ require(['../require-config'], function() {
             });
 
             native.pullUpRefresh(function (resp) {
-                alert("kkkkkk");
                 vukk.next_list_page();
             });
         });

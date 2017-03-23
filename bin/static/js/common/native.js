@@ -40,7 +40,6 @@ define(["jsbridge"], function(jsbridge) {
         });
     }
     var pullUpRefresh = function (cb) {
-        alert("123");
         JSBridge.NativeCallH5({
             name:"pullUpRefresh",
             callback:function (res) {

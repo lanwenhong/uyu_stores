@@ -84,7 +84,6 @@ define(function() {
         }
 
         JSBridge.NativeCallH5 = function (param) {
-            alert("456");
             bridge.registerHandler(param.name, function (response) {
                 param.callback && param.callback(response)
             });
