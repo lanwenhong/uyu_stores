@@ -78,7 +78,7 @@ require(['../require-config'], function() {
                 });
 
                 $(".js_goto_bills").on("click", function () {
-                   var openUrl = location.protocol + '//' + location.host + '/store/v1/page/bill.html'
+                    var openUrl = location.protocol + '//' + location.host + '/store/v1/page/bill.html'
                     if (window.WebViewJavascriptBridge !== "undefined") {
                         var openUrlData ={
                             url:openUrl
