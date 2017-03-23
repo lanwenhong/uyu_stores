@@ -56,15 +56,9 @@ require(['../require-config'], function() {
                 }
             });
 
-            function registeUpdateView(){
-                native.pullUpRefresh(function (resp) {
-                    vukk.next_list_page();
-                    registeUpdateView();
-                });
-            }
-            registeUpdateView();
-
-
+            native.pullUpRefresh(function (resp) {
+                vukk.next_list_page();
+            });
         });
     });
 });
