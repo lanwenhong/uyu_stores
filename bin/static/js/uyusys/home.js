@@ -40,7 +40,9 @@ require(['../require-config'], function() {
                 //         }
                 //     });
                 // }
-
+                native.updateView(function (resp) {
+                    alert("kkkkkkk");
+                });
 
                 //注册点击事件
                 $(".js_goto_record").on("click", function () {
