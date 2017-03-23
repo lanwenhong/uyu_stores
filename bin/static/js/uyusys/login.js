@@ -14,6 +14,7 @@ require(['../require-config'], function() {
                     localStorage.setItem("userid", respData['userid']);
 
                     alert("登录成功");
+                    localStorage.setItem("userid", respData['userid']);
                 });
             });
         });
