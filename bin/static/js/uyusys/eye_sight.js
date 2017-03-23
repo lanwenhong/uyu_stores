@@ -11,9 +11,11 @@ require(['../require-config'], function() {
             var lastLeftObj; // 上一个左滑的对象
             // 用于记录按下的点
             var start;
-            // 网页在移动端运行时的监听
+            alert("kkkkk")
+	    // 网页在移动端运行时的监听
             $(".eye_sight").addEventListener('touchstart', function(event){
-                    lastXForMobile = e.changedTouches[0].pageX;
+                    alert("eggegegeg");
+	            lastXForMobile = e.changedTouches[0].pageX;
                     pressedObj = this; // 记录被按下的对象
                     // 记录开始按下时的点
                     var touches = event.touches[0];
