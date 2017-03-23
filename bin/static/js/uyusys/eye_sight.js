@@ -17,7 +17,8 @@ require(['../require-config'], function() {
                 alert("dddddvvvv");
                 var listReq = {
                     page: ''+page,
-                    maxnum: '10'
+                    maxnum: '10',
+                    se_userid:localStorage.getItem("userid")
                 };
                 ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                     page = page + 1;
