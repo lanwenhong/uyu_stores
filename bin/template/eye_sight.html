@@ -17,12 +17,12 @@
 
     <section class="section_list section_eye_sight">
         <ul class="js_one">
-            <li>
+            <li v-for="person in eye_sights">
                 <div class="eye_sight">
                     <div class="eye_sight_icon"><img src="/static/img/ic_eye_sight.png"></div>
                     <div class="eye_sight_info">
-                        <span class="es_name">大力金刚王</span>
-                        <span class="es_phone">手机号</span>
+                        <span class="es_name">{{person.username}}</span>
+                        <span class="es_phone">{{person.eyesight_id}}</span>
                     </div>
                 </div>
                 <div class="eye_sight_op">
