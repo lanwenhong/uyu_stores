@@ -40,10 +40,7 @@ require(['../require-config'], function() {
                 //         }
                 //     });
                 // }
-                native.updateView(function (resp) {
-                    //alert("kkkkkkk");
-                    alert(resp['kkkkk']);
-                });
+
 
                 //注册点击事件
                 $(".js_goto_record").on("click", function () {
@@ -93,9 +90,7 @@ require(['../require-config'], function() {
                 });
 
 
-                //获取userid
-                native.getUserIdFromObjC({}, function (cb) {
-                    var store_user_id = cb['userid'];
+                function updatViewData(store_user_id) {
                     var getInfoData = {
                         se_userid: store_user_id,
                         userid: store_user_id
@@ -109,6 +104,20 @@ require(['../require-config'], function() {
                         $("#day_distribute").text(respData["d_train"]);
                         $("#day_earned_money").text(respData["d_amt"]);
                     });
+                }
+
+                //获取userid
+                native.getUserIdFromObjC({}, function (cb) {
+                    var store_user_id = cb['userid'];
+                    localStorage.setItem("userid", store_user_id);
+                    updatViewData(store_user_id);
+                });
+
+
+                native.updateView(function (resp) {
+                    console.log(resp.ret);
+                    var userid = localStorage.getItem("userid");
+                    updatViewData(userid);
                 });
 
             });

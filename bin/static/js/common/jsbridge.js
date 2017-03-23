@@ -84,9 +84,8 @@ define(function() {
         }
 
         JSBridge.NativeCallH5 = function (param) {
-            bridge.registerHandler(param.name, function (data, responseCallback) {
-                param.callback && param.callback(data);
-                responseCallback({ret:"OK"});
+            bridge.registerHandler(param.name, function (response) {
+                param.callback && param.callback(response)
             });
         }
 
