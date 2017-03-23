@@ -5,6 +5,7 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule","vue"],function($, ajax_rule, vue){
         $(document).ready(function() {
 
+            var page = 1;
             function createVueWithUserId(store_user_id) {
                 var vukk = new vue({
                     el: '#wap',
