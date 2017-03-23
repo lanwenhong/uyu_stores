@@ -12,6 +12,7 @@ require(['../require-config'], function() {
 
                 ajax_rule.ajax_rule('/store/v1/api/login', 'POST', 'json', loginReq, '.zheceng', function (respData) {
                     alert("登录成功");
+                    localStorage.setItem("userid", respData['userid']);
                 });
             });
         });
