@@ -9,7 +9,7 @@ require(['../require-config'], function() {
             var vukk = new vue({
                 el: '#wap',
                 data: {
-                    allRecords: new Array(),
+                    devices: new Array(),
                 },
                 created: function () {
                     var _this = this;
