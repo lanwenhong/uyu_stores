@@ -1024,7 +1024,8 @@ section.section_eye_sight .eye_sight {
   width: 100%;
   position: absolute;
   background-color: white;
-  z-index: 1;
+  z-index: 10;
+  display: none;
 }
 section.section_eye_sight .eye_sight div {
   float: left;
@@ -1033,8 +1034,8 @@ section.section_eye_sight .eye_sight .eye_sight_icon {
   width: 1rem;
   height: 1rem;
   margin-right: 15px;
-  margin-top: 0.2rem;
-  margin-bottom: 0.2rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   border: 1px solid #e5e5e5;
@@ -1049,29 +1050,29 @@ section.section_eye_sight .eye_sight .eye_sight_info {
 }
 section.section_eye_sight .eye_sight .eye_sight_info span {
   display: block;
-  line-height: 0.5rem;
+  line-height: 0.6rem;
   text-align: left;
 }
 section.section_eye_sight .eye_sight_op {
   width: 100%;
   position: absolute;
-  z-index: 10;
+  z-index: 1;
 }
 section.section_eye_sight .eye_sight_op div {
   float: right;
 }
 section.section_eye_sight .eye_sight_op .eye_sight_cancel {
-  background-color: lightgrey;
+  background-color: darkgrey;
 }
 section.section_eye_sight .eye_sight_op .eye_sight_delete {
   background-color: red;
 }
 section.section_eye_sight .eye_sight_op span {
   display: block;
-  color: white;
+  color: green;
   width: 2rem;
   text-align: center;
-  line-height: 1.4rem;
+  line-height: 1.6rem;
 }
 section.section_bill_list .left_content {
   float: left;
