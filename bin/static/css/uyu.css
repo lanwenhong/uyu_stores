@@ -1025,7 +1025,6 @@ section.section_eye_sight .eye_sight {
   position: absolute;
   background-color: white;
   z-index: 10;
-  display: none;
 }
 section.section_eye_sight .eye_sight div {
   float: left;
@@ -1070,6 +1069,7 @@ section.section_eye_sight .eye_sight_op .eye_sight_delete {
 section.section_eye_sight .eye_sight_op span {
   display: block;
   color: green;
+  background-color: rgba(0, 0, 0, 0);
   width: 2rem;
   text-align: center;
   line-height: 1.6rem;
