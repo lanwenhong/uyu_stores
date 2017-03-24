@@ -2,38 +2,63 @@
  * Created by mac on 17/3/15.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule","vue"],function($, ajax_rule, vue){
+    require(["zepto", "ajax_rule","vue", "native"],function($, ajax_rule, vue, native){
         $(document).ready(function() {
             var page = 1;
+            var vukk = new vue({
+                el: '#wap',
+                data: {
+                    allRecords: new Array(),
+                },
+                created: function () {
+                    var _this = this;
+                    _this.frist_list_page();//获取店铺数据
+                },
+                methods: {
+                    frist_list_page: function () {
+                        var _this = this;
+                        var listReq = {
+                            se_userid: localStorage.getItem("userid"),
+                            maxnum: "10",
+                            page:''+page
+                        };
+                        ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                            var recordArr = respData['info'];
+                            if (recordArr.length > 0){
+                                page = page + 1;
+                            }else if (recordArr.length == 0){
 
-            function createVueWithUserId(store_user_id) {
-                var vukk = new vue({
-                    el: '#wap',
-                    data: {
-                        allRecords: new Array(),
+                            }
+                            for (var i = 0; i < recordArr.length; i++){
+                                _this.allRecords.push(recordArr[i]);
+                            }
+                        });
                     },
-                    created: function () {
-                        this.fetch_store_info();//获取店铺数据
-                    },
-                    methods: {
-                        fetch_store_info: function () {
-                            var _this = this;
-                            var listReq = {
-                                se_userid: store_user_id,
-                                maxnum: "10",
-                                page:''+page
-                            };
-                            ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                                var recordArr = respData['info'];
-                                for (var i = 0; i < recordArr.length; i++){
-                                    _this.allRecords.push(recordArr[i]);
-                                }
-                            });
-                        },
+                    next_list_page:function () {
+                        var _this = this;
+                        var listReq = {
+                            se_userid: localStorage.getItem("userid"),
+                            maxnum: "10",
+                            page:''+page
+                        };
+                        ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                            var recordArr = respData['info'];
+                            if (recordArr.length > 0){
+                                page = page + 1;
+                            }else if (recordArr.length == 0){
+
+                            }
+                            for (var i = 0; i < recordArr.length; i++){
+                                _this.allRecords.push(recordArr[i]);
+                            }
+                        });
                     }
-                });
-            }
-            createVueWithUserId(localStorage.getItem("userid"));
+                }
+            });
+
+            native.pullUpRefresh(function (resp) {
+                vukk.next_list_page();
+            });
 
         });
     });
