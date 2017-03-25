@@ -963,6 +963,38 @@ section.section_list ul li {
 section.section_list ul li:nth-child(1) {
   border: 0;
 }
+section.section_train_list .train_dev {
+  float: left;
+}
+section.section_train_list .train_icon {
+  margin: 0.2rem 15px 0.2rem 0;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+}
+section.section_train_list .train_icon img {
+  width: 1rem;
+  height: 1rem;
+}
+section.section_train_list .train_info {
+  margin: 0.2rem auto;
+}
+section.section_train_list .train_info span {
+  display: block;
+  text-align: left;
+  line-height: 0.5rem;
+}
+section.section_train_list .train_time {
+  float: right;
+  margin: 0.2rem 15px;
+}
+section.section_train_list .train_time span {
+  display: block;
+  text-align: right;
+  line-height: 1rem;
+}
 section.section_record_list li {
   height: 1.4rem;
 }
