@@ -56,6 +56,13 @@ require(['../require-config'], function() {
                 }
             });
 
+            //注册下拉刷新方法
+            native.updateCurrentView(function () {
+                page = 1;
+                var len = vukk.allRecords.length;
+                vukk.allRecords.splice(0, len);
+                vukk.next_list_page();
+            });
             native.pullUpRefresh(function (resp) {
                 vukk.next_list_page();
             });

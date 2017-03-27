@@ -55,8 +55,7 @@ require(['../require-config'], function() {
                 }
             });
             //注册下拉刷新方法
-            native.updateView(function () {
-                alert("下拉");
+            native.updateCurrentView(function () {
                 page = 1;
                 var len = vukk.eye_sights.length;
                 vukk.eye_sights.splice(0, len);
@@ -64,7 +63,6 @@ require(['../require-config'], function() {
             });
             //注册上拉加载的方法
             native.pullUpRefresh(function (resp) {
-                alert("上拉");
                 vukk.next_list_page();
             });
         });
