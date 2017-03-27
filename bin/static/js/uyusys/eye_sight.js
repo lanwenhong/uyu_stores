@@ -58,6 +58,8 @@ require(['../require-config'], function() {
             native.updateView(function () {
                 alert("下拉");
                 page = 1;
+                var len = vukk.eye_sights.length;
+                vukk.eye_sights.splice(0, len);
                 vukk.next_list_page();
             });
             //注册上拉加载的方法
