@@ -118,7 +118,7 @@ require(['../require-config'], function() {
                     updateViewData(store_user_id);
                 });
 
-                native.updateView(function (resp) {
+                native.updateCurrentView(function (resp) {
                     updateViewData(localStorage.getItem("userid"));
                 });
 
