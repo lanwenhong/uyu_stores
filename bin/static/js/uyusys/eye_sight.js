@@ -54,7 +54,12 @@ require(['../require-config'], function() {
                     }
                 }
             });
-
+            //注册下拉刷新方法
+            native.updateView(function () {
+                page = 1;
+                vukk.next_list_page();
+            });
+            //注册上拉加载的方法
             native.pullUpRefresh(function (resp) {
                 vukk.next_list_page();
             });
