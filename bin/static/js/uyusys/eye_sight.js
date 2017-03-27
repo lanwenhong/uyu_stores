@@ -56,7 +56,7 @@ require(['../require-config'], function() {
             });
 
             native.pullUpRefresh(function (resp) {
-                vukk.next_list_page();
+		vukk.next_list_page();
             });
         });
     });
