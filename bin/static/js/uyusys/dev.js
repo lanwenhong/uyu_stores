@@ -57,6 +57,13 @@ require(['../require-config'], function() {
                 }
             });
 
+            native.updateCurrentView(function () {
+                page = 1;
+                var len = vukk.devices.length;
+                vukk.devices.splice(0, len);
+                vukk.next_list_page();
+            });
+
             native.pullUpRefresh(function (resp) {
                 vukk.next_list_page();
             });

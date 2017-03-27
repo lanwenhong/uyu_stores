@@ -31,7 +31,7 @@ define(["jsbridge"], function(jsbridge) {
         })
     };
 
-    var updateView = function (cb) {
+    var updateCurrentView = function (cb) {
         JSBridge.NativeCallH5({
             name:"updateCurrentView",
             callback:function (res) {
