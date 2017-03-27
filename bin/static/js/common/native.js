@@ -51,7 +51,7 @@ define(["jsbridge"], function(jsbridge) {
         alert:alert,
         openUrl:openUrl,
         getUserIdFromObjC:getUserIdFromObjC,
-        updateView:updateView,
+        updateCurrentView:updateCurrentView,
         pullUpRefresh:pullUpRefresh
     };
 });
