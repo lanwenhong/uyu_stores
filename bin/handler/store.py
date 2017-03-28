@@ -95,12 +95,12 @@ class StoreAllocateHandler(core.Handler):
     def _query_handler(self):
 
         where = {'store_id': self.store_id, 'busicd': define.BUSICD_CHAN_ALLOT_TO_COSUMER}
-        other = ' order by ctime desc'
+        other = ' order by create_time desc'
         keep_fields = [
             'orderno', 'consumer_id', 'training_times',
             'training_amt', 'status', 'buyer', 'create_time'
         ]
-        ret = self.db.select(table='training_operator_record', fields=keep_fields, where=where)
+        ret = self.db.select(table='training_operator_record', fields=keep_fields, where=where, other=other)
         return ret
 
     @with_database('uyu_core')
