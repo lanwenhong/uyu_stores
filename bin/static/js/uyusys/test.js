@@ -37,8 +37,9 @@ function get__data(){
     get_data.maxnum = 10;
 
     // var url = '/store/v1/api/eyesight_list';
-    var url = '/store/v1/api/device_list';
+    // var url = '/store/v1/api/device_list';
     // var url = '/store/v1/api/store_allocate_list';
+    var url = '/store/v1/api/settle_list';
 
    $.ajax({
        url: url,
