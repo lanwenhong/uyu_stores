@@ -996,13 +996,13 @@ section.section_train_list .train_time span {
   line-height: 1rem;
 }
 section.section_record_list li {
-  height: 1.4rem;
+  height: 1.6rem;
 }
 section.section_record_list .record_dev {
   float: left;
 }
 section.section_record_list .record_icon {
-  margin: 0.2rem 15px 0.2rem 0;
+  margin: 0.3rem 15px 0.3rem 0;
   width: 1rem;
   height: 1rem;
   border-radius: 5px;
@@ -1029,7 +1029,7 @@ section.section_record_list .buy_times {
   margin: 0 auto;
   display: block;
   text-align: right;
-  line-height: 1.4rem;
+  line-height: 1.6rem;
 }
 section.section_dev_list li {
   height: 1.4rem;
@@ -1107,8 +1107,8 @@ section.section_eye_sight .eye_sight_op span {
   line-height: 1.6rem;
 }
 section.section_bill_list {
-  padding-top: 0.1rem;
-  padding-bottom: 0.1rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 section.section_bill_list .left_content {
   float: left;
