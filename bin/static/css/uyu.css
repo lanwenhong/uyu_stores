@@ -1106,6 +1106,10 @@ section.section_eye_sight .eye_sight_op span {
   text-align: center;
   line-height: 1.6rem;
 }
+section.section_bill_list {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
 section.section_bill_list .left_content {
   float: left;
   text-align: left;
