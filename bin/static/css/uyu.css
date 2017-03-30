@@ -1353,9 +1353,12 @@ section.section_info dl.hang.success dd textarea.text {
 }
 section.section_nothing {
   display: none;
+  width: 100%;
 }
 section.section_nothing p {
   margin: 0 auto;
+  width: 100%;
   line-height: 1.2rem;
   color: #A7A9AE;
+  text-align: center;
 }
