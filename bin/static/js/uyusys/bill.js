@@ -23,14 +23,15 @@ require(['../require-config'], function() {
                             page:''+page
                         };
                         ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                            var devArr = respData['info'];
+                            var billArr = respData['info'];
                             if (devArr.length > 0){
                                 page = page + 1;
-                            }else if (devArr.length == 0){
+                            }else if (billArr.length == 0){
 
                             }
-                            for (var i = 0; i < devArr.length; i++){
-                                _this.allBills.push(devArr[i]);
+                            alert("请求成功");
+                            for (var i = 0; i < billArr.length; i++){
+                                _this.allBills.push(billArr[i]);
                             }
                         });
                     },
@@ -42,14 +43,15 @@ require(['../require-config'], function() {
                             page:''+page
                         };
                         ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                            var devArr = respData['info'];
-                            if (devArr.length > 0){
+                            var billArr = respData['info'];
+                            if (billArr.length > 0){
                                 page = page + 1;
-                            }else if (devArr.length == 0){
+                            }else if (billArr.length == 0){
 
                             }
-                            for (var i = 0; i < devArr.length; i++){
-                                _this.allBills.push(devArr[i]);
+                            alert("请求成功");
+                            for (var i = 0; i < billArr.length; i++){
+                                _this.allBills.push(billArr[i]);
                             }
                         });
                     }
