@@ -1179,6 +1179,9 @@ section.section_find div {
 section.section_find span {
   color: #fff;
 }
+.reg_title {
+  padding-left: 15px;
+}
 section.section_info {
   width: 100%;
   padding: 0 0 0 15px;
