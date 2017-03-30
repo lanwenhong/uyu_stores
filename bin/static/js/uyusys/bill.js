@@ -24,7 +24,7 @@ require(['../require-config'], function() {
                         };
                         ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var billArr = respData['info'];
-                            if (devArr.length > 0){
+                            if (billArr.length > 0){
                                 page = page + 1;
                             }else if (billArr.length == 0){
 
