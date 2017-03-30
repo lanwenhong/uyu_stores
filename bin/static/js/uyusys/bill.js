@@ -29,7 +29,6 @@ require(['../require-config'], function() {
                             }else if (billArr.length == 0){
 
                             }
-                            alert("请求成功");
                             for (var i = 0; i < billArr.length; i++){
                                 _this.allBills.push(billArr[i]);
                             }
@@ -49,7 +48,6 @@ require(['../require-config'], function() {
                             }else if (billArr.length == 0){
 
                             }
-                            alert("请求成功");
                             for (var i = 0; i < billArr.length; i++){
                                 _this.allBills.push(billArr[i]);
                             }

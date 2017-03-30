@@ -856,6 +856,9 @@ section.section_bottom {
   background: white;
   margin-bottom: .3rem;
 }
+section.section_bottom .js_goto_bills {
+  display: none;
+}
 section.section_bottom dl.hang.sigle_hang {
   padding: 0.1rem 15px 0.1rem 0;
 }

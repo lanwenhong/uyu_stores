@@ -114,7 +114,15 @@ require(['../require-config'], function() {
                 //获取userid
                 native.getUserIdFromObjC({}, function (cb) {
                     var store_user_id = cb['userid'];
+                    var is_prepayment = ""+cb['is_prepayment'];
+
                     localStorage.setItem("userid", store_user_id);
+                    if(is_prepayment.indexOf('1') > 0){
+                        //分成模式才有账单
+                        $('.js_goto_bills').show();
+                    }else {
+                        $('.js_goto_bills').hide();
+                    }
                     updateViewData(store_user_id);
                 });
 
