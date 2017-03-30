@@ -26,8 +26,9 @@ require(['../require-config'], function() {
                             var recordArr = respData['info'];
                             if (recordArr.length > 0){
                                 page = page + 1;
+                                $('.section_nothing').hide();
                             }else if (recordArr.length == 0){
-
+                                $('.section_nothing').show();
                             }
                             for (var i = 0; i < recordArr.length; i++){
                                 _this.allRecords.push(recordArr[i]);

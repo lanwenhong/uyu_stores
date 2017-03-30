@@ -1351,3 +1351,11 @@ section.section_info dl.hang.success dd input.dd_select {
 section.section_info dl.hang.success dd textarea.text {
   color: #606470;
 }
+section.section_nothing {
+  display: none;
+}
+section.section_nothing p {
+  margin: 0 auto;
+  line-height: 1.2rem;
+  color: #A7A9AE;
+}

@@ -26,8 +26,9 @@ require(['../require-config'], function() {
                             var billArr = respData['info'];
                             if (billArr.length > 0){
                                 page = page + 1;
+                                $('.section_nothing').hide();
                             }else if (billArr.length == 0){
-
+                                $('.section_nothing').show();
                             }
                             for (var i = 0; i < billArr.length; i++){
                                 _this.allBills.push(billArr[i]);
