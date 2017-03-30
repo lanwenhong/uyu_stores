@@ -1,8 +1,8 @@
 $(document).ready(function(){
    console.log('debug .....');
    var post_data = {};
-   post_data.mobile = '17889807865';
-   post_data.password = '807865';
+   post_data.mobile = '18978675643';
+   post_data.password = '675643';
    $.ajax({
        url: '/store/v1/api/login',
        type: 'POST',
@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 function get__data(){
     var get_data = {}
-    get_data.se_userid = '1203';
+    get_data.se_userid = '1254';
     get_data.page = 1;
     get_data.maxnum = 10;
 

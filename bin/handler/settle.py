@@ -59,7 +59,8 @@ class SettleInfoHandler(core.Handler):
         keep_fields = [
             'settle_cycle', 'settle_trainning_nums', 'settle_amt', 'store_divide_amt'
         ]
-        ret = self.db.select(table='settlement_record', fields=keep_fields, where=where)
+        other = ' order by settle_cycle desc '
+        ret = self.db.select(table='settlement_record', fields=keep_fields, where=where, other=other)
         return ret
 
 
