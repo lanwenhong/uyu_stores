@@ -119,8 +119,10 @@ require(['../require-config'], function() {
                     localStorage.setItem("userid", store_user_id);
                     if(is_prepayment.indexOf('1') > 0){
                         //分成模式才有账单
+                        alert("分成模式");
                         $('.js_goto_bills').show();
                     }else {
+                        alert("非分成模式");
                         $('.js_goto_bills').hide();
                     }
                     updateViewData(store_user_id);
