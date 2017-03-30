@@ -1020,7 +1020,7 @@ section.section_record_list .record_times {
 section.section_record_list span {
   display: block;
   text-align: left;
-  line-height: 0.5rem;
+  line-height: 0.6rem;
 }
 section.section_record_list .consumer_name {
   margin: 0.2rem 0 0;
