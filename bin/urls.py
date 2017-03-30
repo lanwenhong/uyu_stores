@@ -6,6 +6,7 @@ from handler import eyesight
 from handler import device
 from handler import storeinfo, train, consumer
 from handler import test
+from handler import settle
 
 urls = (
     ('^/store/v1/page/index.html$', store.StoreH5Main),
@@ -24,7 +25,7 @@ urls = (
     ('^/store/v1/api/eyesight_list$', eyesight.EyesightInfoHandler),
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
     ('^/store/v1/api/store_allocate_list$', store.StoreAllocateHandler),
-
+    ('^/store/v1/api/settle_list$', settle.SettleInfoHandler),
     #test
     ('^/store/v1/page/test.html$', test.TestHandler),
 )
