@@ -6,7 +6,13 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "native"],function($, ajax_rule, native){
         $(function() {
             $(document).ready(function() {
-
+                var rightConfig = {
+                    type:"logout",
+                    title:"退出登录"
+                };
+                native.addRightBtn(rightConfig, function (cb) {
+                    console.log(cb.ret);
+                });
                 //请求更新页面
                 // function createVueWithUserId(store_user_id) {
                 //     var vukk = new vue({

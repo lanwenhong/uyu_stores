@@ -4,6 +4,21 @@
 require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "vue", "native"],function($, ajax_rule, vue, native){
         $(document).ready(function() {
+
+            var rightConfig = {
+                type:"jsfunc",
+                title:"添加",
+                funcName:"addEyeSight"
+            };
+            native.addRightBtn(rightConfig, function (cb) {
+                console.log(cb.ret);
+            });
+
+            native.regNativeCallJS("addEyeSight", function (cb) {
+                alert("添加石光师");
+            });
+
+
             var page = 1;
             var vukk = new vue({
                 el: '#wap',
