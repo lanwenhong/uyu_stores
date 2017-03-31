@@ -5,6 +5,9 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "vue", "native"],function($, ajax_rule, vue, native){
         $(document).ready(function() {
 
+            native.regNativeCallJS("addEyeSight", function (cb) {
+                alert("添加石光师");
+            });
             var rightConfig = {
                 type:"jsfunc",
                 title:"添加",
@@ -14,9 +17,7 @@ require(['../require-config'], function() {
                 console.log(cb.ret);
             });
 
-            native.regNativeCallJS("addEyeSight", function (cb) {
-                alert("添加石光师");
-            });
+
 
 
             var page = 1;

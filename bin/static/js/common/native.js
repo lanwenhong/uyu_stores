@@ -48,7 +48,7 @@ define(["jsbridge"], function(jsbridge) {
                 cb(res);
             }
         });
-    }
+    };
     var pullUpRefresh = function (cb) {
         JSBridge.NativeCallH5({
             name:"pullUpRefresh",
@@ -56,7 +56,8 @@ define(["jsbridge"], function(jsbridge) {
                 cb(res);
             }
         });
-    }
+    };
+
     var regNativeCallJS = function (callJsName, cb) {
         JSBridge.NativeCallH5({
             name:callJsName,
@@ -64,7 +65,28 @@ define(["jsbridge"], function(jsbridge) {
                 cb(res);
             }
         });
-    }
+    };
+
+    var regNotifiaction = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'regNotifiaction',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
+    var postNotifiaction = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'postNotifiaction',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
     return {
         alert:alert,
         addRightBtn:addRightBtn,
@@ -72,6 +94,8 @@ define(["jsbridge"], function(jsbridge) {
         getUserIdFromObjC:getUserIdFromObjC,
         updateCurrentView:updateCurrentView,
         pullUpRefresh:pullUpRefresh,
-        regNativeCallJS:regNativeCallJS
+        regNativeCallJS:regNativeCallJS,
+        regNotifiaction:regNotifiaction,
+        postNotifiaction:postNotifiaction
     };
 });

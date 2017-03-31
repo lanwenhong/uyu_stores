@@ -126,6 +126,13 @@ require(['../require-config'], function() {
                             //分配成功的逻辑
                             native.alert({msg:"为消费者分配训练次数成功!"}, function (cb) {
                             });
+                            var postNoti = {
+                                notiName:"updateMineWebView",
+                                notiRespFuncName:"notiUpdateCurentView"
+                            };
+                            native.postNotifiaction(postNoti, function (cb) {
+                                console.log(cb.ret);
+                            });
                             fetch_left_Times();
                         });
                     });
