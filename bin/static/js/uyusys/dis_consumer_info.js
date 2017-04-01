@@ -2,19 +2,9 @@
  * Created by mac on 17/3/15.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule", "native"],function($, ajax_rule, native){
+    require(["zepto", "ajax_rule", "yanzheng"],function($, ajax_rule, yanzheng){
         $(document).ready(function() {
-            function yanzheng(id) {
-                var val = $(id).val();
-                var val_exp = /(^(\d{3,4}-)?\d{7,8})$|^1[0-9]{10}$/;
-                if (!val_exp.test(val)) {
-                    native.alert({msg:"手机号不合法"}, function (cb) {
-                    });
-                    return;
-                } else {
 
-                }
-            }
             $('.consumer_name').on('input', function() {
                 var name = $('.consumer_name').val();
                 if (name !== null && name !== undefined) {
@@ -33,10 +23,10 @@ require(['../require-config'], function() {
                         $('.js_search_phone').val(refer_tel.substring(0, 11));
 
                         refer_tel = $('.js_search_phone').val();
-                        yanzheng('.js_search_phone');
+                        yanzheng.testPhone('.js_search_phone');
                     }else if(refer_tel.length == 11){
                         //电话号码刚好11位
-                        yanzheng('.js_search_phone');
+                        yanzheng.testPhone('.js_search_phone');
                     }else {
                         //取消验证
                     }
@@ -67,10 +57,10 @@ require(['../require-config'], function() {
                         $('.consumer_phone').val(refer_tel.substring(0, 11));
 
                         refer_tel = $('.consumer_phone').val();
-                        yanzheng('.consumer_phone');
+                        yanzheng.testPhone('.consumer_phone');
                     }else if(refer_tel.length == 11){
                         //电话号码刚好11位
-                        yanzheng('.consumer_phone');
+                        yanzheng.testPhone('.consumer_phone');
                     }else {
                         //取消验证
                     }
