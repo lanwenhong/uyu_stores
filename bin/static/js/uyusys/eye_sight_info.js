@@ -40,7 +40,7 @@ require(['../require-config'], function() {
                 });
             });
 
-            $('.js_bottom_button_action').onclick('click', function () {
+            $('.js_bottom_button_action').on('click', function () {
                 alert("asdfasdfasdf")
                 if (eyesightInfo !== null && eyesightInfo !== undefined){
                     alert("111111111");
