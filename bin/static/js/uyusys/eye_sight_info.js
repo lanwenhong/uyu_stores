@@ -33,7 +33,6 @@ require(['../require-config'], function() {
                 };
                 ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
                     eyesightInfo = respData;
-                    alert(JSON.stringify(respData));
                     $(".eye_sight_name").val(respData["username"]);
                     $(".eye_sight_nickname").val(respData["nick_name"]);
                     $(".eye_sight_phone").val(respData["mobile"]);
@@ -41,9 +40,7 @@ require(['../require-config'], function() {
             });
 
             $('.js_bottom_button_action').on('click', function () {
-                alert("asdfasdfasdf")
                 if (eyesightInfo !== null && eyesightInfo !== undefined){
-                    alert("111111111");
                     var store_user_id = localStorage.getItem("userid");
                     var req = {
                         se_userid:store_user_id,
@@ -52,7 +49,7 @@ require(['../require-config'], function() {
 
                     ajax_rule.ajax_rule('/store/v1/api/eyesight', 'POST', 'json', req, '.zheceng', function (respData) {
                         //先通知上一级页面更新
-                        var regNoti = {
+                        var postNoti = {
                             notiName:"updateEyesightWebView",
                             notiRespFuncName:"notiUpdateEyesightView"
                         };
