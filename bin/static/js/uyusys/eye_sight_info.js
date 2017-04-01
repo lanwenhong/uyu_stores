@@ -2,7 +2,7 @@
  * Created by mac on 17/4/1.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule","vue", "yanzheng"],function($, ajax_rule, vue, yanzheng){
+    require(["zepto", "ajax_rule","vue", "yanzheng", "native"],function($, ajax_rule, vue, yanzheng, native){
         $(document).ready(function() {
 
             $('.js_search_phone').on('input', function() {
@@ -23,6 +23,7 @@ require(['../require-config'], function() {
                 }
             });
 
+            var eyesightInfo;
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
                 var store_user_id = localStorage.getItem("userid");
@@ -30,12 +31,42 @@ require(['../require-config'], function() {
                     se_userid:store_user_id,
                     phone_num:refer_tel
                 };
-                alert(JSON.stringify(req));
                 ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
-                    // $(".consumer_name").val(respData["username"]);
-                    // $(".consumer_phone").val(respData["mobile"]);
-                    alert(JSON.stringify(respData));
+                    eyesightInfo = respData;
+                    $(".eye_sight_name").val(respData["username"]);
+                    $(".eye_sight_nickname").val(respData["mobile"]);
+                    $(".eye_sight_phone").val(respData["nick_name"]);
                 });
+            });
+
+            $('.js_bottom_button_action').onclick('click', function () {
+                if (eyesightInfo !== null || eyesightInfo !== undefined){
+                    var store_user_id = localStorage.getItem("userid");
+                    var req = {
+                        se_userid:store_user_id,
+                        userid:eyesightInfo['id']
+                    };
+
+                    ajax_rule.ajax_rule('/store/v1/api/eyesight', 'POST', 'json', req, '.zheceng', function (respData) {
+                        //先通知上一级页面更新
+                        var regNoti = {
+                            notiName:"updateEyesightWebView",
+                            notiRespFuncName:"notiUpdateEyesightView"
+                        };
+                        native.postNotifiaction(postNoti, function (cb) {
+                            console.log(cb.ret);
+                        });
+                        //在弹窗提示
+                        var msgStr = eyesightInfo['nick_name']+' 试光师成功添加到门店';
+                        native.alert({msg:msgStr}, function (cb) {
+                            console.log(cb.ret);
+                        });
+                    });
+                }else {
+                    native.alert({msg:"请先查到你要添加的试光师"}, function (cb) {
+                        console.log(cb.ret);
+                    })
+                }
             });
         });
     });
