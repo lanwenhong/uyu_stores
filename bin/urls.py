@@ -23,6 +23,7 @@ urls = (
     ('^/store/v1/api/store_to_consumer$', train.StoreToComsumer),
     ('^/store/v1/api/load_consumer$', consumer.LoadConsumerHandler),
     ('^/store/v1/api/eyesight_list$', eyesight.EyesightInfoHandler),
+    ('^/store/v1/api/eyesight$', eyesight.EyeSightHandler),
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
     ('^/store/v1/api/store_allocate_list$', store.StoreAllocateHandler),
     ('^/store/v1/api/settle_list$', settle.SettleInfoHandler),

@@ -87,3 +87,67 @@ class EyesightInfoHandler(core.Handler):
                log.warn(e)
                log.warn(traceback.format_exc())
                return error(UAURET.SERVERERR)
+
+
+class EyeSightHandler(core.Handler):
+
+    _get_handler_fields = [
+        Field('phone_num', T_REG, False, match=r'^(1\d{10})$'),
+    ]
+
+    _post_handler_fields = [
+        Field('userid', T_INT, False, match=r'^([0-9]{0,10})$'),
+    ]
+
+    def _get_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
+
+    def _post_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
+
+    @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
+    @with_validator_self
+    def _get_handler(self):
+        if not self.user.sauth:
+            return error(UAURET.SESSIONERR)
+        params = self.validator.data
+        uop = UUser()
+        uop.call("load_user_by_mobile", params["phone_num"])
+        log.debug('udata: %s', uop.udata)
+        if len(uop.udata) == 0 or uop.udata.get("user_type", -1) != define.UYU_USER_ROLE_EYESIGHT:
+            return error(UAURET.USERROLEERR)
+
+        ret = {}
+        ret["id"] = uop.udata["id"]
+        ret["mobile"] = uop.udata["phone_num"]
+        ret["nick_name"] = uop.udata["nick_name"]
+        ret["username"] = uop.udata.get("username", '')
+
+        return success(ret)
+
+    def GET(self, *args):
+        return self._get_handler()
+
+    @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
+    @with_validator_self
+    def _post_handler(self):
+        try:
+            params = self.validator.data
+            self.user.load_user()
+            self.user.load_profile()
+            self.user.load_store()
+            params["store_id"] = self.user.sdata["id"]
+            params["channel_id"] = self.user.sdata["channel_id"]
+            uop = UUser()
+            flag, err_code = uop.store_bind_eyesight(params["userid"], params["store_id"], params["channel_id"])
+            if flag:
+                return success({})
+            else:
+                return error(err_code)
+        except Exception as e:
+            log.warn(e)
+            log.warn(traceback.format_exc())
+            return error(UAURET.DATAEXIST)
+
+    def POST(self, *arg):
+        return self._post_handler()

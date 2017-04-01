@@ -26,20 +26,23 @@ $(document).ready(function(){
        },
    });
 
-   get__data();
+   // get__data();
+   post__data();
 });
 
 
 function get__data(){
     var get_data = {}
     get_data.se_userid = '1254';
-    get_data.page = 1;
-    get_data.maxnum = 10;
+    get_data.phone_num = '13475481257'
+    // get_data.page = 1;
+    // get_data.maxnum = 10;
 
     // var url = '/store/v1/api/eyesight_list';
     // var url = '/store/v1/api/device_list';
     // var url = '/store/v1/api/store_allocate_list';
-    var url = '/store/v1/api/settle_list';
+    // var url = '/store/v1/api/settle_list';
+    var url = '/store/v1/api/eyesight';
 
    $.ajax({
        url: url,
@@ -63,4 +66,33 @@ function get__data(){
            console.log('get data except ...');
        },
    });
+}
+
+
+function post__data(){
+    var post_data = {};
+    post_data.se_userid = '1254';
+    post_data.userid = '1219';
+
+    var url = '/store/v1/api/eyesight';
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: post_data,
+        success: function(data) {
+            var respcd = data.respcd;
+            if(respcd != '0000'){
+                var resperr = data.resperr;
+                var respmsg = data.resmsg;
+                var msg = resperr ? resperr : resmsg;
+                console.log(msg);
+            } else {
+                console.log(data);
+            }
+        },
+        error: function(data) {
+            console.log('post data except ...');
+        },
+    });
 }
