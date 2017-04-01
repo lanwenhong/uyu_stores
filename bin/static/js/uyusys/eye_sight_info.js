@@ -33,6 +33,7 @@ require(['../require-config'], function() {
                 };
                 ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
                     eyesightInfo = respData;
+                    alert(JSON.stringify(respData));
                     $(".eye_sight_name").val(respData["username"]);
                     $(".eye_sight_nickname").val(respData["nick_name"]);
                     $(".eye_sight_phone").val(respData["mobile"]);
