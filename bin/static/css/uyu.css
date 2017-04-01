@@ -707,7 +707,7 @@ div.nomoredata {
 input,
 dl,
 .section_reglist ul li,
-.sort_box div {
+div {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 input {
