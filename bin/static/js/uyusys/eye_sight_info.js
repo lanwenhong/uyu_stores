@@ -41,7 +41,9 @@ require(['../require-config'], function() {
             });
 
             $('.js_bottom_button_action').onclick('click', function () {
-                if (eyesightInfo !== null || eyesightInfo !== undefined){
+                alert("asdfasdfasdf")
+                if (eyesightInfo !== null && eyesightInfo !== undefined){
+                    alert("111111111");
                     var store_user_id = localStorage.getItem("userid");
                     var req = {
                         se_userid:store_user_id,
