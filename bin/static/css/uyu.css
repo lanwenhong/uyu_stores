@@ -996,13 +996,13 @@ section.section_train_list .train_time span {
   line-height: 1rem;
 }
 section.section_record_list li {
-  height: 1.4rem;
+  height: 1.6rem;
 }
 section.section_record_list .record_dev {
   float: left;
 }
 section.section_record_list .record_icon {
-  margin: 0.2rem 15px 0.2rem 0;
+  margin: 0.3rem 15px 0.3rem 0;
   width: 1rem;
   height: 1rem;
   border-radius: 5px;
@@ -1020,7 +1020,7 @@ section.section_record_list .record_times {
 section.section_record_list span {
   display: block;
   text-align: left;
-  line-height: 0.5rem;
+  line-height: 0.6rem;
 }
 section.section_record_list .consumer_name {
   margin: 0.2rem 0 0;
@@ -1029,7 +1029,7 @@ section.section_record_list .buy_times {
   margin: 0 auto;
   display: block;
   text-align: right;
-  line-height: 1.4rem;
+  line-height: 1.6rem;
 }
 section.section_dev_list li {
   height: 1.4rem;
@@ -1106,6 +1106,10 @@ section.section_eye_sight .eye_sight_op span {
   text-align: center;
   line-height: 1.6rem;
 }
+section.section_bill_list {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
 section.section_bill_list .left_content {
   float: left;
   text-align: left;
@@ -1116,7 +1120,7 @@ section.section_bill_list .right_content {
   margin-right: 15px;
 }
 section.section_bill_list p {
-  line-height: 0.8rem;
+  line-height: 1rem;
 }
 section.section_bill_list span {
   color: #318D50;
@@ -1174,6 +1178,9 @@ section.section_find div {
 }
 section.section_find span {
   color: #fff;
+}
+.reg_title {
+  padding-left: 15px;
 }
 section.section_info {
   width: 100%;
@@ -1343,4 +1350,15 @@ section.section_info dl.hang.success dd input.dd_select {
 }
 section.section_info dl.hang.success dd textarea.text {
   color: #606470;
+}
+section.section_nothing {
+  display: none;
+  width: 100%;
+}
+section.section_nothing p {
+  margin: 0 auto;
+  width: 100%;
+  line-height: 1.2rem;
+  color: #A7A9AE;
+  text-align: center;
 }

@@ -4,6 +4,22 @@
 require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "vue", "native"],function($, ajax_rule, vue, native){
         $(document).ready(function() {
+
+            native.regNativeCallJS("addEyeSight", function (cb) {
+                alert("添加石光师");
+            });
+            var rightConfig = {
+                type:"jsfunc",
+                title:"添加",
+                funcName:"addEyeSight"
+            };
+            native.addRightBtn(rightConfig, function (cb) {
+                console.log(cb.ret);
+            });
+
+
+
+
             var page = 1;
             var vukk = new vue({
                 el: '#wap',
@@ -25,8 +41,9 @@ require(['../require-config'], function() {
                             var eyesightArr = respData['info'];
                             if (eyesightArr.length > 0){
                                 page = page + 1;
+                                $('.section_nothing').hide();
                             }else if (eyesightArr.length == 0){
-
+                                $('.section_nothing').show();
                             }
                             for (var i = 0; i < eyesightArr.length; i++){
                                 _this.eye_sights.push(eyesightArr[i]);
@@ -54,7 +71,14 @@ require(['../require-config'], function() {
                     }
                 }
             });
-
+            //注册下拉刷新方法
+            native.updateCurrentView(function () {
+                page = 1;
+                var len = vukk.eye_sights.length;
+                vukk.eye_sights.splice(0, len);
+                vukk.next_list_page();
+            });
+            //注册上拉加载的方法
             native.pullUpRefresh(function (resp) {
                 vukk.next_list_page();
             });

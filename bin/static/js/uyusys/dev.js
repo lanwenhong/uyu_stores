@@ -27,8 +27,9 @@ require(['../require-config'], function() {
                             var devArr = respData['info'];
                             if (devArr.length > 0){
                                 page = page + 1;
+                                $('.section_nothing').hide();
                             }else if (devArr.length == 0){
-
+                                $('.section_nothing').show();
                             }
                             for (var i = 0; i < devArr.length; i++){
                                 _this.devices.push(devArr[i]);
@@ -55,6 +56,13 @@ require(['../require-config'], function() {
                         });
                     }
                 }
+            });
+
+            native.updateCurrentView(function () {
+                page = 1;
+                var len = vukk.devices.length;
+                vukk.devices.splice(0, len);
+                vukk.next_list_page();
             });
 
             native.pullUpRefresh(function (resp) {

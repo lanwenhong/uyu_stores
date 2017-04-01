@@ -26,8 +26,9 @@ require(['../require-config'], function() {
                             var recordArr = respData['info'];
                             if (recordArr.length > 0){
                                 page = page + 1;
+                                $('.section_nothing').hide();
                             }else if (recordArr.length == 0){
-
+                                $('.section_nothing').show();
                             }
                             for (var i = 0; i < recordArr.length; i++){
                                 _this.allRecords.push(recordArr[i]);
@@ -54,6 +55,14 @@ require(['../require-config'], function() {
                         });
                     }
                 }
+            });
+
+            //注册下拉刷新方法
+            native.updateCurrentView(function () {
+                page = 1;
+                var len = vukk.allRecords.length;
+                vukk.allRecords.splice(0, len);
+                vukk.next_list_page();
             });
 
             native.pullUpRefresh(function (resp) {

@@ -19,76 +19,23 @@
     <!--</p>-->
     <section class="section_list section_bill_list">
         <ul class="js_one">
-            <li>
+            <li v-cloak v-for="bill in allBills">
                 <div class="content_div">
-                    <p class="left_content">金额: <span>1000</span>元</p>
-                    <p class="right_content">分成: <span>400</span>元</p>
+                    <p class="left_content">金额: <span>{{bill.settle_amt}}</span>元</p>
+                    <p class="right_content">分成: <span>{{bill.store_divide_amt}}</span>元</p>
                     <div class="clearfix"></div>
                 </div>
                 <div class="content_div">
-                    <p class="left_content">日期: <span>2017-03-12</span></p>
-                    <p class="right_content">次数: <span>400</span>次</p>
-                    <div class="clearfix"></div>
-                </div>
-            </li>
-
-
-            <li>
-                <div class="content_div">
-                    <p class="left_content">金额: <span>1000</span>元</p>
-                    <p class="right_content">分成: <span>400</span>元</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="content_div">
-                    <p class="left_content">日期: <span>2017-03-12</span></p>
-                    <p class="right_content">次数: <span>400</span>次</p>
-                    <div class="clearfix"></div>
-                </div>
-            </li>
-
-
-
-            <li>
-                <div class="content_div">
-                    <p class="left_content">金额: <span>1000</span>元</p>
-                    <p class="right_content">分成: <span>400</span>元</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="content_div">
-                    <p class="left_content">日期: <span>2017-03-12</span></p>
-                    <p class="right_content">次数: <span>400</span>次</p>
-                    <div class="clearfix"></div>
-                </div>
-            </li>
-
-
-            <li>
-                <div class="content_div">
-                    <p class="left_content">金额: <span>1000</span>元</p>
-                    <p class="right_content">分成: <span>400</span>元</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="content_div">
-                    <p class="left_content">日期: <span>2017-03-12</span></p>
-                    <p class="right_content">次数: <span>400</span>次</p>
-                    <div class="clearfix"></div>
-                </div>
-            </li>
-
-            <li>
-                <div class="content_div">
-                    <p class="left_content">金额: <span>1000</span>元</p>
-                    <p class="right_content">分成: <span>400</span>元</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="content_div">
-                    <p class="left_content">日期: <span>2017-03-12</span></p>
-                    <p class="right_content">次数: <span>400</span>次</p>
+                    <p class="left_content">周期: <span>{{bill.settle_cycle}}</span>月</p>
+                    <p class="right_content">共: <span>{{bill.settle_trainning_nums}}</span>次</p>
                     <div class="clearfix"></div>
                 </div>
             </li>
         </ul>
 
+    </section>
+    <section class="section_nothing">
+        <p>门店还没有相关结算信息</p>
     </section>
 </div>
 
