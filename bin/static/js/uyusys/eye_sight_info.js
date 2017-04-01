@@ -31,10 +31,9 @@ require(['../require-config'], function() {
                     phone_num:refer_tel
                 };
                 alert(JSON.stringify(req));
-                ajax_rule.ajax_rule('/store/v1/api/eyesight', 'POST', 'json', req, '.zheceng', function (respData) {
+                ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
                     // $(".consumer_name").val(respData["username"]);
                     // $(".consumer_phone").val(respData["mobile"]);
-
                     alert(JSON.stringify(respData));
                 });
             });
