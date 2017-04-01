@@ -55,6 +55,11 @@ class StoreH5DisComsumerInfo(core.Handler):
         self.write(template.render("dis_consumer_info.html"))
 
 
+class StoreH5EyeSightInfo(core.Handler):
+    def GET(self):
+        self.write(template.render("eye_sight_info.html"))
+
+
 class StoreAllocateHandler(core.Handler):
 
     _get_handler_fields = [

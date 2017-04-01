@@ -16,6 +16,7 @@ urls = (
     ('^/store/v1/page/bill.html$', store.StoreH5Bill),
     ('^/store/v1/page/dis_record.html$', store.StoreH5DisRecord),
     ('^/store/v1/page/dis_consumer_info.html$', store.StoreH5DisComsumerInfo),
+    ('^/store/v1/page/eye_sight_info.html$', store.StoreH5EyeSightInfo),
     ('^/store/v1/page/login.html$', test.TestHandler),
     #api
     ('^/store/v1/api/login$', login.LoginHandler),
