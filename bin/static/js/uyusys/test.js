@@ -1,8 +1,8 @@
 $(document).ready(function(){
    console.log('debug .....');
    var post_data = {};
-   post_data.mobile = '13893541383';
-   post_data.password = '4750c454b57c595326573e3e8337bff6';
+   post_data.mobile = '13828471812';
+   post_data.password = 'c6c65c5843d87fd5e2d66185be8e1bd6';
    $.ajax({
        url: '/store/v1/api/login',
        type: 'POST',
