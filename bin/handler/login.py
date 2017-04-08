@@ -9,6 +9,7 @@ from uyubase.uyu.define import UYU_SYS_ROLE_STORE
 from zbase.base.dbpool import with_database
 
 from uyubase.base.response import success, error, UAURET
+from uyubase.uyu import define
 from uyubase.uyu.define import UYU_SYS_ROLE_OP, UYU_USER_ROLE_SUPER, UYU_OP_ERR, UYU_USER_ROLE_STORE
 
 from runtime import g_rt
@@ -26,6 +27,7 @@ class LoginHandler(core.Handler):
         Field('old_password', T_STR, False),
     ]
 
+
     @with_database('uyu_core')
     def _get_div_type(self, userid):
         ret = self.db.select_one('stores',  {"userid": userid})
@@ -34,6 +36,17 @@ class LoginHandler(core.Handler):
         is_prepayment = ret["is_prepayment"]
 
         return is_prepayment
+
+
+    @with_database('uyu_core')
+    def _check_bind(self, userid):
+        ret = self.db.select_one('store_eyesight_bind', {'eyesight_id': userid, 'is_valid': define.UYU_STORE_EYESIGHT_BIND})
+        return ret
+
+    @with_database('uyu_core')
+    def _get_store_userid(self, store_id):
+        ret = self.db.select_one('stores', {'id': store_id})
+        return ret
 
     @uyu_set_cookie(g_rt.redis_pool, cookie_conf, UYU_USER_ROLE_STORE)
     @with_validator_self
@@ -52,8 +65,21 @@ class LoginHandler(core.Handler):
         log.debug("get user data: %s", u_op.udata)
         log.debug("userid: %d login succ", u_op.udata["id"])
 
+        user_type = u_op.udata['user_type']
+        if user_type == define.UYU_USER_ROLE_EYESIGHT:
+            ret = self._check_bind(u_op.udata["id"])
+            if not ret:
+                return error(UAURET.LOGINERR)
+            else:
+                login_id = u_op.udata["id"]
+                store_id = ret.get('store_id')
+                s_ret = self._get_store_userid(store_id)
+                userid = s_ret.get('userid')
+                is_prepayment = s_ret.get('is_prepayment')
+                return success({"userid": userid, "is_prepayment": is_prepayment, "login_id": login_id})
+
         is_prepayment = self._get_div_type(u_op.udata["id"])
-        return success({"userid": u_op.udata["id"], "is_prepayment": is_prepayment})
+        return success({"userid": u_op.udata["id"], "is_prepayment": is_prepayment, "login_id": u_op.udata["id"]})
 
     def POST(self, *args):
         ret = self._post_handler(args)
