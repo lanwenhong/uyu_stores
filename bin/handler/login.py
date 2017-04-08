@@ -20,12 +20,13 @@ log = logging.getLogger()
 
 
 class LoginHandler(core.Handler):
-    _post_handler_fields = [ 
+    _post_handler_fields = [
         Field('mobile', T_REG, False, match=r'^(1\d{10})$'),
-        Field('password', T_STR, False),
-    ]  
+        Field('new_password', T_STR, False),
+        Field('old_password', T_STR, False),
+    ]
 
-    @with_database('uyu_core')    
+    @with_database('uyu_core')
     def _get_div_type(self, userid):
         ret = self.db.select_one('stores',  {"userid": userid})
         chan_id = ret["channel_id"]
@@ -39,17 +40,18 @@ class LoginHandler(core.Handler):
     def _post_handler(self, *args):
         params = self.validator.data
         mobile = params['mobile']
-        password = params["password"]  
-        
+        new_password = params["new_password"]
+        old_password = params["old_password"]
+
         u_op = UUser()
-        ret = u_op.call("check_userlogin", mobile, password, UYU_SYS_ROLE_STORE)
+        ret = u_op.call("check_userlogin", mobile, new_password, UYU_SYS_ROLE_STORE, old_password)
         if not u_op.login or ret == UYU_OP_ERR:
             log.warn("mobile: %s login forbidden", mobile)
             return error(UAURET.USERERR)
 
         log.debug("get user data: %s", u_op.udata)
         log.debug("userid: %d login succ", u_op.udata["id"])
-        
+
         is_prepayment = self._get_div_type(u_op.udata["id"])
         return success({"userid": u_op.udata["id"], "is_prepayment": is_prepayment})
 
