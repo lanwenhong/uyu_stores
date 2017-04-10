@@ -114,7 +114,9 @@ require(['../require-config'], function() {
                             notiName:"updateMineWebView",
                             notiRespFuncName:"notiUpdateCurentView"
                         };
+                        alert("发送通知数据"+JSON.stringify(postNoti));
                         native.postNotifiaction(postNoti, function (cb) {
+                            alert("发送通知成功的回调");
                             console.log(cb.ret);
                         });
                         //更新本页面的次数

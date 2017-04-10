@@ -11,6 +11,7 @@ require(['../require-config'], function() {
                     title:"退出登录"
                 };
                 native.addRightBtn(rightConfig, function (cb) {
+                    alert("添加退出登录按钮"+JSON.stringify(rightConfig));
                     console.log(cb.ret);
                 });
 
@@ -52,7 +53,6 @@ require(['../require-config'], function() {
 
 
                 $(".js_goto_distribute").on("click", function () {
-
                     native.regNativeCallJS("notiUpdateCurentView", function () {
                         updateViewData(localStorage.getItem("userid"));
                     });
@@ -61,9 +61,10 @@ require(['../require-config'], function() {
                         notiName:"updateMineWebView",
                         notiRespFuncName:"notiUpdateCurentView"
                     };
+                    alert("注册通知数据"+JSON.stringify(regNoti));
                     native.regNotifiaction(regNoti, function () {
                         var openUrl = location.protocol + '//' + location.host + '/store/v1/page/dis_consumer_info.html'
-
+                        alert("注册通知成功,马上去新页面");
                         if (window.WebViewJavascriptBridge !== "undefined") {
                             var openUrlData ={
                                 url:openUrl,
