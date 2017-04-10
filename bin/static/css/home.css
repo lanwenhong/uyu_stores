@@ -803,6 +803,34 @@ section.section_top .right_head_info p {
 section.section_top span {
   color: #318D50;
 }
+section.section_buttons {
+  width: 100%;
+  background-color: white;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 0.3rem;
+}
+section.section_buttons .pad_buttons {
+  border-bottom: 1px solid #e5e5e5;
+}
+section.section_buttons li {
+  width: 25%;
+  float: left;
+}
+section.section_buttons li .tool_icon {
+  width: 100%;
+  height: 0.8rem;
+  text-align: center;
+}
+section.section_buttons li .tool_icon img {
+  margin-top: 0.2rem;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+section.section_buttons li .tool_name {
+  text-align: center;
+  line-height: 0.8rem;
+}
 section.section_mid {
   width: 100%;
   border-top: 1px solid #e5e5e5;
