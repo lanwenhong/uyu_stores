@@ -19,6 +19,7 @@ $(document).ready(function(){
            } else {
                var userid = data.data.userid;
                console.log(userid);
+               console.log(data.data);
                window.localStorage.setItem('userid', userid);
            }
        },
