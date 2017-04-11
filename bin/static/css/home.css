@@ -819,10 +819,10 @@ section.section_buttons li {
 }
 section.section_buttons li .tool_icon {
   width: 100%;
-  height: 0.2rem;
   text-align: center;
 }
 section.section_buttons li .tool_icon img {
+  margin-top: 0.2rem;
   width: 0.6rem;
   height: 0.6rem;
 }
