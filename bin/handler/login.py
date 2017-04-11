@@ -84,7 +84,12 @@ class LoginHandler(core.Handler):
                 return success({"userid": userid, "is_prepayment": is_prepayment, "login_id": login_id, "login_old_id": login_old_id})
 
         is_prepayment = self._get_div_type(u_op.udata["id"])
-        return success({"userid": u_op.udata["id"], "is_prepayment": is_prepayment, "login_id": u_op.udata["id"], "login_old_id": u_op.udata["id"]})
+        store_userid = u_op.udata["id"]
+        if store_userid > 50000 and store_userid < 60000:
+            login_old_id = store_userid - 50000
+        else:
+            login_old_id = store_userid
+        return success({"userid": store_userid, "is_prepayment": is_prepayment, "login_id": store_userid, "login_old_id": login_old_id})
 
     def POST(self, *args):
         ret = self._post_handler(args)
