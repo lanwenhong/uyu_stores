@@ -1,8 +1,9 @@
 $(document).ready(function(){
    console.log('debug .....');
    var post_data = {};
-   post_data.mobile = '18978675643';
-   post_data.password = '675643';
+   post_data.mobile = '13475481254';
+   post_data.new_password = 'e10adc3949ba59abbe56e057f20f883e';
+   post_data.old_password = '123456';
    $.ajax({
        url: '/store/v1/api/login',
        type: 'POST',
@@ -18,6 +19,7 @@ $(document).ready(function(){
            } else {
                var userid = data.data.userid;
                console.log(userid);
+               console.log(data.data);
                window.localStorage.setItem('userid', userid);
            }
        },
@@ -27,7 +29,7 @@ $(document).ready(function(){
    });
 
    // get__data();
-   post__data();
+   // post__data();
 });
 
 

@@ -16,11 +16,17 @@ LOGFILE = {
 
 # 数据库配置
 database = {
-    'uyu_core': {
-        'token': 'server_core_uyu',
-        'conn': 10,
-        'engine': 'pymysql'
-    },
+    'uyu_core':{
+        'engine': 'pymysql',
+        'passwd': '123456',
+        'charset': 'utf8',
+        'db': 'ychannel',
+        'idle_timeout': 60,
+        'host': '127.0.0.1',
+        'user': 'yyy',
+        'port': 3306,
+        'conn': 5
+    }
 }
 
 # web config
@@ -52,7 +58,7 @@ template = os.path.join(HOME, 'template')
 # 服务地址
 HOST = '0.0.0.0'
 # 服务端口
-PORT = 8182
+PORT = 8086
 #redis
 redis_url = 'redis://127.0.0.1:4600/0'
 #cookie 配置
