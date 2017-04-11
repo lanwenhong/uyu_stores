@@ -32,6 +32,68 @@ require(['../require-config'], function() {
                 }
 
 
+                $(".js_add_user").on("click", function () {
+                    var openUrl = "uyu://create_user";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0",
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    }
+                });
+
+                $(".js_user_history").on("click", function () {
+                    var openUrl = "uyu://user_history";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0",
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    }
+                });
+
+                $(".js_check_record").on("click", function () {
+                    var openUrl = "uyu://check_record";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0"
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    } else {
+                        alert("location.href");
+                        location.href = openUrl;
+                    }
+                });
+
+                $(".js_search_user").on("click", function () {
+                    var openUrl = "uyu://search_user";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0"
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    } else {
+                        alert("location.href");
+                        location.href = openUrl;
+                    }
+                });
+
                 //注册点击事件
                 $(".js_goto_record").on("click", function () {
 

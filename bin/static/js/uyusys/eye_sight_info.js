@@ -7,7 +7,6 @@ require(['../require-config'], function() {
 
             $('.js_search_phone').on('input', function() {
                 var refer_tel = $('.js_search_phone').val();
-
                 if (refer_tel !== null && refer_tel !== undefined){
                     if(refer_tel.length > 11){
                         $('.js_search_phone').val(refer_tel.substring(0, 11));
