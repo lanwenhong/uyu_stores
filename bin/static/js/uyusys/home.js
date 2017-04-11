@@ -87,9 +87,6 @@ require(['../require-config'], function() {
                         native.openUrl(openUrlData, function (cb) {
                             console.log("call back");
                         })
-                    } else {
-                        alert("location.href");
-                        location.href = openUrl;
                     }
                 });
 
