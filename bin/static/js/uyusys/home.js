@@ -11,7 +11,6 @@ require(['../require-config'], function() {
                     title:"退出登录"
                 };
                 native.addRightBtn(rightConfig, function (cb) {
-                    alert("添加退出登录按钮"+JSON.stringify(rightConfig));
                     console.log(cb.ret);
                 });
 
@@ -31,6 +30,65 @@ require(['../require-config'], function() {
                     });
                 }
 
+
+                $(".js_add_user").on("click", function () {
+                    var openUrl = "uyu://create_user";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0",
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    }
+                });
+
+                $(".js_user_history").on("click", function () {
+                    var openUrl = "uyu://user_history";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0",
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    }
+                });
+
+                $(".js_check_record").on("click", function () {
+                    var openUrl = "uyu://check_record";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0"
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    } else {
+                        alert("location.href");
+                        location.href = openUrl;
+                    }
+                });
+
+                $(".js_search_user").on("click", function () {
+                    var openUrl = "uyu://search_user";
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0"
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    }
+                });
 
                 //注册点击事件
                 $(".js_goto_record").on("click", function () {
@@ -61,10 +119,8 @@ require(['../require-config'], function() {
                         notiName:"updateMineWebView",
                         notiRespFuncName:"notiUpdateCurentView"
                     };
-                    alert("注册通知数据"+JSON.stringify(regNoti));
                     native.regNotifiaction(regNoti, function () {
                         var openUrl = location.protocol + '//' + location.host + '/store/v1/page/dis_consumer_info.html'
-                        alert("注册通知成功,马上去新页面");
                         if (window.WebViewJavascriptBridge !== "undefined") {
                             var openUrlData ={
                                 url:openUrl,
