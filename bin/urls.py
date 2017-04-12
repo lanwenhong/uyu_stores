@@ -20,6 +20,8 @@ urls = (
     ('^/store/v1/page/login.html$', test.TestHandler),
     #api
     ('^/store/v1/api/login$', login.LoginHandler),
+    ('^/store/v1/api/sms_send$', login.SmsHandler),
+    ('^/store/v1/api/passwd_change$', login.ChangePassHandler),
     ('^/store/v1/api/store_info$', storeinfo.StoreInfoHandler),
     ('^/store/v1/api/store_to_consumer$', train.StoreToComsumer),
     ('^/store/v1/api/load_consumer$', consumer.LoadConsumerHandler),
@@ -28,6 +30,7 @@ urls = (
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
     ('^/store/v1/api/store_allocate_list$', store.StoreAllocateHandler),
     ('^/store/v1/api/settle_list$', settle.SettleInfoHandler),
+
     #test
     ('^/store/v1/page/test.html$', test.TestHandler),
 )

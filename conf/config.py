@@ -12,7 +12,6 @@ LOGFILE = {
     }
 }
 
-# LOGFILE = None
 
 # 数据库配置
 database = {
@@ -58,7 +57,7 @@ template = os.path.join(HOME, 'template')
 # 服务地址
 HOST = '0.0.0.0'
 # 服务端口
-PORT = 8182
+PORT = 8086
 #redis
 redis_url = 'redis://127.0.0.1:4600/0'
 #cookie 配置

@@ -5,6 +5,7 @@ from zbase.base.http_client import RequestsClient
 from zbase.server.client import HttpClient
 
 import json
+import hashlib
 
 log = logger.install('stdout')
 
@@ -17,6 +18,7 @@ def test_login():
     log.info(ret)
     print client.client.headers
 
+
 def test_store_info():
     SERVER   = [{'addr':('127.0.0.1', 8382), 'timeout':20},]
     client = HttpClient(SERVER, client_class = RequestsClient)
@@ -25,6 +27,7 @@ def test_store_info():
 
     ret = client.get('/store/v1/api/store_info', send, headers=headers)
     log.info(ret)
+
 
 def test_store_to_comsumer():
     SERVER   = [{'addr':('127.0.0.1', 8182), 'timeout':20},]
@@ -35,6 +38,7 @@ def test_store_to_comsumer():
     x = json.loads(ret)
     print x["resperr"]
 
+
 def test_load_consumer():
     SERVER   = [{'addr':('127.0.0.1', 8182), 'timeout':20},]
     client = HttpClient(SERVER, client_class = RequestsClient)
@@ -44,8 +48,25 @@ def test_load_consumer():
     log.info(ret)
 
 
+def test_sms_send():
+    SERVER   = [{'addr':('127.0.0.1', 8086), 'timeout':2000},]
+    client = HttpClient(SERVER, client_class = RequestsClient)
+    post_data = {'mobile': '13802438716'}
+    ret = client.post('/store/v1/api/sms_send', post_data)
+    log.info(ret)
+
+
+def test_pass_change():
+    SERVER   = [{'addr':('127.0.0.1', 8086), 'timeout':2000},]
+    client = HttpClient(SERVER, client_class = RequestsClient)
+    post_data = {'mobile': '13802438716', 'vcode': 7421, 'password': hashlib.md5('12345678').hexdigest()}
+    ret = client.post('/store/v1/api/passwd_change', post_data)
+
+
 if __name__ == '__main__':
     #test_login()
-    test_store_info()
+    # test_store_info()
     #test_store_to_comsumer()
     #test_load_consumer()
+    # test_sms_send()
+    test_pass_change()

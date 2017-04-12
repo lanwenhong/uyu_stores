@@ -95,3 +95,63 @@ class LoginHandler(core.Handler):
         ret = self._post_handler(args)
         log.debug("ret: %s", ret)
         return ret
+
+
+class SmsHandler(core.Handler):
+    _post_handler_fields = [
+        Field('mobile', T_REG, False, match=r'^(1\d{10})$'),
+    ]
+
+    _get_handler_fields = [
+        Field('mobile', T_REG, False, match=r'^(1\d{10})$'),
+        Field('vcode', T_REG, False, match=r'^([0-9]{4})$'),
+    ]
+
+    @with_validator_self
+    def _post_handler(self, *args):
+        params = self.validator.data
+        mobile = params['mobile']
+
+        uop = UUser()
+        uop.load_user_by_mobile(mobile)
+        if len(uop.udata) == 0:
+            return error(UAURET.USERROLEERR)
+
+        vop = VCode()
+        vcode = vop.gen_vcode(mobile)
+        log.debug("get vcode: %s", vcode)
+        if not vcode:
+            return error(UAURET.VCODEERR)
+        return success({})
+
+    def POST(self, *args):
+        ret = self._post_handler(args)
+        self.write(ret)
+
+    def GET(self, *args):
+        pass
+
+
+class ChangePassHandler(core.Handler):
+    _post_handler_fields = [
+        Field('mobile', T_REG, False, match=r'^(1\d{10})$'),
+        Field('vcode', T_REG, False, match=r'^([0-9]{4})$'),
+        Field('password', T_STR, False),
+    ]
+
+    @with_validator_self
+    def _post_handler(self, *args):
+        params = self.validator.data
+        mobile = params['mobile']
+        vcode = params['vcode']
+        password = params["password"]
+
+        u_op = UUser()
+        respcd = u_op.change_password(mobile, vcode, password)
+        if respcd != UAURET.OK:
+            return error(respcd)
+        return success({})
+
+    def POST(self, *args):
+        ret = self._post_handler(self, args)
+        self.write(ret)
