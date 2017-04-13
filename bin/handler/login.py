@@ -27,6 +27,8 @@ class LoginHandler(core.Handler):
         Field('old_password', T_STR, False),
     ]
 
+    def _post_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
 
     @with_database('uyu_core')
     def _get_div_type(self, userid):

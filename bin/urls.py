@@ -40,6 +40,7 @@ urls = (
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
     # 门店分配记录数据
     ('^/store/v1/api/store_allocate_list$', store.StoreAllocateHandler),
+    # 结算信息
     ('^/store/v1/api/settle_list$', settle.SettleInfoHandler),
 
     #test
