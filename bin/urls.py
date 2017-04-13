@@ -18,16 +18,27 @@ urls = (
     ('^/store/v1/page/dis_consumer_info.html$', store.StoreH5DisComsumerInfo),
     ('^/store/v1/page/eye_sight_info.html$', store.StoreH5EyeSightInfo),
     ('^/store/v1/page/login.html$', test.TestHandler),
-    #api
+
+    # api
+    # 登录接口
     ('^/store/v1/api/login$', login.LoginHandler),
+    # 发送验证码接口
     ('^/store/v1/api/sms_send$', login.SmsHandler),
+    # 密码修改接口
     ('^/store/v1/api/passwd_change$', login.ChangePassHandler),
+    # 门店信息接口
     ('^/store/v1/api/store_info$', storeinfo.StoreInfoHandler),
+    # 门店分配点数给消费者
     ('^/store/v1/api/store_to_consumer$', train.StoreToComsumer),
+    # 加载消费者数据
     ('^/store/v1/api/load_consumer$', consumer.LoadConsumerHandler),
+    # 视光师数据接口
     ('^/store/v1/api/eyesight_list$', eyesight.EyesightInfoHandler),
+    # 获取视光师信息
     ('^/store/v1/api/eyesight$', eyesight.EyeSightHandler),
+    # 设备数据
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
+    # 门店分配记录数据
     ('^/store/v1/api/store_allocate_list$', store.StoreAllocateHandler),
     ('^/store/v1/api/settle_list$', settle.SettleInfoHandler),
 
