@@ -26,7 +26,9 @@ class LoadConsumerHandler(core.Handler):
     _post_handler_fields = [
         Field("mobile",  T_STR, False, match=r'^(1\d{10})$'),
     ]
-    
+
+    def _post_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
 
     @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
     @with_validator_self
@@ -34,13 +36,13 @@ class LoadConsumerHandler(core.Handler):
         if not self.user.sauth:
             return error(UAURET.SESSIONERR)
         params = self.validator.data
-        uu = UUser() 
+        uu = UUser()
         uu.load_user_by_mobile(params["mobile"])
         log.debug('##len:%s', len(uu.udata))
         log.debug('##udata:%s', uu.udata)
         if len(uu.udata) == 0:
             return error(UAURET.USERERR)
-        
+
         if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
             return error(UAURET.USERERR)
 

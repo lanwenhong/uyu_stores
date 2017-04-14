@@ -27,6 +27,9 @@ class StoreInfoHandler(core.Handler):
         Field('userid', T_INT, False),
     ]
 
+    def _get_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
+
     @with_database('uyu_core')
     def _gen_training_dayinfo(self, store_id):
         q_day = datetime.datetime.now().strftime("%Y-%m-%d")
