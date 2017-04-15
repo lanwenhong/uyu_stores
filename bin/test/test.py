@@ -48,7 +48,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_store_to_comsumer(self):
         self.url = '/store/v1/api/store_to_consumer'
         self.send = {
@@ -163,7 +163,7 @@ class TestUyuStores(unittest.TestCase):
         respcd = json.loads(ret).get('respcd')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_store_consumer_list(self):
         self.url = '/store/v1/api/store_consumer_list'
         self.send = {'store_userid': '51561', 'se_userid': 51561}
