@@ -153,7 +153,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_eyesight_bind(self):
         self.url = '/store/v1/api/eyesight'
         self.send = {'userid': '1217', 'se_userid': 51561}
@@ -162,6 +162,14 @@ class TestUyuStores(unittest.TestCase):
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
 
+
+    #@unittest.skip("skipping")
+    def test_store_consumer_list(self):
+        self.url = '/store/v1/api/store_consumer_list'
+        self.send = {'store_userid': '51561', 'se_userid': 51561}
+        headers = {'cookie': 'sessionid=38126e96-5c05-4c4e-96e8-bd846b455daf'}
+        ret = self.client.get(self.url, self.send, headers=headers)
+        log.info(ret)
 
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestUyuStores)

@@ -42,6 +42,8 @@ urls = (
     ('^/store/v1/api/store_allocate_list$', store.StoreAllocateHandler),
     # 结算信息
     ('^/store/v1/api/settle_list$', settle.SettleInfoHandler),
+    # 获取门店的消费者
+    ('^/store/v1/api/store_consumer_list$', store.StoreConumerInfoHandler),
 
     #test
     ('^/store/v1/page/test.html$', test.TestHandler),

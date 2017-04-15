@@ -129,3 +129,78 @@ class StoreAllocateHandler(core.Handler):
                log.warn(traceback.format_exc())
                return error(UAURET.SERVERERR)
 
+
+class StoreConumerInfoHandler(core.Handler):
+
+    _get_handler_fields = [
+        Field('store_userid', T_INT, False)
+    ]
+
+    def _get_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
+
+    @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
+    @with_validator_self
+    def _get_handler(self, *args):
+        if not self.user.sauth:
+            return error(UAURET.SESSIONERR)
+        try:
+            data = {}
+            params = self.validator.data
+            store_userid = params['store_userid']
+            ret = self._get_store_id(store_userid)
+            if not ret:
+                return error(UAURET.DATAERR)
+            store_id = ret['id']
+            info_data = self._query_handler(store_id)
+            data['info'] = self._trans_record(info_data)
+            return success(data)
+        except Exception as e:
+            log.warn(e)
+            log.warn(traceback.format_exc())
+            return error(UAURET.DATAERR)
+
+
+    @with_database('uyu_core')
+    def _get_store_id(self, store_userid):
+        ret = self.db.select_one(table='stores', fields='*', where={'userid': store_userid})
+        return ret
+
+
+    @with_database('uyu_core')
+    def _query_handler(self, store_id):
+        where = {'store_id': store_id}
+        keep_fields = ['userid', 'remain_times']
+        ret = self.db.select(table='consumer', fields=keep_fields, where=where)
+        return ret
+
+
+    @with_database('uyu_core')
+    def _trans_record(self, data):
+        keep_fields = ['login_name', 'phone_num', 'nick_name', 'username', 'state', 'email']
+
+        if not data:
+            return []
+
+        for item in data:
+            consumer_id = item['userid']
+            ret = self.db.select_one(table='auth_user', fields=keep_fields, where={'id': consumer_id})
+            for key in keep_fields:
+                v = ret.get(key)
+                if key != 'state':
+                    item[key] = v if v else ''
+                else:
+                    item[key] = define.UYU_USER_STATE_MAP.get(v)
+
+        return data
+
+
+    def GET(self):
+           try:
+               data = self._get_handler()
+               log.debug('return data:%s', data)
+               return data
+           except Exception as e:
+               log.warn(e)
+               log.warn(traceback.format_exc())
+               return error(UAURET.SERVERERR)
