@@ -177,7 +177,7 @@ class StoreConumerInfoHandler(core.Handler):
 
     @with_database('uyu_core')
     def _trans_record(self, data):
-        keep_fields = ['login_name', 'phone_num', 'nick_name', 'username', 'state', 'email']
+        keep_fields = ['login_name', 'phone_num', 'nick_name', 'username', 'state', 'email', 'ctime']
 
         if not data:
             return []
@@ -187,10 +187,13 @@ class StoreConumerInfoHandler(core.Handler):
             ret = self.db.select_one(table='auth_user', fields=keep_fields, where={'id': consumer_id})
             for key in keep_fields:
                 v = ret.get(key)
-                if key != 'state':
+                if key not in ['state', 'ctime']:
                     item[key] = v if v else ''
                 else:
-                    item[key] = define.UYU_USER_STATE_MAP.get(v)
+                    if key == 'state':
+                        item[key] = define.UYU_USER_STATE_MAP.get(v)
+                    elif key == 'ctime':
+                        item['create_time'] = datetime.datetime.strftime(v, '%Y-%m-%d %H:%M:%S')
 
         return data
 
