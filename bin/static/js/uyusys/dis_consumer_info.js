@@ -36,7 +36,11 @@ require(['../require-config'], function() {
             $('.js_search').on('click', function() {
 
                 var refer_tel = $('.js_search_phone').val();
+
                 var store_user_id = localStorage.getItem("userid");
+                if (store_user_id === null || store_user_id == undefined){
+                    alert("获取userid失败");
+                }
                 var req = {
                     se_userid:store_user_id,
                     mobile:refer_tel
@@ -79,7 +83,10 @@ require(['../require-config'], function() {
             });
 
             function fetch_left_Times() {
-                    var store_user_id = localStorage.getItem("userid");;
+                    var store_user_id = localStorage.getItem("userid");
+                if (store_user_id === null || store_user_id == undefined){
+                    alert("获取userid失败");
+                }
                     var getInfoData = {
                         se_userid: store_user_id,
                         userid: store_user_id

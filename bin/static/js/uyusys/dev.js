@@ -18,8 +18,12 @@ require(['../require-config'], function() {
                 methods: {
                     frist_list_page: function () {
                         var _this = this;
+                        var userid = localStorage.getItem("userid");
+                        if (userid === null || userid == undefined){
+                            alert("获取userid失败");
+                        }
                         var listReq = {
-                            se_userid: localStorage.getItem("userid"),
+                            se_userid: userid,
                             maxnum: "10",
                             page:''+page
                         };
@@ -38,8 +42,12 @@ require(['../require-config'], function() {
                     },
                     next_list_page:function () {
                         var _this = this;
+                        var userid = localStorage.getItem("userid");
+                        if (userid === null || userid == undefined){
+                            alert("获取userid失败");
+                        }
                         var listReq = {
-                            se_userid: localStorage.getItem("userid"),
+                            se_userid: userid,
                             maxnum: "10",
                             page:''+page
                         };

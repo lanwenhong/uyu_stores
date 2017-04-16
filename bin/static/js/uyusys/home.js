@@ -171,7 +171,11 @@ require(['../require-config'], function() {
                 });
 
                 native.updateCurrentView(function (resp) {
-                    updateViewData(localStorage.getItem("userid"));
+                    var userid = localStorage.getItem("userid");
+                    if (userid === null || userid == undefined){
+                        alert("获取userid失败");
+                    }
+                    updateViewData(userid);
                 });
 
             });
