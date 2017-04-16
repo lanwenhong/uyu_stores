@@ -55,7 +55,7 @@ class TestUyuStores(unittest.TestCase):
             "busicd": "STORE_ALLOT_TO_COMSUMER",
             "se_userid": 51561,
             "consumer_mobile": 13100000001,
-            "training_times": 1
+            "training_times": 200
         }
         headers = {'cookie': 'sessionid=0548f7ab-1fe7-4b8e-bb02-77b8f620b979'}
         ret = self.client.post(self.url, self.send, headers=headers)
