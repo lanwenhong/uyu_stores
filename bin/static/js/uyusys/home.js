@@ -19,7 +19,9 @@ require(['../require-config'], function() {
                         se_userid: store_user_id,
                         userid: store_user_id
                     };
-
+                    native.uyuLog({'logMsg':JSON.stringify(getInfoData)},function (res) {
+                        console.log(cb.ret);
+                    });
                     ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
                         $("#store_name").text(respData["store_name"]);
                         $("#store_left_times").text(respData["remain_times"]);
@@ -172,9 +174,6 @@ require(['../require-config'], function() {
 
                 native.updateCurrentView(function (resp) {
                     var userid = localStorage.getItem("userid");
-                    if (userid === null || userid == undefined){
-                        alert("获取userid失败");
-                    }
                     updateViewData(userid);
                 });
 

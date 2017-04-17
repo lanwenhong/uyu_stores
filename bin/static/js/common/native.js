@@ -21,9 +21,19 @@ define(["jsbridge"], function(jsbridge) {
         });
     };
 
-    var alert = function(data, cb) {
+    var uyuLog = function(data, cb) {
         JSBridge.H5CallNative({
-            name: 'alert',
+            name: 'uyuLog',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
+    var openUrl = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'openUrl',
             data: data || {},
             callback: function(res) {
                 cb(res)
@@ -88,6 +98,7 @@ define(["jsbridge"], function(jsbridge) {
     };
 
     return {
+        uyuLog:uyuLog,
         alert:alert,
         addRightBtn:addRightBtn,
         openUrl:openUrl,

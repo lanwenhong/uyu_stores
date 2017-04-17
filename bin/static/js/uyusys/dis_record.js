@@ -18,14 +18,17 @@ require(['../require-config'], function() {
                     frist_list_page: function () {
                         var _this = this;
                         var userid = localStorage.getItem("userid");
-                        if (userid === null || userid == undefined){
-                            alert("获取userid失败");
-                        }
+
                         var listReq = {
                             se_userid: userid,
                             maxnum: "10",
                             page:''+page
                         };
+
+                        native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
+                            console.log(cb.ret);
+                        });
+
                         ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var recordArr = respData['info'];
                             if (recordArr.length > 0){
@@ -42,14 +45,17 @@ require(['../require-config'], function() {
                     next_list_page:function () {
                         var _this = this;
                         var userid = localStorage.getItem("userid");
-                        if (userid === null || userid == undefined){
-                            alert("获取userid失败");
-                        }
+
                         var listReq = {
                             se_userid: userid,
                             maxnum: "10",
                             page:''+page
                         };
+
+                        native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
+                            console.log(cb.ret);
+                        });
+
                         ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var recordArr = respData['info'];
                             if (recordArr.length > 0){

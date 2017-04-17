@@ -22,6 +22,9 @@ require(['../require-config'], function() {
                             maxnum: "10",
                             page:''+page
                         };
+                        native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
+                            console.log(cb.ret);
+                        });
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var eyesightArr = respData['info'];
                             if (eyesightArr.length > 0){
@@ -42,6 +45,9 @@ require(['../require-config'], function() {
                             maxnum: "10",
                             page:''+page
                         };
+                        native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
+                            console.log(cb.ret);
+                        });
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
                             var eyesightArr = respData['info'];
                             if (eyesightArr.length > 0){
