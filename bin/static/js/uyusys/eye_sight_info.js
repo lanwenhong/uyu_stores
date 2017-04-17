@@ -45,6 +45,9 @@ require(['../require-config'], function() {
                             });
                         });
                     });
+                }else {
+                    native.uyuAlert({msg:"手机号不合法!"}, function (cb) {
+                    });
                 }
 
             });
@@ -73,7 +76,7 @@ require(['../require-config'], function() {
                                 });
                                 //在弹窗提示
                                 var msgStr = eyesightInfo['nick_name']+' 试光师成功添加到门店';
-                                native.alert({msg:msgStr}, function (cb) {
+                                native.uyuAlert({msg:msgStr}, function (cb) {
                                     console.log(cb.ret);
                                 });
                             });
@@ -81,7 +84,7 @@ require(['../require-config'], function() {
 
                     });
                 }else {
-                    native.alert({msg:"请先查到你要添加的试光师"}, function (cb) {
+                    native.uyuAlert({msg:"请先查到你要添加的试光师"}, function (cb) {
                         console.log(cb.ret);
                     })
                 }

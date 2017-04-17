@@ -89,7 +89,7 @@ require(['../require-config'], function() {
 
                 var val_exp = /^[0-9]*$/;
                 if (!val_exp.test(buy_times)) {
-                    native.alert({msg:"你输入的次数不合法"}, function (cb) {
+                    native.uyuAlert({msg:"你输入的次数不合法"}, function (cb) {
                     });
                     return;
                 }
@@ -119,7 +119,7 @@ require(['../require-config'], function() {
                                 //更新本页面的次数
                                 fetch_left_Times();
                                 //本页面弹窗提示
-                                native.alert({msg:"为消费者分配训练次数成功!"}, function (cb) {
+                                native.uyuAlert({msg:"为消费者分配训练次数成功!"}, function (cb) {
                                 });
                             });
                         });
