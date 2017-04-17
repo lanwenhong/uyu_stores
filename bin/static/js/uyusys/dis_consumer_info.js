@@ -5,7 +5,7 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "yanzheng", "native"],function($, ajax_rule, yanzheng, native){
         $(document).ready(function() {
 
-            var userCanDist = nil;
+            var userCanDist;
             $('.consumer_name').on('input', function() {
                 var name = $('.consumer_name').val();
                 if (name !== null && name !== undefined) {
@@ -27,9 +27,7 @@ require(['../require-config'], function() {
             });
 
             $('.js_search').on('click', function() {
-
                 var refer_tel = $('.js_search_phone').val();
-
                 native.getUserIdFromObjC({}, function (cb) {
                     var userid = cb['userid'];
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
@@ -100,7 +98,7 @@ require(['../require-config'], function() {
                     });
                     return;
                 }
-                if (refer_tel !== null && refer_tel !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
+                if (accountOrMobile !== null && accountOrMobile !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
 
