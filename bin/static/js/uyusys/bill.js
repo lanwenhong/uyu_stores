@@ -17,53 +17,57 @@ require(['../require-config'], function() {
                 methods: {
                     frist_list_page: function () {
                         var _this = this;
-                        var userid = localStorage.getItem("userid");
-                        var listReq = {
-                            se_userid: userid,
-                            maxnum: "10",
-                            page:''+page
-                        };
+                        native.getUserIdFromObjC({}, function (cb) {
+                            var userid = cb['userid'];
+                            var listReq = {
+                                se_userid: userid,
+                                maxnum: "10",
+                                page:''+page
+                            };
 
-                        native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
-                            console.log(cb.ret);
-                        });
+                            native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
+                                console.log(cb.ret);
+                            });
 
-                        ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                            var billArr = respData['info'];
-                            if (billArr.length > 0){
-                                page = page + 1;
-                                $('.section_nothing').hide();
-                            }else if (billArr.length == 0){
-                                $('.section_nothing').show();
-                            }
-                            for (var i = 0; i < billArr.length; i++){
-                                _this.allBills.push(billArr[i]);
-                            }
+                            ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                                var billArr = respData['info'];
+                                if (billArr.length > 0){
+                                    page = page + 1;
+                                    $('.section_nothing').hide();
+                                }else if (billArr.length == 0){
+                                    $('.section_nothing').show();
+                                }
+                                for (var i = 0; i < billArr.length; i++){
+                                    _this.allBills.push(billArr[i]);
+                                }
+                            });
                         });
                     },
                     next_list_page:function () {
                         var _this = this;
-                        var userid = localStorage.getItem("userid");
-                        var listReq = {
-                            se_userid: userid,
-                            maxnum: "10",
-                            page:''+page
-                        };
+                        native.getUserIdFromObjC({}, function (cb) {
+                            var userid = cb['userid'];
+                            var listReq = {
+                                se_userid: userid,
+                                maxnum: "10",
+                                page:''+page
+                            };
 
-                        native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
-                            console.log(cb.ret);
-                        });
+                            native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
+                                console.log(cb.ret);
+                            });
 
-                        ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                            var billArr = respData['info'];
-                            if (billArr.length > 0){
-                                page = page + 1;
-                            }else if (billArr.length == 0){
+                            ajax_rule.ajax_rule('/store/v1/api/settle_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                                var billArr = respData['info'];
+                                if (billArr.length > 0){
+                                    page = page + 1;
+                                }else if (billArr.length == 0){
 
-                            }
-                            for (var i = 0; i < billArr.length; i++){
-                                _this.allBills.push(billArr[i]);
-                            }
+                                }
+                                for (var i = 0; i < billArr.length; i++){
+                                    _this.allBills.push(billArr[i]);
+                                }
+                            });
                         });
                     }
                 }

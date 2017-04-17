@@ -162,7 +162,6 @@ require(['../require-config'], function() {
                 native.getUserIdFromObjC({}, function (cb) {
                     var store_user_id = cb['userid'];
                     var is_prepayment = cb['is_prepayment'];
-                    localStorage.setItem("userid", store_user_id);
                     if(parseInt(is_prepayment) == 1){
                         //分成模式才有账单
                         $('.js_goto_bills').show();
@@ -173,8 +172,10 @@ require(['../require-config'], function() {
                 });
 
                 native.updateCurrentView(function (resp) {
-                    var userid = localStorage.getItem("userid");
-                    updateViewData(userid);
+                    native.getUserIdFromObjC({}, function (cb) {
+                        var store_user_id = cb['userid'];
+                        updateViewData(store_user_id);
+                    });
                 });
 
             });
