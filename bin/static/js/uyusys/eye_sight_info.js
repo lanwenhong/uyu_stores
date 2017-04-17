@@ -25,24 +25,28 @@ require(['../require-config'], function() {
             var eyesightInfo;
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
-                native.getUserIdFromObjC({}, function (cb) {
-                    var userid = cb['userid'];
-                    native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                        var req = {
-                            se_userid:userid,
-                            phone_num:refer_tel,
-                            os:cb['os'],
-                            sys_version:cb['sys_version'],
-                            app_version:cb['app_version']
-                        };
-                        ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
-                            eyesightInfo = respData;
-                            $(".eye_sight_name").val(respData["username"]);
-                            $(".eye_sight_nickname").val(respData["nick_name"]);
-                            $(".eye_sight_phone").val(respData["mobile"]);
+                if (refer_tel.length == 11)
+                {
+                    native.getUserIdFromObjC({}, function (cb) {
+                        var userid = cb['userid'];
+                        native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                            var req = {
+                                se_userid:userid,
+                                phone_num:refer_tel,
+                                os:cb['os'],
+                                sys_version:cb['sys_version'],
+                                app_version:cb['app_version']
+                            };
+                            ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
+                                eyesightInfo = respData;
+                                $(".eye_sight_name").val(respData["username"]);
+                                $(".eye_sight_nickname").val(respData["nick_name"]);
+                                $(".eye_sight_phone").val(respData["mobile"]);
+                            });
                         });
                     });
-                });
+                }
+
             });
 
             $('.js_bottom_button_action').on('click', function () {
