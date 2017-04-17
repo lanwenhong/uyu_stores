@@ -21,14 +21,15 @@ from runtime import g_rt
 from config import cookie_conf
 
 import logging, datetime, calendar
-
+import tools
 log = logging.getLogger()
 
 class StoreToComsumer(core.Handler):
     _post_handler_fields = [
-        #Field("userid", T_INT, False),
+        # Field("userid", T_INT, False),
         Field("busicd", T_STR, False),
-        Field("consumer_mobile", T_STR, False, match=r'^(1\d{10})$'),
+        # Field("consumer_mobile", T_STR, False, match=r'^(1\d{10})$'),
+        Field("consumer_mobile", T_STR, False),
         Field("training_times", T_INT, False),
     ]
 
@@ -38,7 +39,11 @@ class StoreToComsumer(core.Handler):
     @with_database('uyu_core')
     def _check_permission(self, params):
         mobile = params["consumer_mobile"]
-        dbret = self.db.select_one("auth_user", {"phone_num": mobile})
+        is_mobile = tools.check_mobile(mobile)
+        if is_mobile:
+            dbret = self.db.select_one("auth_user", {"phone_num": mobile})
+        else:
+            dbret = self.db.select_one("auth_user", {"login_name": mobile})
 
         if params["busicd"] != define.BUSICD_CHAN_ALLOT_TO_COSUMER:
             return error(UAURET.BUSICEERR)

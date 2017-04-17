@@ -1,4 +1,5 @@
 #coding: utf-8
+import re
 import os, sys
 from zbase.base.dbpool import with_database
 import logging, time, random
@@ -19,12 +20,14 @@ from config import cookie_conf
 from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER, UYU_USER_STATE_OK
 
 import logging, datetime
+import tools
 log = logging.getLogger()
 
 
 class LoadConsumerHandler(core.Handler):
     _post_handler_fields = [
-        Field("mobile",  T_STR, False, match=r'^(1\d{10})$'),
+        # Field("mobile", T_STR, False, match=r'^(1\d{10})$'),
+        Field("mobile", T_STR, False),
     ]
 
     def _post_handler_errfunc(self, msg):
@@ -36,8 +39,13 @@ class LoadConsumerHandler(core.Handler):
         if not self.user.sauth:
             return error(UAURET.SESSIONERR)
         params = self.validator.data
+        mobile = params.get('mobile')
         uu = UUser()
-        uu.load_user_by_mobile(params["mobile"])
+        is_mobile = tools.check_mobile(mobile)
+        if is_mobile:
+            uu.load_user_by_mobile(mobile)
+        else:
+            uu.load_user_by_login_name(mobile)
         log.debug('##len:%s', len(uu.udata))
         log.debug('##udata:%s', uu.udata)
         if len(uu.udata) == 0:
