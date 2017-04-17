@@ -68,8 +68,9 @@ require(['../require-config'], function() {
                                     var eyesightArr = respData['info'];
                                     if (eyesightArr.length > 0){
                                         page = page + 1;
+                                        $('.section_nothing').hide();
                                     }else if (eyesightArr.length == 0){
-
+                                        $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < eyesightArr.length; i++){
                                         _this.eye_sights.push(eyesightArr[i]);
