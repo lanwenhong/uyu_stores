@@ -170,30 +170,30 @@ class StoreConumerInfoHandler(core.Handler):
     @with_database('uyu_core')
     def _query_handler(self, store_id):
         where = {'store_id': store_id}
-        keep_fields = ['userid', 'remain_times']
-        ret = self.db.select(table='consumer', fields=keep_fields, where=where)
+        keep_fields = ['userid', 'remain_times', 'create_time']
+        other = ' order by create_time desc '
+        ret = self.db.select(table='consumer', fields=keep_fields, where=where, other=other)
         return ret
 
 
     @with_database('uyu_core')
     def _trans_record(self, data):
-        keep_fields = ['login_name', 'phone_num', 'nick_name', 'username', 'state', 'email', 'ctime']
+        keep_fields = ['login_name', 'phone_num', 'nick_name', 'username', 'state', 'email']
 
         if not data:
             return []
 
         for item in data:
             consumer_id = item['userid']
+            item['create_time'] = datetime.datetime.strftime(item['create_time'], '%Y-%m-%d %H:%M:%S')
             ret = self.db.select_one(table='auth_user', fields=keep_fields, where={'id': consumer_id})
             for key in keep_fields:
                 v = ret.get(key)
-                if key not in ['state', 'ctime']:
+                if key not in ['state']:
                     item[key] = v if v else ''
                 else:
-                    if key == 'state':
-                        item[key] = define.UYU_USER_STATE_MAP.get(v)
-                    elif key == 'ctime':
-                        item['create_time'] = datetime.datetime.strftime(v, '%Y-%m-%d %H:%M:%S')
+                    item[key] = define.UYU_USER_STATE_MAP.get(v)
+
 
         return data
 

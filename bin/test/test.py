@@ -22,7 +22,7 @@ class TestUyuStores(unittest.TestCase):
         self.client = HttpClient(self.server, client_class = RequestsClient)
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_login(self):
         self.url = '/store/v1/api/login'
         self.send = {
@@ -163,11 +163,11 @@ class TestUyuStores(unittest.TestCase):
         respcd = json.loads(ret).get('respcd')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_store_consumer_list(self):
         self.url = '/store/v1/api/store_consumer_list'
         self.send = {'store_userid': '51561', 'se_userid': 51561}
-        headers = {'cookie': 'sessionid=38126e96-5c05-4c4e-96e8-bd846b455daf'}
+        headers = {'cookie': 'sessionid=0c360511-ee83-4546-a0ca-517f4757e3f8'}
         ret = self.client.get(self.url, self.send, headers=headers)
         log.info(ret)
 
