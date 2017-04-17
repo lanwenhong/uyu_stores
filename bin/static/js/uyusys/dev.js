@@ -72,8 +72,9 @@ require(['../require-config'], function() {
                                     var devArr = respData['info'];
                                     if (devArr.length > 0){
                                         page = page + 1;
+                                        $('.section_nothing').hide();
                                     }else if (devArr.length == 0){
-
+                                        $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < devArr.length; i++){
                                         _this.devices.push(devArr[i]);
