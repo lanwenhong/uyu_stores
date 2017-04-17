@@ -25,40 +25,44 @@ require(['../require-config'], function() {
             var eyesightInfo;
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
-                var store_user_id = localStorage.getItem("userid");
-                var req = {
-                    se_userid:store_user_id,
-                    phone_num:refer_tel
-                };
-                ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
-                    eyesightInfo = respData;
-                    $(".eye_sight_name").val(respData["username"]);
-                    $(".eye_sight_nickname").val(respData["nick_name"]);
-                    $(".eye_sight_phone").val(respData["mobile"]);
+                native.getUserIdFromObjC({}, function (cb) {
+                    var userid = cb['userid'];
+                    var req = {
+                        se_userid:userid,
+                        phone_num:refer_tel
+                    };
+                    ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
+                        eyesightInfo = respData;
+                        $(".eye_sight_name").val(respData["username"]);
+                        $(".eye_sight_nickname").val(respData["nick_name"]);
+                        $(".eye_sight_phone").val(respData["mobile"]);
+                    });
                 });
             });
 
             $('.js_bottom_button_action').on('click', function () {
                 if (eyesightInfo !== null && eyesightInfo !== undefined){
-                    var store_user_id = localStorage.getItem("userid");
-                    var req = {
-                        se_userid:store_user_id,
-                        userid:eyesightInfo['id']
-                    };
-
-                    ajax_rule.ajax_rule('/store/v1/api/eyesight', 'POST', 'json', req, '.zheceng', function (respData) {
-                        //先通知上一级页面更新
-                        var postNoti = {
-                            notiName:"updateEyesightWebView",
-                            notiRespFuncName:"notiUpdateEyesightView"
+                    native.getUserIdFromObjC({}, function (cb) {
+                        var userid = cb['userid'];
+                        var req = {
+                            se_userid:userid,
+                            userid:eyesightInfo['id']
                         };
-                        native.postNotifiaction(postNoti, function (cb) {
-                            console.log(cb.ret);
-                        });
-                        //在弹窗提示
-                        var msgStr = eyesightInfo['nick_name']+' 试光师成功添加到门店';
-                        native.alert({msg:msgStr}, function (cb) {
-                            console.log(cb.ret);
+
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight', 'POST', 'json', req, '.zheceng', function (respData) {
+                            //先通知上一级页面更新
+                            var postNoti = {
+                                notiName:"updateEyesightWebView",
+                                notiRespFuncName:"notiUpdateEyesightView"
+                            };
+                            native.postNotifiaction(postNoti, function (cb) {
+                                console.log(cb.ret);
+                            });
+                            //在弹窗提示
+                            var msgStr = eyesightInfo['nick_name']+' 试光师成功添加到门店';
+                            native.alert({msg:msgStr}, function (cb) {
+                                console.log(cb.ret);
+                            });
                         });
                     });
                 }else {
