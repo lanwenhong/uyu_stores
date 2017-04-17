@@ -45,6 +45,9 @@ require(['../require-config'], function() {
                             });
                         });
                     });
+                }else {
+                    native.alert({msg:"手机号不合法!"}, function (cb) {
+                    });
                 }
 
             });
