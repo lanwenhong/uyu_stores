@@ -15,20 +15,26 @@ require(['../require-config'], function() {
                 });
 
                 function updateViewData(store_user_id) {
-                    var getInfoData = {
-                        se_userid: store_user_id,
-                        userid: store_user_id
-                    };
-                    native.uyuLog({'logMsg':JSON.stringify(getInfoData)},function (res) {
-                        console.log(cb.ret);
-                    });
-                    ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
-                        $("#store_name").text(respData["store_name"]);
-                        $("#store_left_times").text(respData["remain_times"]);
-                        $("#month_distribute").text(respData["m_train"]);
-                        $("#month_earned_money").text(respData["m_amt"]);
-                        $("#day_distribute").text(respData["d_train"]);
-                        $("#day_earned_money").text(respData["d_amt"]);
+                    native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                        var getInfoData = {
+                            se_userid: store_user_id,
+                            userid: store_user_id,
+                            os:cb['os'],
+                            sys_version:cb['sys_version'],
+                            app_version:cb['app_version']
+                        };
+                        native.uyuLog({'logMsg':JSON.stringify(getInfoData)},function (cb) {
+                            console.log(cb.ret);
+                        });
+
+                        ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
+                            $("#store_name").text(respData["store_name"]);
+                            $("#store_left_times").text(respData["remain_times"]);
+                            $("#month_distribute").text(respData["m_train"]);
+                            $("#month_earned_money").text(respData["m_amt"]);
+                            $("#day_distribute").text(respData["d_train"]);
+                            $("#day_earned_money").text(respData["d_amt"]);
+                        });
                     });
                 }
 
