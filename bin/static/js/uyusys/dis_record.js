@@ -19,27 +19,32 @@ require(['../require-config'], function() {
                         var _this = this;
                         native.getUserIdFromObjC({}, function (cb) {
                             var userid = cb['userid'];
-                            var listReq = {
-                                se_userid: userid,
-                                maxnum: "10",
-                                page:''+page
-                            };
+                            native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                                var listReq = {
+                                    os:cb['os'],
+                                    sys_version:cb['sys_version'],
+                                    app_version:cb['app_version'],
+                                    se_userid: userid,
+                                    maxnum: "10",
+                                    page:''+page
+                                };
 
-                            native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
-                                console.log(cb.ret);
-                            });
+                                native.uyuLog({'logMsg':JSON.stringify(listReq)},function (cb) {
+                                    console.log(cb.ret);
+                                });
 
-                            ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                                var recordArr = respData['info'];
-                                if (recordArr.length > 0){
-                                    page = page + 1;
-                                    $('.section_nothing').hide();
-                                }else if (recordArr.length == 0){
-                                    $('.section_nothing').show();
-                                }
-                                for (var i = 0; i < recordArr.length; i++){
-                                    _this.allRecords.push(recordArr[i]);
-                                }
+                                ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                                    var recordArr = respData['info'];
+                                    if (recordArr.length > 0){
+                                        page = page + 1;
+                                        $('.section_nothing').hide();
+                                    }else if (recordArr.length == 0){
+                                        $('.section_nothing').show();
+                                    }
+                                    for (var i = 0; i < recordArr.length; i++){
+                                        _this.allRecords.push(recordArr[i]);
+                                    }
+                                });
                             });
                         });
 
@@ -48,26 +53,31 @@ require(['../require-config'], function() {
                         var _this = this;
                         native.getUserIdFromObjC({}, function (cb) {
                             var userid = cb['userid'];
-                            var listReq = {
-                                se_userid: userid,
-                                maxnum: "10",
-                                page:''+page
-                            };
+                            native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                                var listReq = {
+                                    os:cb['os'],
+                                    sys_version:cb['sys_version'],
+                                    app_version:cb['app_version'],
+                                    se_userid: userid,
+                                    maxnum: "10",
+                                    page:''+page
+                                };
 
-                            native.uyuLog({'logMsg':JSON.stringify(listReq)},function (res) {
-                                console.log(cb.ret);
-                            });
+                                native.uyuLog({'logMsg':JSON.stringify(listReq)},function (cb) {
+                                    console.log(cb.ret);
+                                });
 
-                            ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
-                                var recordArr = respData['info'];
-                                if (recordArr.length > 0){
-                                    page = page + 1;
-                                }else if (recordArr.length == 0){
+                                ajax_rule.ajax_rule('/store/v1/api/store_allocate_list', 'GET', 'json', listReq, '.zheceng', function (respData) {
+                                    var recordArr = respData['info'];
+                                    if (recordArr.length > 0){
+                                        page = page + 1;
+                                    }else if (recordArr.length == 0){
 
-                                }
-                                for (var i = 0; i < recordArr.length; i++){
-                                    _this.allRecords.push(recordArr[i]);
-                                }
+                                    }
+                                    for (var i = 0; i < recordArr.length; i++){
+                                        _this.allRecords.push(recordArr[i]);
+                                    }
+                                });
                             });
                         });
                     }

@@ -30,6 +30,16 @@ define(["jsbridge"], function(jsbridge) {
             }
         });
     };
+    var getDeviceInfo = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'getDeviceInfo',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
 
     var openUrl = function(data, cb) {
         JSBridge.H5CallNative({
@@ -98,6 +108,7 @@ define(["jsbridge"], function(jsbridge) {
     };
 
     return {
+        getDeviceInfo:getDeviceInfo,
         uyuLog:uyuLog,
         alert:alert,
         addRightBtn:addRightBtn,
