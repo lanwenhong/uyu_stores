@@ -22,7 +22,7 @@ class TestUyuStores(unittest.TestCase):
         self.client = HttpClient(self.server, client_class = RequestsClient)
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_login(self):
         self.url = '/store/v1/api/login'
         self.send = {
@@ -42,22 +42,22 @@ class TestUyuStores(unittest.TestCase):
     def test_store_info(self):
         self.url = '/store/v1/api/store_info'
         self.send = {"se_userid": 51561, "userid": 51561}
-        headers = {'cookie': 'sessionid=7dcf5197-5413-4690-87f5-dd26315110a7'}
+        headers = {'cookie': 'sessionid=82d8c52b-c79d-478a-82fd-969066e61d75'}
         ret = self.client.get(self.url, self.send, headers=headers)
         respcd = json.loads(ret).get('respcd')
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_store_to_comsumer(self):
         self.url = '/store/v1/api/store_to_consumer'
         self.send = {
             "busicd": "STORE_ALLOT_TO_COMSUMER",
             "se_userid": 51561,
             "consumer_mobile": 13100000001,
-            "training_times": 200
+            "training_times": 1
         }
-        headers = {'cookie': 'sessionid=0548f7ab-1fe7-4b8e-bb02-77b8f620b979'}
+        headers = {'cookie': 'sessionid=82d8c52b-c79d-478a-82fd-969066e61d75'}
         ret = self.client.post(self.url, self.send, headers=headers)
         respcd = json.loads(ret).get('respcd')
         self.assertEqual(respcd, '0000')
@@ -67,7 +67,7 @@ class TestUyuStores(unittest.TestCase):
     def test_load_consumer(self):
         self.url = '/store/v1/api/load_consumer'
         self.send = {"se_userid": 51561, "mobile": "13100000001"}
-        headers = {'cookie': 'sessionid=0548f7ab-1fe7-4b8e-bb02-77b8f620b979'}
+        headers = {'cookie': 'sessionid=82d8c52b-c79d-478a-82fd-969066e61d75'}
         ret = self.client.post(self.url, self.send, headers=headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
