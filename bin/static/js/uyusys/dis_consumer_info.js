@@ -85,11 +85,6 @@ require(['../require-config'], function() {
 
             $(".js_distribute_times").on("click", function () {
                 var accountOrMobile = $('.js_search_phone').val();
-                if (userCanDist !== accountOrMobile){
-                    native.alert({msg:"请重新查询, 确认你要分配次数的账号"}, function (cb) {
-                    });
-                    return;
-                }
                 var buy_times = $('.consumer_buy_times').val();
 
                 var val_exp = /^[0-9]*$/;
