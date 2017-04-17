@@ -120,7 +120,12 @@ require(['../require-config'], function() {
 
                 $(".js_goto_distribute").on("click", function () {
                     native.regNativeCallJS("notiUpdateCurentView", function () {
-                        updateViewData(localStorage.getItem("userid"));
+                        native.getUserIdFromObjC({}, function (cb) {
+                            var store_user_id = cb['userid'];
+                            updateViewData(store_user_id);
+
+
+                        });
                     });
 
                     var regNoti = {
