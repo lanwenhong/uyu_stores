@@ -19,16 +19,8 @@ require(['../require-config'], function() {
                 var refer_tel = $('.js_search_phone').val();
 
                 if (refer_tel !== null && refer_tel !== undefined){
-                    if(refer_tel.length > 11){
-                        $('.js_search_phone').val(refer_tel.substring(0, 11));
-
-                        refer_tel = $('.js_search_phone').val();
-                        yanzheng.testPhone('.js_search_phone');
-                    }else if(refer_tel.length == 11){
-                        //电话号码刚好11位
-                        yanzheng.testPhone('.js_search_phone');
-                    }else {
-                        //取消验证
+                    if(refer_tel.length > 30){
+                        $('.js_search_phone').val(refer_tel.substring(0, 30));
                     }
                 }
             });
@@ -51,25 +43,6 @@ require(['../require-config'], function() {
                 });
             });
 
-            //获取userid
-            $('.consumer_phone').on('input', function() {
-                var refer_tel = $('.consumer_phone').val();
-
-                if (refer_tel !== null && refer_tel !== undefined){
-                    if(refer_tel.length > 11){
-                        $('.consumer_phone').val(refer_tel.substring(0, 11));
-
-                        refer_tel = $('.consumer_phone').val();
-                        yanzheng.testPhone('.consumer_phone');
-                    }else if(refer_tel.length == 11){
-                        //电话号码刚好11位
-                        yanzheng.testPhone('.consumer_phone');
-                    }else {
-                        //取消验证
-                    }
-                }
-
-            });
 
 
             $('.consumer_buy_times').on('input', function() {
