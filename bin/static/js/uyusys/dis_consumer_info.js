@@ -5,6 +5,7 @@ require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "yanzheng", "native"],function($, ajax_rule, yanzheng, native){
         $(document).ready(function() {
 
+            var userCanDist = nil;
             $('.consumer_name').on('input', function() {
                 var name = $('.consumer_name').val();
                 if (name !== null && name !== undefined) {
@@ -39,7 +40,11 @@ require(['../require-config'], function() {
                 }
                 ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', req, '.zheceng', function (respData) {
                     $(".consumer_name").val(respData["username"]);
-                    $(".consumer_phone").val(respData["mobile"]);
+                    var resMobile = respData["mobile"];
+                    if (resMobile!== null && resMobile !== undefined){
+                        $(".consumer_phone").val(resMobile);
+                    }
+                    userCanDist = respData["username"];
                 });
             });
 
@@ -72,7 +77,12 @@ require(['../require-config'], function() {
             fetch_left_Times();
 
             $(".js_distribute_times").on("click", function () {
-                var refer_tel = $('.consumer_phone').val();
+                var accountOrMobile = $('.js_search_phone').val();
+                if (userCanDist !== accountOrMobile){
+                    native.alert({msg:"请重新查询, 确认你要分配次数的账号"}, function (cb) {
+                    });
+                    return;
+                }
                 var buy_times = $('.consumer_buy_times').val();
 
                 var val_exp = /^[0-9]*$/;
@@ -85,7 +95,7 @@ require(['../require-config'], function() {
                     var store_user_id = localStorage.getItem("userid");
                     var distReqData = {"busicd": "STORE_ALLOT_TO_COMSUMER",
                         "se_userid": store_user_id,
-                        "consumer_mobile": refer_tel,
+                        "consumer_mobile": accountOrMobile,
                         "training_times": buy_times};
                     ajax_rule.ajax_rule('/store/v1/api/store_to_consumer', 'POST', 'json', distReqData, '.zheceng', function (respData) {
                         //分配成功的逻辑
