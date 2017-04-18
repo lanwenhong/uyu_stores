@@ -10,7 +10,7 @@ define(["native"], function(native) {
         var val = $(id).val();
         var val_exp = /(^(\d{3,4}-)?\d{7,8})$|^1[0-9]{10}$/;
         if (!val_exp.test(val)) {
-            native.alert({msg:"手机号不合法"}, function (cb) {
+            native.uyuAlert({msg:"手机号不合法"}, function (cb) {
             });
             return;
         }
