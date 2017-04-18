@@ -28,7 +28,6 @@ require(['../require-config'], function() {
                 var val_exp = /(^(\d{3,4}-)?\d{7,8})$|^1[0-9]{10}$/;
                 if (val_exp.test(refer_tel))
                 {
-                    alert("start");
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
                         native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
@@ -41,7 +40,6 @@ require(['../require-config'], function() {
                             };
                             ajax_rule.ajax_rule('/store/v1/api/eyesight', 'GET', 'json', req, '.zheceng', function (respData) {
                                 eyesightInfo = respData;
-                                alert(JSON.stringify(respData));
                                 $(".eye_sight_name").val(respData["username"]);
                                 $(".eye_sight_nickname").val(respData["nick_name"]);
                                 $(".eye_sight_phone").val(respData["mobile"]);

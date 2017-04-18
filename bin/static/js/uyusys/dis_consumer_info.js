@@ -93,7 +93,7 @@ require(['../require-config'], function() {
                     });
                     return;
                 }
-                if (accountOrMobile.length == 0 && accountOrMobile !== null && accountOrMobile !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
+                if (accountOrMobile.length !== 0 && accountOrMobile !== null && accountOrMobile !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
 
