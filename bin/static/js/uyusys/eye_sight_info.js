@@ -26,7 +26,7 @@ require(['../require-config'], function() {
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
                 var val_exp = /(^(\d{3,4}-)?\d{7,8})$|^1[0-9]{10}$/;
-                if (val_exp.test(val))
+                if (val_exp.test(refer_tel))
                 {
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
