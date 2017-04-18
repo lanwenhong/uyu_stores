@@ -28,26 +28,32 @@ require(['../require-config'], function() {
 
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
-                native.getUserIdFromObjC({}, function (cb) {
-                    var userid = cb['userid'];
-                    native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                        var req = {
-                            os:cb['os'],
-                            sys_version:cb['sys_version'],
-                            app_version:cb['app_version'],
-                            se_userid:userid,
-                            mobile:refer_tel
-                        };
-                        ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', req, '.zheceng', function (respData) {
-                            $(".consumer_name").val(respData["username"]);
-                            var resMobile = respData["mobile"];
-                            if (resMobile!== null && resMobile !== undefined){
-                                $(".consumer_phone").val(resMobile);
-                            }
-                            userCanDist = respData["username"];
+                if (refer_tel.length !== 0 && refer_tel !== null && refer_tel !== undefined){
+                    native.getUserIdFromObjC({}, function (cb) {
+                        var userid = cb['userid'];
+                        native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                            var req = {
+                                os:cb['os'],
+                                sys_version:cb['sys_version'],
+                                app_version:cb['app_version'],
+                                se_userid:userid,
+                                mobile:refer_tel
+                            };
+                            ajax_rule.ajax_rule('/store/v1/api/load_consumer', 'POST', 'json', req, '.zheceng', function (respData) {
+                                $(".consumer_name").val(respData["username"]);
+                                var resMobile = respData["mobile"];
+                                if (resMobile!== null && resMobile !== undefined){
+                                    $(".consumer_phone").val(resMobile);
+                                }
+                                userCanDist = respData["username"];
+                            });
                         });
                     });
-                });
+                }else {
+                    native.uyuAlert({msg:"消费者账号或手机号不合法!"}, function (cb) {
+                    });
+                }
+
             });
 
 
@@ -94,7 +100,6 @@ require(['../require-config'], function() {
                     return;
                 }
 
-                alert(accountOrMobile);
                 if (accountOrMobile.length !== 0 && accountOrMobile !== null && accountOrMobile !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
