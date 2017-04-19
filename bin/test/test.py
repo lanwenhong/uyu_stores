@@ -86,7 +86,7 @@ class TestUyuStores(unittest.TestCase):
         self.url = '/store/v1/api/passwd_change'
         self.send = {
             'mobile': '13802438716',
-            'vcode': 4805,
+            'vcode': 8696,
             'password': hashlib.md5('12345678').hexdigest()
         }
         ret = self.client.post(self.url, self.send)
@@ -165,14 +165,14 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_eyesight_register(self):
         self.url = '/store/v1/api/eyesight_register'
         self.send = {
-            'mobile': '13475481297',
+            'mobile': '13475481298',
             'nick_name': '小小',
             'username': '王小小',
-            'email': '13475481297@cc.com'
+            'email': '13475481298@cc.com'
             }
         ret = self.client.post(self.url, self.send)
         log.info(ret)
