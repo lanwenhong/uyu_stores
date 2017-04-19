@@ -81,12 +81,18 @@ require(['../require-config'], function() {
                             });
                             return;
                         }else {
-                            modifyData.email = emailStr;
+                            modifyData = {
+                                mobile:phone,
+                                nick_name:nickName,
+                                username:userName,
+                                os:cb['os'],
+                                email:emailStr,
+                                sys_version:cb['sys_version'],
+                                app_version:cb['app_version']
+                            };
                         }
                     }
-
-                    alert(JSON.stringify(modifyData));
-
+                    
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                         //发送验证码成功
 
