@@ -85,9 +85,7 @@ require(['../require-config'], function() {
                         }
                     }
 
-                    native.uyuLog({'logMsg':JSON.stringify(modifyData)},function (cb) {
-                        console.log(cb.ret);
-                    });
+                    alert(JSON.stringify(modifyData));
 
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                         //发送验证码成功
