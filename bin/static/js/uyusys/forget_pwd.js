@@ -32,6 +32,8 @@ require(['../require-config'], function() {
             function timedCount() {
                 var time0 = $('.js_show_entycode i').text();
                 $('.js_show_entycode i').text(time0 - 1);
+
+                alert("1111   "+time0);
                 t = setTimeout("timedCount()", 1000);
                 if (time0 == 0) {
                     clearTimeout(t);
@@ -56,9 +58,11 @@ require(['../require-config'], function() {
 
                         ajax_rule.ajax_rule('/store/v1/api/sms_send', 'POST', 'json', getSMSData, '.zheceng', function (respData) {
                             //发送验证码成功
+                            alert("111111");
+                            timedCount();
                             $(".js_get_entycode").hide();
                             $(".js_show_entycode").show();
-                            timedCount();
+
                         });
                     });
                 }else {
