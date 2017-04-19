@@ -1362,3 +1362,90 @@ section.section_nothing p {
   color: #A7A9AE;
   text-align: center;
 }
+section.section_register {
+  width: 100%;
+  padding: 0 0 0 15px;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background: white;
+  margin: .3rem 0;
+}
+section.section_register dl.hang {
+  width: 100%;
+  padding: 0.1rem 15px 0.1rem 0;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  border-top: 1px solid #e5e5e5;
+  line-height: 1rem;
+  font-size: 15px;
+}
+section.section_register dl.hang:nth-child(1) {
+  border: 0;
+}
+section.section_register dl.hang:after {
+  content: " ";
+  display: block;
+  font-size: 0;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  overflow: hidden;
+}
+section.section_register dl.hang dt {
+  float: left;
+  width: 30%;
+}
+section.section_register dl.hang dd {
+  float: right;
+  width: 70%;
+  text-align: left;
+  line-height: 1rem;
+}
+section.section_register dl.hang dd input.text {
+  width: 100%;
+  background: none;
+  border: 0;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: left;
+  font-size: 15px;
+  float: left;
+}
+section.section_register dl.hang dd input.text_sms {
+  width: 60%;
+  background: none;
+  border: 0;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: left;
+  font-size: 15px;
+  float: left;
+}
+section.section_register dl.hang dd p {
+  float: right;
+  margin-top: 0.1rem;
+}
+section.section_register dl.hang dd p.entycode {
+  width: 38%;
+  display: inline-block;
+  border: 1px solid #318D50;
+  border-radius: 3px;
+  color: #318D50;
+  text-align: center;
+  height: .8rem;
+  line-height: .8rem;
+}
+section.section_register dl.hang dd p.entycode span.get_entycode {
+  width: 100%;
+  font-size: 13px;
+}
+section.section_register dl.hang dd p.entycode span.show_entycode {
+  display: none;
+  width: 100%;
+  font-size: 13px;
+}
+section.section_register dl.hang dd:after {
+  float: none;
+}
