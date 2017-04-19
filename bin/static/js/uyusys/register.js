@@ -19,7 +19,7 @@ require(['../require-config'], function() {
                         console.log(cb.ret)
                     });
                 }else if(refer_tel.length == 11){
-                    yanzheng.testPhone(refer_tel);
+                    yanzheng.testPhone('js_phone');
                 }
 
             });
@@ -43,7 +43,7 @@ require(['../require-config'], function() {
                 var nickName = $('.js_nick_name').val();
                 var userName = $('.js_user_name').val();
                 var emailStr = $('.js_email').val();
-                if (!yanzheng.testPhone(phone)){
+                if (!yanzheng.testPhone('js_phone')){
                     return;
                 }
                 if (yanzheng.strIsNullUndefine(nickName)){
