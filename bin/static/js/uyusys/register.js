@@ -93,9 +93,10 @@ require(['../require-config'], function() {
                         //发送验证码成功
 
                         native.uyuAlert({msg:"注册成功"}, function (cb) {
+                            native.popToRootVC({msg:"退回根页面"}, function (cb) {
+                            });
                         });
-                        native.popToRootVC({msg:"退回根页面"}, function (cb) {
-                        });
+
                     });
                 });
             });
