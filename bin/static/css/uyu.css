@@ -1362,6 +1362,12 @@ section.section_nothing p {
   color: #A7A9AE;
   text-align: center;
 }
+.tips_msg {
+  width: 100%;
+  margin-top: 0.3rem;
+  line-height: 1rem;
+  text-align: left;
+}
 section.section_register {
   width: 100%;
   padding: 0 0 0 15px;
