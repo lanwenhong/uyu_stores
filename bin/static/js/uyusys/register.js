@@ -77,7 +77,7 @@ require(['../require-config'], function() {
                     };
                     if (!yanzheng.strIsNullUndefine(emailStr)){
                         var email_test = /^[a-zA-Z0-9_\-\'\.]+@[a-zA-Z0-9_]+(\.[a-z]+){1,2}$/;
-                        if (!email_test.test(id_val)) {
+                        if (!email_test.test(emailStr)) {
                             native.uyuAlert({msg:"请输入合法的邮箱"}, function (cb) {
                             });
                             return;
