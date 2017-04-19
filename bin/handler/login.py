@@ -123,7 +123,7 @@ class SmsHandler(core.Handler):
         uop = UUser()
         uop.load_user_by_mobile(mobile)
         if len(uop.udata) == 0:
-            return error(UAURET.USERROLEERR)
+            return error(UAURET.NODATA)
 
         vop = VCode()
         vcode = vop.gen_vcode(mobile)
