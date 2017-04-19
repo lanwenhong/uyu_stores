@@ -82,16 +82,8 @@ require(['../require-config'], function() {
                             });
                             return;
                         }
-                        modifyData = {
-                            mobile:phone,
-                            nick_name:nickName,
-                            username:userName,
-                            os:cb['os'],
-                            email:emailStr,
-                            sys_version:cb['sys_version'],
-                            app_version:cb['app_version']
-                        };
-
+                        modifyData.email =emailStr;
+                        alert(JSON.stringify(modifyData));
                     }
 
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
