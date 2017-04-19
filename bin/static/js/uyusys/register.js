@@ -81,6 +81,7 @@ require(['../require-config'], function() {
                             });
                             return;
                         }else {
+                            alert("asdfasdfasdf");
                             modifyData = {
                                 mobile:phone,
                                 nick_name:nickName,
@@ -90,9 +91,10 @@ require(['../require-config'], function() {
                                 sys_version:cb['sys_version'],
                                 app_version:cb['app_version']
                             };
+                            alert("dddddddd");
                         }
                     }
-                    
+
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                         //发送验证码成功
 
