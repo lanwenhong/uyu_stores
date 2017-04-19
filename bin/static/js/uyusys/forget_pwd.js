@@ -31,9 +31,15 @@ require(['../require-config'], function() {
 
 
             $('#get_identyCode').on('click', function() {
+                var time0 = $('.js_show_entycode i').text();
+                if (time0 < 61)
+                {
+                    //倒计时，不响应事件
+                    return;
+                }
                 var refer_tel = $('.js_phone').val();
-                var val_exp =  /^1[0-9]{10}$/;
 
+                var val_exp =  /^1[0-9]{10}$/;
                 if (val_exp.test(refer_tel)){
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                         var getSMSData = {

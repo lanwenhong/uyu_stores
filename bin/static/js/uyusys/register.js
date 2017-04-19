@@ -91,7 +91,8 @@ require(['../require-config'], function() {
 
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                         //发送验证码成功
-                        native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
+
+                        native.uyuAlert({msg:"注册成功"}, function (cb) {
                         });
                     });
                 });
