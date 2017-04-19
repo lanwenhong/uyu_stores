@@ -76,7 +76,8 @@ require(['../require-config'], function() {
                         app_version:cb['app_version']
                     };
                     if (!yanzheng.strIsNullUndefine(emailStr)){
-                        if (!yanzheng.email_test(emailStr)){
+                        var email_test = /^[a-zA-Z0-9_\-\'\.]+@[a-zA-Z0-9_]+(\.[a-z]+){1,2}$/;
+                        if (!email_test.test(id_val)) {
                             native.uyuAlert({msg:"请输入合法的邮箱"}, function (cb) {
                             });
                             return;
@@ -90,7 +91,7 @@ require(['../require-config'], function() {
                             sys_version:cb['sys_version'],
                             app_version:cb['app_version']
                         };
-                            alert("dddddddd");
+
                     }
 
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
