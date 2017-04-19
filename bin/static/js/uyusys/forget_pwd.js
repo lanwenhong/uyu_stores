@@ -28,20 +28,7 @@ require(['../require-config'], function() {
 
             });
 
-            //倒计时60s
-            function timedCount() {
-                var time0 = $('.js_show_entycode i').text();
-                $('.js_show_entycode i').text(time0 - 1);
 
-                alert("1111   "+time0);
-                t = setTimeout("timedCount()", 1000);
-                if (time0 == 0) {
-                    clearTimeout(t);
-                    $('.js_get_entycode').show();
-                    $('.js_show_entycode i').text(61);
-                    $('.js_show_entycode').hide();
-                }
-            }
 
             $('#get_identyCode').on('click', function() {
                 var refer_tel = $('.js_phone').val();
@@ -58,7 +45,6 @@ require(['../require-config'], function() {
 
                         ajax_rule.ajax_rule('/store/v1/api/sms_send', 'POST', 'json', getSMSData, '.zheceng', function (respData) {
                             //发送验证码成功
-                            alert("111111");
                             timedCount();
                             $(".js_get_entycode").hide();
                             $(".js_show_entycode").show();
@@ -141,3 +127,17 @@ require(['../require-config'], function() {
         });
     });
 });
+
+//倒计时60s
+function timedCount() {
+    var time0 = $('.js_show_entycode i').text();
+    $('.js_show_entycode i').text(time0 - 1);
+
+    t = setTimeout("timedCount()", 1000);
+    if (time0 == 0) {
+        clearTimeout(t);
+        $('.js_get_entycode').show();
+        $('.js_show_entycode i').text(61);
+        $('.js_show_entycode').hide();
+    }
+}
