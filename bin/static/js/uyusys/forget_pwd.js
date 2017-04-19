@@ -30,13 +30,13 @@ require(['../require-config'], function() {
 
             //倒计时60s
             function timedCount() {
-                var time0 = $('.i_normal').text();
-                $('.i_normal').text(time0 - 1);
+                var time0 = $('.js_show_entycode i').text();
+                $('.js_show_entycode i').text(time0 - 1);
                 t = setTimeout("timedCount()", 1000);
                 if (time0 == 0) {
                     clearTimeout(t);
                     $('.js_get_entycode').show();
-                    $('.i_normal').text(61);
+                    $('.js_show_entycode i').text(61);
                     $('.js_show_entycode').hide();
                 }
             }
