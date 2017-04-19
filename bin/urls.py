@@ -36,6 +36,9 @@ urls = (
     ('^/store/v1/api/eyesight_list$', eyesight.EyesightInfoHandler),
     # 获取视光师信息
     ('^/store/v1/api/eyesight$', eyesight.EyeSightHandler),
+    # 注册视光师傅
+    ('^/store/v1/api/eyesight_register$', eyesight.EyeSightRegisterHandler),
+
     # 设备数据
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
     # 门店分配记录数据

@@ -54,7 +54,8 @@ class StoreToComsumer(core.Handler):
         params["consumer_id"] = dbret["id"]
         state = dbret["state"]
         user_type = dbret["user_type"]
-        if user_type != define.UYU_USER_ROLE_COMSUMER or state != define.UYU_USER_STATE_OK:
+        # if user_type != define.UYU_USER_ROLE_COMSUMER or state != define.UYU_USER_STATE_OK:
+        if user_type not in [define.UYU_USER_ROLE_COMSUMER, define.UYU_USER_ROLE_EYESIGHT] or state != define.UYU_USER_STATE_OK:
             log.debug("user: %s forbidden user_type: %d state: %d", mobile, user_type, state)
             return UYU_OP_ERR
 
