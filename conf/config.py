@@ -12,7 +12,6 @@ LOGFILE = {
     }
 }
 
-# LOGFILE = None
 
 # 数据库配置
 database = {
@@ -21,6 +20,17 @@ database = {
         'passwd': '123456',
         'charset': 'utf8',
         'db': 'ychannel',
+        'idle_timeout': 60,
+        'host': '127.0.0.1',
+        'user': 'yyy',
+        'port': 3306,
+        'conn': 5
+    },
+    'uyu_old':{
+        'engine': 'pymysql',
+        'passwd': '123456',
+        'charset': 'utf8',
+        'db': 'uyu_old',
         'idle_timeout': 60,
         'host': '127.0.0.1',
         'user': 'yyy',
@@ -58,7 +68,7 @@ template = os.path.join(HOME, 'template')
 # 服务地址
 HOST = '0.0.0.0'
 # 服务端口
-PORT = 8182
+PORT = 8086
 #redis
 redis_url = 'redis://127.0.0.1:4600/0'
 #cookie 配置
