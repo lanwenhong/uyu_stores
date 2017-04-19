@@ -19,7 +19,12 @@ require(['../require-config'], function() {
                         console.log(cb.ret)
                     });
                 }else if(refer_tel.length == 11){
-                    yanzheng.testPhone('js_phone');
+                    var val_exp =  /^1[0-9]{10}$/;
+                    if (!val_exp.test(refer_tel)){
+                        native.uyuAlert({msg:"手机号不合法"}, function (cb) {
+                        });
+                        return;
+                    }
                 }
 
             });
@@ -43,7 +48,10 @@ require(['../require-config'], function() {
                 var nickName = $('.js_nick_name').val();
                 var userName = $('.js_user_name').val();
                 var emailStr = $('.js_email').val();
-                if (!yanzheng.testPhone('js_phone')){
+                var val_exp =  /^1[0-9]{10}$/;
+                if (!val_exp.test(phone)){
+                    native.uyuAlert({msg:"手机号不合法"}, function (cb) {
+                    });
                     return;
                 }
                 if (yanzheng.strIsNullUndefine(nickName)){

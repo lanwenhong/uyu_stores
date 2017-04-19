@@ -19,7 +19,11 @@ require(['../require-config'], function() {
                         console.log(cb.ret)
                     });
                 }else if(refer_tel.length == 11){
-                    yanzheng.testPhone('js_phone');
+                    var val_exp =  /^1[0-9]{10}$/;
+                    if (!val_exp.test(refer_tel)) {
+                        native.uyuAlert({msg:"手机号不合法"}, function (cb) {
+                        });
+                    }
                 }
 
             });
@@ -39,7 +43,9 @@ require(['../require-config'], function() {
 
             $('#get_identyCode').on('click', function() {
                 var refer_tel = $('.js_phone').val();
-                if (yanzheng.testPhone('js_phone')){
+                var val_exp =  /^1[0-9]{10}$/;
+
+                if (val_exp.test(refer_tel)){
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                         var getSMSData = {
                             mobile:refer_tel,
@@ -54,6 +60,9 @@ require(['../require-config'], function() {
                             $(".js_show_entycode").show();
                             timedCount();
                         });
+                    });
+                }else {
+                    native.uyuAlert({msg:"手机号不合法"}, function (cb) {
                     });
                 }
             });
@@ -78,9 +87,13 @@ require(['../require-config'], function() {
                 var smsCode = $('.js_sms_code').val();
                 var pwd1 = $('.js_new_pwd').val();
                 var pwd2 = $('.js_sure_pwd').val();
-                if (!yanzheng.testPhone('js_phone')){
+                var val_exp =  /^1[0-9]{10}$/;
+                if (!val_exp.test(phone)){
+                    native.uyuAlert({msg:"手机号不合法"}, function (cb) {
+                    });
                     return;
                 }
+
                 if (yanzheng.strIsNullUndefine(smsCode)){
                     native.uyuAlert({msg:"请输入6位验证码"}, function (cb) {
                     });
