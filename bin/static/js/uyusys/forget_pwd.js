@@ -95,11 +95,10 @@ require(['../require-config'], function() {
                 }
 
                 if (yanzheng.strIsNullUndefine(smsCode)){
-                    native.uyuAlert({msg:"请输入6位验证码"}, function (cb) {
+                    native.uyuAlert({msg:"请输入4位验证码"}, function (cb) {
                     });
                     return;
                 }
-                alert(pwd1+"__ddddd__"+pwd2);
                 if (yanzheng.strIsNullUndefine(pwd1) || yanzheng.strIsNullUndefine(pwd2)){
                     native.uyuAlert({msg:"请输入6~18位验证码"}, function (cb) {
                     });
@@ -108,7 +107,10 @@ require(['../require-config'], function() {
                     if (pwd1 !== pwd2){
                         native.uyuAlert({msg:"两次输入的密码不一致, 请重新输入"}, function (cb) {
                         });
-                    }else {
+                    }else if(pwd1.length >= 6 &&
+                        pwd1.length <= 18 &&
+                        pwd2.length >= 6 &&
+                        pwd2.length <= 18){
                         native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                             var modifyData = {
                                 mobile:phone,
@@ -124,6 +126,9 @@ require(['../require-config'], function() {
                                 native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
                                 });
                             });
+                        });
+                    }else {
+                        native.uyuAlert({msg:"密码不合法，请重新输入"}, function (cb) {
                         });
                     }
                 }
