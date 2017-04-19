@@ -2,7 +2,7 @@
  * Created by mac on 17/4/19.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule", "native", "yanzheng"],function($, ajax_rule, native, yanzheng){
+    require(["zepto", "ajax_rule", "native", "yanzheng", "md5"],function($, ajax_rule, native, md5){
         $(document).ready(function() {
             $('.js_phone').on('input', function() {
                 var refer_tel = $('.js_phone').val();
@@ -107,26 +107,24 @@ require(['../require-config'], function() {
                         pwd1.length <= 18 &&
                         pwd2.length >= 6 &&
                         pwd2.length <= 18){
-                        native.md5Password({password:pwd1}, function (cb) {
-                            var encPassword = cb["md5_password"];
-                            native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                                var modifyData = {
-                                    mobile:phone,
-                                    password:encPassword,
-                                    vcode:smsCode,
-                                    os:cb['os'],
-                                    sys_version:cb['sys_version'],
-                                    app_version:cb['app_version']
-                                };
+                        var encPassword = hex_md5(pwd1);
+                        native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                            var modifyData = {
+                                mobile:phone,
+                                password:encPassword,
+                                vcode:smsCode,
+                                os:cb['os'],
+                                sys_version:cb['sys_version'],
+                                app_version:cb['app_version']
+                            };
 
-                                ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
-                                    //发送验证码成功
-                                    native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
-                                        native.popToRootVC({msg:"退回根页面"}, function (cb) {
-                                        });
+                            ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
+                                //发送验证码成功
+                                native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
+                                    native.popToRootVC({msg:"退回根页面"}, function (cb) {
                                     });
-
                                 });
+
                             });
                         });
 
