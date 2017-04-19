@@ -1,6 +1,6 @@
 define(["native"], function(native) {
     function strIsNullUndefine(str) {
-        if (str === null || str === undefined){
+        if (str == null || str == undefined){
             return true;
         }
         return false;
