@@ -94,6 +94,8 @@ require(['../require-config'], function() {
 
                         native.uyuAlert({msg:"注册成功"}, function (cb) {
                         });
+                        native.popToRootVC({msg:"退回根页面"}, function (cb) {
+                        });
                     });
                 });
             });

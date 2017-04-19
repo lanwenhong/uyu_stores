@@ -58,6 +58,16 @@ define(["jsbridge"], function(jsbridge) {
         });
     };
 
+    var popToRootVC = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'popToRootVC',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
 
     var openUrl = function(data, cb) {
         JSBridge.H5CallNative({
@@ -126,6 +136,7 @@ define(["jsbridge"], function(jsbridge) {
     };
 
     return {
+        popToRootVC:popToRootVC,
         md5Password:md5Password,
         getDeviceInfo:getDeviceInfo,
         uyuLog:uyuLog,

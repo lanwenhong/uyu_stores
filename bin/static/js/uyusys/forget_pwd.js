@@ -108,7 +108,6 @@ require(['../require-config'], function() {
                         pwd2.length >= 6 &&
                         pwd2.length <= 18){
                         native.md5Password({password:pwd1}, function (cb) {
-                            alert("123123");
                             var encPassword = cb["md5_password"];
                             native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                                 var modifyData = {
@@ -123,6 +122,8 @@ require(['../require-config'], function() {
                                 ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                                     //发送验证码成功
                                     native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
+                                    });
+                                    native.popToRootVC({msg:"退回根页面"}, function (cb) {
                                     });
                                 });
                             });
