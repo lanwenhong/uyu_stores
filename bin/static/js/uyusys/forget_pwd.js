@@ -99,7 +99,7 @@ require(['../require-config'], function() {
                     });
                     return;
                 }
-                if (yanzheng.strIsNullUndefine(smsCode) || yanzheng.strIsNullUndefine(smsCode)){
+                if (yanzheng.strIsNullUndefine(pwd1) || yanzheng.strIsNullUndefine(pwd2)){
                     native.uyuAlert({msg:"请输入6~18位验证码"}, function (cb) {
                     });
                     return;

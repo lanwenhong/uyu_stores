@@ -43,7 +43,7 @@ require(['../require-config'], function() {
                 }
             });
 
-            $('.js_register').on('input', function() {
+            $('.js_register').on('click', function() {
                 var phone = $('.js_phone').val();
                 var nickName = $('.js_nick_name').val();
                 var userName = $('.js_user_name').val();
