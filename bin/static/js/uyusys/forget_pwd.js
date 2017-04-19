@@ -107,22 +107,27 @@ require(['../require-config'], function() {
                         pwd1.length <= 18 &&
                         pwd2.length >= 6 &&
                         pwd2.length <= 18){
-                        native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                            var modifyData = {
-                                mobile:phone,
-                                password:pwd1,
-                                vcode:smsCode,
-                                os:cb['os'],
-                                sys_version:cb['sys_version'],
-                                app_version:cb['app_version']
-                            };
 
-                            ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
-                                //发送验证码成功
-                                native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
+                        native.md5Password({"password":pwd1}, function (cb) {
+                            var encPassword = cb["md5_password"];
+                            native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                                var modifyData = {
+                                    mobile:phone,
+                                    password:encPassword,
+                                    vcode:smsCode,
+                                    os:cb['os'],
+                                    sys_version:cb['sys_version'],
+                                    app_version:cb['app_version']
+                                };
+
+                                ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
+                                    //发送验证码成功
+                                    native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
+                                    });
                                 });
                             });
                         });
+
                     }else {
                         native.uyuAlert({msg:"密码不合法，请重新输入"}, function (cb) {
                         });

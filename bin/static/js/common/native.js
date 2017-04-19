@@ -48,6 +48,16 @@ define(["jsbridge"], function(jsbridge) {
         });
     };
 
+    var md5Password = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'md5Password',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
 
     var openUrl = function(data, cb) {
         JSBridge.H5CallNative({
@@ -116,6 +126,7 @@ define(["jsbridge"], function(jsbridge) {
     };
 
     return {
+        md5Password:md5Password,
         getDeviceInfo:getDeviceInfo,
         uyuLog:uyuLog,
         uyuAlert:uyuAlert,
