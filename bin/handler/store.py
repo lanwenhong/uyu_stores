@@ -60,6 +60,17 @@ class StoreH5EyeSightInfo(core.Handler):
         self.write(template.render("eye_sight_info.html"))
 
 
+class StoreEyesightRegister(core.Handler):
+    def GET(self):
+        self.write(template.render("register.html"))
+
+
+class StoreForgetPassword(core.Handler):
+    def GET(self):
+        self.write(template.render("forget_pwd.html"))
+
+
+
 class StoreAllocateHandler(core.Handler):
 
     _get_handler_fields = [
