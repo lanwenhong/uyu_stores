@@ -107,8 +107,7 @@ require(['../require-config'], function() {
                         pwd1.length <= 18 &&
                         pwd2.length >= 6 &&
                         pwd2.length <= 18){
-alert("fffff");
-                        native.md5Password({"password":pwd1}, function (cb) {
+                        native.md5Password({password:pwd1}, function (cb) {
                             alert("123123");
                             var encPassword = cb["md5_password"];
                             native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
