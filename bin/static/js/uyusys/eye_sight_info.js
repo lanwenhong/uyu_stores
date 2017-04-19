@@ -76,7 +76,7 @@ require(['../require-config'], function() {
                                     console.log(cb.ret);
                                 });
                                 //在弹窗提示
-                                var msgStr = eyesightInfo['nick_name']+' 试光师成功添加到门店';
+                                var msgStr = eyesightInfo['nick_name']+' 视光师成功添加到门店';
                                 native.uyuAlert({msg:msgStr}, function (cb) {
                                     console.log(cb.ret);
                                 });
@@ -85,7 +85,7 @@ require(['../require-config'], function() {
 
                     });
                 }else {
-                    native.uyuAlert({msg:"请先查到你要添加的试光师"}, function (cb) {
+                    native.uyuAlert({msg:"请先查到你要添加的视光师"}, function (cb) {
                         console.log(cb.ret);
                     })
                 }
