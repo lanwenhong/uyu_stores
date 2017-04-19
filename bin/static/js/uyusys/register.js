@@ -80,19 +80,17 @@ require(['../require-config'], function() {
                             native.uyuAlert({msg:"请输入合法的邮箱"}, function (cb) {
                             });
                             return;
-                        }else {
-                            alert("asdfasdfasdf");
-                            modifyData = {
-                                mobile:phone,
-                                nick_name:nickName,
-                                username:userName,
-                                os:cb['os'],
-                                email:emailStr,
-                                sys_version:cb['sys_version'],
-                                app_version:cb['app_version']
-                            };
-                            alert("dddddddd");
                         }
+                        modifyData = {
+                            mobile:phone,
+                            nick_name:nickName,
+                            username:userName,
+                            os:cb['os'],
+                            email:emailStr,
+                            sys_version:cb['sys_version'],
+                            app_version:cb['app_version']
+                        };
+                            alert("dddddddd");
                     }
 
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
