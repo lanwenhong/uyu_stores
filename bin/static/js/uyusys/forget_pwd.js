@@ -4,7 +4,6 @@
 require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "native", "yanzheng", "md5"],function($, ajax_rule, native, yanzheng, md5){
         $(document).ready(function() {
-            alert("999999");
             $('.js_phone').on('input', function() {
                 var refer_tel = $('.js_phone').val();
                 if (refer_tel.length > 0 && refer_tel.length < 11){
@@ -103,7 +102,7 @@ require(['../require-config'], function() {
                         pwd1.length <= 18 &&
                         pwd2.length >= 6 &&
                         pwd2.length <= 18){
-                        var encPassword = hex_md5(pwd1);
+                        var encPassword = md5.str_md5(pwd1);
                         native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                             var modifyData = {
                                 mobile:phone,
@@ -113,7 +112,7 @@ require(['../require-config'], function() {
                                 sys_version:cb['sys_version'],
                                 app_version:cb['app_version']
                             };
-
+                            alert(JSON.stringify(modifyData));
                             ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                                 //发送验证码成功
                                 native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
