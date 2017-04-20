@@ -73,8 +73,6 @@ require(['../require-config'], function() {
                         }
                         regData.email =emailStr;
                     }
-                    alert(JSON.stringify(regData));
-
                     ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', regData, '.zheceng', function (respData) {
                         //发送验证码成功
 

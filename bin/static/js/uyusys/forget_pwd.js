@@ -110,7 +110,6 @@ require(['../require-config'], function() {
                                 sys_version:cb['sys_version'],
                                 app_version:cb['app_version']
                             };
-                            alert(JSON.stringify(modifyData));
                             ajax_rule.ajax_rule('/store/v1/api/passwd_change', 'POST', 'json', modifyData, '.zheceng', function (respData) {
                                 //发送验证码成功
                                 native.uyuAlert({msg:"修改密码成功, 请重新登录"}, function (cb) {
