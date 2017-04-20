@@ -19,7 +19,7 @@ require(['../require-config'], function() {
                         console.log(cb.ret)
                     });
                 }else if(refer_tel.length == 11){
-                    yanzheng.testPhone(refer_tel);
+                    yanzheng.available_phone(refer_tel);
                 }
 
             });
@@ -35,7 +35,7 @@ require(['../require-config'], function() {
                 }
                 var refer_tel = $('.js_phone').val();
 
-                if (yanzheng.testPhone(refer_tel)){
+                if (yanzheng.available_phone(refer_tel)){
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                         var getSMSData = {
                             mobile:refer_tel,
@@ -81,13 +81,11 @@ require(['../require-config'], function() {
                 var smsCode = $('.js_sms_code').val();
                 var pwd1 = $('.js_new_pwd').val();
                 var pwd2 = $('.js_sure_pwd').val();
-                if (!yanzheng.testPhone(phone)){
+                if (!yanzheng.available_phone(phone)){
                     return;
                 }
 
-                if (yanzheng.strIsNullUndefine(smsCode)){
-                    native.uyuAlert({msg:"请输入4位验证码"}, function (cb) {
-                    });
+                if (!yanzheng.available_code(smsCode)){
                     return;
                 }
                 if (yanzheng.strIsNullUndefine(pwd1) || yanzheng.strIsNullUndefine(pwd2)){

@@ -19,12 +19,7 @@ require(['../require-config'], function() {
                         console.log(cb.ret)
                     });
                 }else if(refer_tel.length == 11){
-                    var val_exp =  /^1[0-9]{10}$/;
-                    if (!val_exp.test(refer_tel)){
-                        native.uyuAlert({msg:"手机号不合法"}, function (cb) {
-                        });
-                        return;
-                    }
+                    yanzheng.available_phone(refer_tel);
                 }
 
             });
@@ -48,10 +43,7 @@ require(['../require-config'], function() {
                 var nickName = $('.js_nick_name').val();
                 var userName = $('.js_user_name').val();
                 var emailStr = $('.js_email').val();
-                var val_exp =  /^1[0-9]{10}$/;
-                if (!val_exp.test(phone)){
-                    native.uyuAlert({msg:"手机号不合法"}, function (cb) {
-                    });
+                if (!yanzheng.available_phone){
                     return;
                 }
                 if (yanzheng.strIsNullUndefine(nickName)){
@@ -67,7 +59,7 @@ require(['../require-config'], function() {
 
 
                 native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                    var modifyData = {
+                    var regData = {
                         mobile:phone,
                         nick_name:nickName,
                         username:userName,
@@ -76,16 +68,14 @@ require(['../require-config'], function() {
                         app_version:cb['app_version']
                     };
                     if (!yanzheng.strIsNullUndefine(emailStr)){
-                        var email_test = /^[a-zA-Z0-9_\-\'\.]+@[a-zA-Z0-9_]+(\.[a-z]+){1,2}$/;
-                        if (!email_test.test(emailStr)) {
-                            native.uyuAlert({msg:"请输入合法的邮箱"}, function (cb) {
-                            });
+                        if (!yanzheng.available_email(emailStr)) {
                             return;
                         }
-                        modifyData.email =emailStr;
+                        regData.email =emailStr;
                     }
+                    alert(JSON.stringify(regData));
 
-                    ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', modifyData, '.zheceng', function (respData) {
+                    ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', regData, '.zheceng', function (respData) {
                         //发送验证码成功
 
                         native.uyuAlert({msg:"注册成功"}, function (cb) {
