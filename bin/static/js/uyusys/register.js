@@ -6,37 +6,20 @@ require(['../require-config'], function() {
         $(document).ready(function() {
             $('.js_phone').on('input', function() {
                 var refer_tel = $('.js_phone').val();
-                if (refer_tel.length > 0 && refer_tel.length < 11){
-                    var fristStr = refer_tel.substring(0, 1);
-                    if (fristStr != '1'){
-                        native.uyuAlert({msg:"请输入1开头的手机号"}, function (cb) {
-                            console.log(cb.ret)
-                        });
+                if (!yanzheng.strIsNullUndefine(refer_tel)){
+                    if (refer_tel.length > 0 && refer_tel.length < 11){
+                        var fristStr = refer_tel.substring(0, 1);
+                        if (fristStr != '1'){
+                            native.uyuAlert({msg:"请输入1开头的手机号"}, function (cb) {
+                                console.log(cb.ret)
+                            });
+                        }
+                    }else if(refer_tel.length == 11){
+                        yanzheng.available_phone(refer_tel);
                     }
-                }else if(refer_tel.length > 11){
-                    $('.js_phone').val(refer_tel.substring(0, 11));
-                    native.uyuAlert({msg:"请应该输入11位电话号码"}, function (cb) {
-                        console.log(cb.ret)
-                    });
-                }else if(refer_tel.length == 11){
-                    yanzheng.available_phone(refer_tel);
-                }
-
-            });
-
-            $('.js_nick_name').on('input', function() {
-                var nickName = $('.js_nick_name').val();
-                if (nickName > 12){
-                    $('.js_nick_name').val(nickName.substring(0, 12));
                 }
             });
 
-            $('.js_user_name').on('input', function() {
-                var userName = $('.js_user_name').val();
-                if (userName > 12){
-                    $('.js_user_name').val(userName.substring(0, 12));
-                }
-            });
 
             $('.js_register').on('click', function() {
                 var phone = $('.js_phone').val();

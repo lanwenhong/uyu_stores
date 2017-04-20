@@ -6,29 +6,10 @@ require(['../require-config'], function() {
         $(document).ready(function() {
 
             var userCanDist;
-            $('.consumer_name').on('input', function() {
-                var name = $('.consumer_name').val();
-                if (name !== null && name !== undefined) {
-                    if (name.length > 11) {
-                        $('.consumer_name').val(name.substring(0, 18));
-                    }
-                }
-            });
-
-
-            $('.js_search_phone').on('input', function() {
-                var refer_tel = $('.js_search_phone').val();
-
-                if (refer_tel !== null && refer_tel !== undefined){
-                    if(refer_tel.length > 30){
-                        $('.js_search_phone').val(refer_tel.substring(0, 30));
-                    }
-                }
-            });
 
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
-                if (refer_tel.length !== 0 && refer_tel !== null && refer_tel !== undefined){
+                if (!yanzheng.strIsNullUndefine(refer_tel)){
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
                         native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
@@ -52,18 +33,6 @@ require(['../require-config'], function() {
                 }else {
                     native.uyuAlert({msg:"消费者账号或手机号不合法!"}, function (cb) {
                     });
-                }
-
-            });
-
-
-
-            $('.consumer_buy_times').on('input', function() {
-                var times = $('.consumer_buy_times').val();
-                if (times !== null && times !== undefined){
-                    if(times.length > 6){
-                        $('.consumer_buy_times').val(times.substring(0, 6));
-                    }
                 }
 
             });
@@ -100,7 +69,7 @@ require(['../require-config'], function() {
                     return;
                 }
 
-                if (accountOrMobile.length !== 0 && accountOrMobile !== null && accountOrMobile !== undefined && buy_times !== null && buy_times !== undefined && parseInt(buy_times) > 0){
+                if (!yanzheng.strIsNullUndefine(accountOrMobile)){
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
 

@@ -7,26 +7,25 @@ require(['../require-config'], function() {
 
             $('.js_search_phone').on('input', function() {
                 var refer_tel = $('.js_search_phone').val();
-                if (refer_tel !== null && refer_tel !== undefined){
-                    if(refer_tel.length > 11){
-                        $('.js_search_phone').val(refer_tel.substring(0, 11));
-
-                        refer_tel = $('.js_search_phone').val();
-                        yanzheng.testPhone('.js_search_phone');
+                if (!yanzheng.strIsNullUndefine(refer_tel)){
+                    if (refer_tel.length > 0 && refer_tel.length < 11){
+                        var fristStr = refer_tel.substring(0, 1);
+                        if (fristStr != '1'){
+                            native.uyuAlert({msg:"请输入1开头的手机号"}, function (cb) {
+                                console.log(cb.ret)
+                            });
+                        }
                     }else if(refer_tel.length == 11){
-                        //电话号码刚好11位
-                        yanzheng.testPhone('.js_search_phone');
-                    }else {
-                        //取消验证
+                        yanzheng.available_phone(refer_tel);
                     }
                 }
             });
 
+
             var eyesightInfo;
             $('.js_search').on('click', function() {
                 var refer_tel = $('.js_search_phone').val();
-                var val_exp = /(^(\d{3,4}-)?\d{7,8})$|^1[0-9]{10}$/;
-                if (val_exp.test(refer_tel))
+                if (yanzheng.available_phone(refer_tel))
                 {
                     native.getUserIdFromObjC({}, function (cb) {
                         var userid = cb['userid'];
@@ -45,9 +44,6 @@ require(['../require-config'], function() {
                                 $(".eye_sight_phone").val(respData["mobile"]);
                             });
                         });
-                    });
-                }else {
-                    native.uyuAlert({msg:"手机号不合法!"}, function (cb) {
                     });
                 }
 

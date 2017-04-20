@@ -6,22 +6,18 @@ require(['../require-config'], function() {
         $(document).ready(function() {
             $('.js_phone').on('input', function() {
                 var refer_tel = $('.js_phone').val();
-                if (refer_tel.length > 0 && refer_tel.length < 11){
-                    var fristStr = refer_tel.substring(0, 1);
-                    if (fristStr != '1'){
-                        native.uyuAlert({msg:"请输入1开头的手机号"}, function (cb) {
-                            console.log(cb.ret)
-                        });
+                if (!yanzheng.strIsNullUndefine(refer_tel)){
+                    if (refer_tel.length > 0 && refer_tel.length < 11){
+                        var fristStr = refer_tel.substring(0, 1);
+                        if (fristStr != '1'){
+                            native.uyuAlert({msg:"请输入1开头的手机号"}, function (cb) {
+                                console.log(cb.ret)
+                            });
+                        }
+                    }else if(refer_tel.length == 11) {
+                        yanzheng.available_phone(refer_tel);
                     }
-                }else if(refer_tel.length > 11){
-                    $('.js_phone').val(refer_tel.substring(0, 11));
-                    native.uyuAlert({msg:"请应该输入11位电话号码"}, function (cb) {
-                        console.log(cb.ret)
-                    });
-                }else if(refer_tel.length == 11){
-                    yanzheng.available_phone(refer_tel);
                 }
-
             });
 
 
@@ -55,26 +51,6 @@ require(['../require-config'], function() {
                 }
             });
 
-
-            $('.js_sms_code').on('input', function() {
-                var pwd = $('.js_sms_code').val();
-                if (pwd > 4){
-                    $('.js_sms_code').val(pwd.substring(0, 4));
-                }
-            });
-            $('.js_new_pwd').on('input', function() {
-                var pwd = $('.js_new_pwd').val();
-                if (pwd > 18){
-                    $('.js_new_pwd').val(pwd.substring(0, 18));
-                }
-            });
-
-            $('.js_sure_pwd').on('input', function() {
-                var pwd = $('.js_sure_pwd').val();
-                if (pwd > 18){
-                    $('.js_sure_pwd').val(pwd.substring(0, 18));
-                }
-            });
 
             $(".js_modify_pwd").on("click", function () {
                 var phone = $('.js_phone').val();
