@@ -4,6 +4,7 @@
 require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "native", "yanzheng", "md5"],function($, ajax_rule, native, yanzheng, md5){
         $(document).ready(function() {
+            alert("999999");
             $('.js_phone').on('input', function() {
                 var refer_tel = $('.js_phone').val();
                 if (refer_tel.length > 0 && refer_tel.length < 11){

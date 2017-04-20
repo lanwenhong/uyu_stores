@@ -29,7 +29,7 @@ require.config({
         "native": "common/native",//解析app方法
         "alert_word": "common/alert_word",//提示文字
         "JSTools":"common/js_tools",//js工具
-
+        "md5":"common/md5" //md5 base64工具
     },
     shim: {　　　　　　
         'mobiscroll': {　　　　　　　　
