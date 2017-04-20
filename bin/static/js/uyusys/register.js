@@ -27,14 +27,14 @@ require(['../require-config'], function() {
             $('.js_nick_name').on('input', function() {
                 var nickName = $('.js_nick_name').val();
                 if (nickName > 12){
-                    $('.js_nick_name').val(nickName.substring(0, 18));
+                    $('.js_nick_name').val(nickName.substring(0, 12));
                 }
             });
 
             $('.js_user_name').on('input', function() {
                 var userName = $('.js_user_name').val();
-                if (userName > 18){
-                    $('.js_user_name').val(userName.substring(0, 18));
+                if (userName > 12){
+                    $('.js_user_name').val(userName.substring(0, 12));
                 }
             });
 
