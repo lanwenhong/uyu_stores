@@ -57,6 +57,12 @@ require(['../require-config'], function() {
             });
 
 
+            $('.js_sms_code').on('input', function() {
+                var pwd = $('.js_sms_code').val();
+                if (pwd > 4){
+                    $('.js_sms_code').val(pwd.substring(0, 4));
+                }
+            });
             $('.js_new_pwd').on('input', function() {
                 var pwd = $('.js_new_pwd').val();
                 if (pwd > 18){
