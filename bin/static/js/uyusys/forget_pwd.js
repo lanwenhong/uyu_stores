@@ -102,7 +102,7 @@ require(['../require-config'], function() {
                         pwd1.length <= 18 &&
                         pwd2.length >= 6 &&
                         pwd2.length <= 18){
-                        var encPassword = md5.str_md5(pwd1);
+                        var encPassword = md5.hex_md5(pwd1);
                         native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                             var modifyData = {
                                 mobile:phone,
