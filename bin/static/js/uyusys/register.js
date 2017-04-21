@@ -26,7 +26,7 @@ require(['../require-config'], function() {
                 var nickName = $('.js_nick_name').val();
                 var userName = $('.js_user_name').val();
                 var emailStr = $('.js_email').val();
-                if (!yanzheng.available_phone){
+                if (!yanzheng.available_phone(phone)){
                     return;
                 }
                 if (yanzheng.strIsNullUndefine(nickName)){
