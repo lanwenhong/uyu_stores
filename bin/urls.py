@@ -40,6 +40,8 @@ urls = (
     ('^/store/v1/api/eyesight$', eyesight.EyeSightHandler),
     # 注册视光师傅
     ('^/store/v1/api/eyesight_register$', eyesight.EyeSightRegisterHandler),
+    # 加载完整的消费者数据
+    ('^/store/v1/api/load_consumer_detail$', consumer.LoadConsumerDetailHandler),
 
     # 设备数据
     ('^/store/v1/api/device_list$', device.DeviceInfoHandler),
