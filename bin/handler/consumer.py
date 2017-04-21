@@ -46,6 +46,9 @@ class LoadConsumerDetailHandler(core.Handler):
     def _post_handler(self):
         if not self.user.sauth:
             return error(UAURET.SESSIONERR)
+
+        data = {}
+        data['info'] = []
         params = self.validator.data
         mobile = params.get('mobile')
         uu = UUser()
@@ -58,7 +61,8 @@ class LoadConsumerDetailHandler(core.Handler):
         log.debug('##udata:%s', uu.udata)
         if len(uu.udata) == 0:
             log.debug('mobile=%s not exists', mobile)
-            return error(UAURET.USERERR)
+            # return error(UAURET.USERERR)
+            return success(data)
 
         if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
             return error(UAURET.USERERR)
@@ -75,8 +79,7 @@ class LoadConsumerDetailHandler(core.Handler):
         ret["create_time"] = datetime.datetime.strftime(uu.udata.get("ctime"), '%Y-%m-%d %H:%M:%S') if uu.udata.get("ctime") else ''
         ret["remain_times"] = self._get_remain_times(uu.udata["id"])
 
-        data = {}
-        data['info'] = []
+
         if ret:
             data['info'].append(ret)
         return success(data)
