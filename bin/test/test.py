@@ -20,7 +20,7 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=b63d89b7-bea9-4e8f-b46f-4e3ca842632f'}
+        self.headers = {'cookie': 'sessionid=a4c37bec-2637-4954-9681-ad869194d9fe'}
 
 
     @unittest.skip("skipping")
@@ -61,10 +61,10 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_load_consumer(self):
         self.url = '/store/v1/api/load_consumer'
-        self.send = {"se_userid": 51561, "mobile": "13100000001"}
+        self.send = {"se_userid": 51561, "mobile": "13802438755"}
         ret = self.client.post(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
@@ -165,7 +165,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_eyesight_register(self):
         self.url = '/store/v1/api/eyesight_register'
         self.send = {

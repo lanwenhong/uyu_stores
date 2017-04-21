@@ -116,7 +116,8 @@ class EyeSightHandler(core.Handler):
         uop = UUser()
         uop.call("load_user_by_mobile", params["phone_num"])
         log.debug('udata: %s', uop.udata)
-        if len(uop.udata) == 0 or uop.udata.get("user_type", -1) != define.UYU_USER_ROLE_EYESIGHT:
+        # if len(uop.udata) == 0 or uop.udata.get("user_type", -1) != define.UYU_USER_ROLE_EYESIGHT:
+        if len(uop.udata) == 0 or uop.udata.get("user_type", -1) not in [define.UYU_USER_ROLE_EYESIGHT, define.UYU_USER_ROLE_COMSUMER]:
             return error(UAURET.USERROLEERR)
 
         ret = {}
