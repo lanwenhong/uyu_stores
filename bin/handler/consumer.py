@@ -74,7 +74,11 @@ class LoadConsumerDetailHandler(core.Handler):
         ret["state"] = define.UYU_USER_STATE_MAP.get(uu.udata.get("state"), '')
         ret["create_time"] = datetime.datetime.strftime(uu.udata.get("ctime"), '%Y-%m-%d %H:%M:%S') if uu.udata.get("ctime") else ''
         ret["remain_times"] = self._get_remain_times(uu.udata["id"])
-        return success(ret)
+
+        data = []
+        if ret:
+            data.append(ret)
+        return success(data)
 
     def POST(self, *args):
         return self._post_handler()
