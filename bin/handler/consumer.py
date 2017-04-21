@@ -75,9 +75,10 @@ class LoadConsumerDetailHandler(core.Handler):
         ret["create_time"] = datetime.datetime.strftime(uu.udata.get("ctime"), '%Y-%m-%d %H:%M:%S') if uu.udata.get("ctime") else ''
         ret["remain_times"] = self._get_remain_times(uu.udata["id"])
 
-        data = []
+        data = {}
+        data['info'] = []
         if ret:
-            data.append(ret)
+            data['info'].append(ret)
         return success(data)
 
     def POST(self, *args):
