@@ -18,7 +18,7 @@ from uyubase.base.usession import uyu_check_session, USession
 from runtime import g_rt
 from config import cookie_conf
 
-from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER, UYU_USER_STATE_OK
+from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER, UYU_USER_STATE_OK, UYU_USER_ROLE_EYESIGHT
 
 import logging, datetime
 import tools
@@ -64,7 +64,8 @@ class LoadConsumerDetailHandler(core.Handler):
             # return error(UAURET.USERERR)
             return success(data)
 
-        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        # if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] not in [UYU_USER_ROLE_COMSUMER, UYU_USER_ROLE_EYESIGHT]:
             return error(UAURET.USERERR)
 
         ret = {}
