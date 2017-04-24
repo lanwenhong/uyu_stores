@@ -144,13 +144,14 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_eyesight_info(self):
         self.url = '/store/v1/api/eyesight'
         self.send = {
             # 'phone_num': '13475481270',  #视光师ok
             # 'phone_num': '13802438719',  #消费者ok
-            'phone_num': '13000000003',  #门店fail
+            'phone_num': 'ccd8198',  #登录名
+            # 'phone_num': '13000000003',  #门店fail
             'se_userid': 51561
         }
         ret = self.client.get(self.url, self.send, headers=self.headers)
@@ -184,7 +185,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_eyesight_register(self):
         self.url = '/store/v1/api/eyesight_register'
         self.send = {
