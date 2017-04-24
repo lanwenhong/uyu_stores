@@ -864,14 +864,17 @@ section.section_mid .statistics_num {
   width: 70%;
   height: 1.6rem;
 }
-section.section_mid .statistics_num .info_top {
+section.section_mid .statistics_num ul {
   width: 100%;
 }
-section.section_mid .statistics_num .info_top li {
+section.section_mid .statistics_num ul li {
   width: 100%;
   height: 0.8rem;
   text-align: center;
   line-height: 0.8rem;
+}
+section.section_mid .statistics_num ul .info_top {
+  border-bottom: 1px solid #e5e5e5;
 }
 section.section_mid span {
   color: #318D50;
