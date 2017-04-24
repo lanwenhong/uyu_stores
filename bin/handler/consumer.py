@@ -116,7 +116,8 @@ class LoadConsumerHandler(core.Handler):
         if len(uu.udata) == 0:
             return error(UAURET.USERERR)
 
-        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        # if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] not in [UYU_USER_ROLE_COMSUMER, UYU_USER_ROLE_EYESIGHT]:
             return error(UAURET.USERERR)
 
         ret = {}
