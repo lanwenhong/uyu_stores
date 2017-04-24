@@ -839,37 +839,39 @@ section.section_mid {
   margin-bottom: .3rem;
 }
 section.section_mid .statistics {
-  width: 48.5%;
   float: left;
+  width: 50%;
+}
+section.section_mid .statistics_title {
+  width: 29%;
+  line-height: 1.6rem;
+  text-align: center;
 }
 section.section_mid .stat_info {
   float: left;
 }
-section.section_mid .statistics_title {
-  width: 1.6rem;
-  height: 2.4rem;
-  line-height: 2.4rem;
-  text-align: center;
-}
 section.section_mid .v_line_dev {
-  float: left;
-  margin: 0.2rem auto;
+  width: 1%;
+}
+section.section_mid .v_line_dev .line {
   width: 1px;
-  height: 2rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+  height: 1.4rem;
   background-color: #e5e5e5;
 }
 section.section_mid .statistics_num {
-  width: 3.2rem;
-  float: left;
+  width: 70%;
+  height: 1.6rem;
 }
-section.section_mid .info_top {
-  border-bottom: 1px solid #e5e5e5;
+section.section_mid .statistics_num .info_top {
+  width: 100%;
 }
-section.section_mid li {
-  width: 3.2rem;
-  height: 0.6rem;
+section.section_mid .statistics_num .info_top li {
+  width: 100%;
+  height: 0.8rem;
   text-align: center;
-  line-height: 0.6rem;
+  line-height: 0.8rem;
 }
 section.section_mid span {
   color: #318D50;
