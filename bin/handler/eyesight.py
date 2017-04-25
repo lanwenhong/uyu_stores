@@ -94,7 +94,8 @@ class EyesightInfoHandler(core.Handler):
 class EyeSightHandler(core.Handler):
 
     _get_handler_fields = [
-        Field('phone_num', T_REG, False, match=r'^(1\d{10})$'),
+        # Field('phone_num', T_REG, False, match=r'^(1\d{10})$'),
+        Field("phone_num", T_STR, False),
     ]
 
     _post_handler_fields = [
@@ -113,8 +114,17 @@ class EyeSightHandler(core.Handler):
         if not self.user.sauth:
             return error(UAURET.SESSIONERR)
         params = self.validator.data
+        phone_num = params['phone_num']
+        log.debug('mobile=%s and type=%s', phone_num, type(phone_num))
+        if not isinstance(phone_num, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
         uop = UUser()
-        uop.call("load_user_by_mobile", params["phone_num"])
+        is_mobile = tools.check_mobile(phone_num)
+        if is_mobile:
+            uop.load_user_by_mobile(phone_num)
+        else:
+            uop.load_user_by_login_name(phone_num)
         log.debug('udata: %s', uop.udata)
         # if len(uop.udata) == 0 or uop.udata.get("user_type", -1) != define.UYU_USER_ROLE_EYESIGHT:
         if len(uop.udata) == 0 or uop.udata.get("user_type", -1) not in [define.UYU_USER_ROLE_EYESIGHT, define.UYU_USER_ROLE_COMSUMER]:

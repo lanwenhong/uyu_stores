@@ -20,7 +20,7 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=a4c37bec-2637-4954-9681-ad869194d9fe'}
+        self.headers = {'cookie': 'sessionid=4bf3575c-c632-4f85-a28b-777aee40735e'}
 
 
     @unittest.skip("skipping")
@@ -47,13 +47,14 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_store_to_comsumer(self):
         self.url = '/store/v1/api/store_to_consumer'
         self.send = {
             "busicd": "STORE_ALLOT_TO_COMSUMER",
             "se_userid": 51561,
-            "consumer_mobile": 13475481297,
+            # "consumer_mobile": 13475481297,
+            "consumer_mobile": ',',
             "training_times": 1
         }
         ret = self.client.post(self.url, self.send, headers=self.headers)
@@ -64,17 +65,21 @@ class TestUyuStores(unittest.TestCase):
     @unittest.skip("skipping")
     def test_load_consumer(self):
         self.url = '/store/v1/api/load_consumer'
-        self.send = {"se_userid": 51561, "mobile": "13802438755"}
+        # self.send = {"se_userid": 51561, "mobile": "13802438755"}
+        # self.send = {"se_userid": 51561, "mobile": "张三"}
+        self.send = {"se_userid": 51561, "mobile": ","}
         ret = self.client.post(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
         self.assertEqual(respcd, '0000')
 
 
-    # @unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
-        self.send = {"se_userid": 51561, "mobile": "13802438755"}
+        # self.send = {"se_userid": 51561, "mobile": "13802438755"}
+        # self.send = {"se_userid": 51561, "mobile": ","}
+        self.send = {"se_userid": 51561, "mobile": "张三"}
         ret = self.client.post(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
@@ -150,7 +155,10 @@ class TestUyuStores(unittest.TestCase):
         self.send = {
             # 'phone_num': '13475481270',  #视光师ok
             # 'phone_num': '13802438719',  #消费者ok
-            'phone_num': '13000000003',  #门店fail
+            # 'phone_num': 'ccd8198',  #登录名
+            # 'phone_num': '13000000003',  #门店fail
+            # 'phone_num': '张三',  #门店fail
+            'phone_num': ',',  #门店fail
             'se_userid': 51561
         }
         ret = self.client.get(self.url, self.send, headers=self.headers)
@@ -188,10 +196,10 @@ class TestUyuStores(unittest.TestCase):
     def test_eyesight_register(self):
         self.url = '/store/v1/api/eyesight_register'
         self.send = {
-            'mobile': '13475481298',
-            'nick_name': '小小',
-            'username': '王小小',
-            'email': '13475481298@cc.com'
+            'mobile': '13928478196',
+            'nick_name': '小8196',
+            'username': '王小8196',
+            'email': '13928478196@cc.com'
             }
         ret = self.client.post(self.url, self.send)
         log.info(ret)

@@ -18,7 +18,7 @@ from uyubase.base.usession import uyu_check_session, USession
 from runtime import g_rt
 from config import cookie_conf
 
-from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER, UYU_USER_STATE_OK
+from uyubase.uyu.define import UYU_SYS_ROLE_STORE, UYU_OP_ERR, UYU_OP_OK, UYU_USER_ROLE_COMSUMER, UYU_USER_STATE_OK, UYU_USER_ROLE_EYESIGHT
 
 import logging, datetime
 import tools
@@ -46,8 +46,16 @@ class LoadConsumerDetailHandler(core.Handler):
     def _post_handler(self):
         if not self.user.sauth:
             return error(UAURET.SESSIONERR)
+
+        data = {}
+        data['info'] = []
         params = self.validator.data
         mobile = params.get('mobile')
+        log.debug('mobile=%s and type=%s', mobile, type(mobile))
+        if not isinstance(mobile, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
+
         uu = UUser()
         is_mobile = tools.check_mobile(mobile)
         if is_mobile:
@@ -58,9 +66,11 @@ class LoadConsumerDetailHandler(core.Handler):
         log.debug('##udata:%s', uu.udata)
         if len(uu.udata) == 0:
             log.debug('mobile=%s not exists', mobile)
-            return error(UAURET.USERERR)
+            # return error(UAURET.USERERR)
+            return success(data)
 
-        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        # if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] not in [UYU_USER_ROLE_COMSUMER, UYU_USER_ROLE_EYESIGHT]:
             return error(UAURET.USERERR)
 
         ret = {}
@@ -75,8 +85,7 @@ class LoadConsumerDetailHandler(core.Handler):
         ret["create_time"] = datetime.datetime.strftime(uu.udata.get("ctime"), '%Y-%m-%d %H:%M:%S') if uu.udata.get("ctime") else ''
         ret["remain_times"] = self._get_remain_times(uu.udata["id"])
 
-        data = {}
-        data['info'] = []
+
         if ret:
             data['info'].append(ret)
         return success(data)
@@ -101,6 +110,10 @@ class LoadConsumerHandler(core.Handler):
             return error(UAURET.SESSIONERR)
         params = self.validator.data
         mobile = params.get('mobile')
+        log.debug('mobile=%s and type=%s', mobile, type(mobile))
+        if not isinstance(mobile, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
         uu = UUser()
         is_mobile = tools.check_mobile(mobile)
         if is_mobile:
@@ -112,7 +125,8 @@ class LoadConsumerHandler(core.Handler):
         if len(uu.udata) == 0:
             return error(UAURET.USERERR)
 
-        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        # if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
+        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] not in [UYU_USER_ROLE_COMSUMER, UYU_USER_ROLE_EYESIGHT]:
             return error(UAURET.USERERR)
 
         ret = {}
