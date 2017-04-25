@@ -51,6 +51,11 @@ class LoadConsumerDetailHandler(core.Handler):
         data['info'] = []
         params = self.validator.data
         mobile = params.get('mobile')
+        log.debug('mobile=%s and type=%s', mobile, type(mobile))
+        if not isinstance(mobile, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
+
         uu = UUser()
         is_mobile = tools.check_mobile(mobile)
         if is_mobile:
@@ -105,6 +110,10 @@ class LoadConsumerHandler(core.Handler):
             return error(UAURET.SESSIONERR)
         params = self.validator.data
         mobile = params.get('mobile')
+        log.debug('mobile=%s and type=%s', mobile, type(mobile))
+        if not isinstance(mobile, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
         uu = UUser()
         is_mobile = tools.check_mobile(mobile)
         if is_mobile:

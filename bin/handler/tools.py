@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 import re
+import logging
+import traceback
+log = logging.getLogger()
+
 
 def gen_ret_range(page, maxnum):
     start = maxnum * page - maxnum

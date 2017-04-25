@@ -115,6 +115,10 @@ class EyeSightHandler(core.Handler):
             return error(UAURET.SESSIONERR)
         params = self.validator.data
         phone_num = params['phone_num']
+        log.debug('mobile=%s and type=%s', phone_num, type(phone_num))
+        if not isinstance(phone_num, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
         uop = UUser()
         is_mobile = tools.check_mobile(phone_num)
         if is_mobile:

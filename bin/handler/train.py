@@ -76,6 +76,12 @@ class StoreToComsumer(core.Handler):
         params = self.validator.data
         log.debug("client data: %s", params)
 
+        mobile = params.get('consumer_mobile')
+        log.debug('mobile=%s and type=%s', mobile, type(mobile))
+        if not isinstance(mobile, basestring):
+            log.debug('invalid mobile after validator trans')
+            return error(UAURET.DATAERR)
+
         self.user.load_user()
         self.user.load_profile()
         self.user.load_store()
