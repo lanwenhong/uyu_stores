@@ -1084,28 +1084,6 @@ section.section_eye_sight .eye_sight .eye_sight_info span {
   line-height: 0.6rem;
   text-align: left;
 }
-section.section_eye_sight .eye_sight_op {
-  width: 100%;
-  position: absolute;
-  z-index: 1;
-}
-section.section_eye_sight .eye_sight_op div {
-  float: right;
-}
-section.section_eye_sight .eye_sight_op .eye_sight_cancel {
-  background-color: darkgrey;
-}
-section.section_eye_sight .eye_sight_op .eye_sight_delete {
-  background-color: red;
-}
-section.section_eye_sight .eye_sight_op span {
-  display: block;
-  color: green;
-  background-color: rgba(0, 0, 0, 0);
-  width: 2rem;
-  text-align: center;
-  line-height: 1.6rem;
-}
 section.section_bill_list {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
