@@ -126,6 +126,12 @@ class SmsHandler(core.Handler):
         if len(uop.udata) == 0:
             return error(UAURET.NODATA)
 
+        store_role = [define.UYU_USER_ROLE_STORE, define.UYU_USER_ROLE_HOSPITAL, define.UYU_USER_ROLE_EYESIGHT]
+        user_type = uop.udata.get('user_type')
+        if user_type not in store_role:
+            log.debug('sms handler mobile=%s user_type=%s not in %s', mobile, user_type, store_role)
+            return error(UAURET.ROLEERR)
+
         vop = VCode()
         vcode = vop.gen_vcode(mobile)
         log.debug("get vcode: %s", vcode)
@@ -169,6 +175,17 @@ class ChangePassHandler(core.Handler):
         password = params["password"]
 
         u_op = UUser()
+        u_op.load_user_by_mobile(mobile)
+        if len(u_op.udata) == 0:
+            log.debug('change password handler mobile=%s not exists', mobile)
+            return error(UAURET.USERERR)
+
+        store_role = [define.UYU_USER_ROLE_STORE, define.UYU_USER_ROLE_HOSPITAL, define.UYU_USER_ROLE_EYESIGHT]
+        user_type = u_op.udata.get('user_type')
+        if user_type not in store_role:
+            log.debug('change password handler mobile=%s user_type=%s not in %s', mobile, user_type, store_role)
+            return error(UAURET.ROLEERR)
+
         respcd = u_op.change_password(mobile, vcode, password)
         if respcd != UAURET.OK:
             return error(respcd)
