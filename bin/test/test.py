@@ -47,7 +47,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_store_to_comsumer(self):
         self.url = '/store/v1/api/store_to_consumer'
         self.send = {
@@ -88,19 +88,19 @@ class TestUyuStores(unittest.TestCase):
     @unittest.skip("skipping")
     def test_sms_send(self):
         self.url = '/store/v1/api/sms_send'
-        self.send = {'mobile': '13802438716'}
+        self.send = {'mobile': '18215630018'}
         ret = self.client.post(self.url, self.send)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_pass_change(self):
         self.url = '/store/v1/api/passwd_change'
         self.send = {
-            'mobile': '13802438716',
-            'vcode': 8696,
+            'mobile': '18215630018',
+            'vcode': 2156,
             'password': hashlib.md5('12345678').hexdigest()
         }
         ret = self.client.post(self.url, self.send)

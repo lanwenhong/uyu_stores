@@ -11,6 +11,7 @@ from zbase.base.dbpool import with_database
 from uyubase.base.response import success, error, UAURET
 from uyubase.uyu import define
 from uyubase.uyu.define import UYU_SYS_ROLE_OP, UYU_USER_ROLE_SUPER, UYU_OP_ERR, UYU_USER_ROLE_STORE
+from uyubase.base.send_sms import UYUSendSMS
 
 from runtime import g_rt
 from config import cookie_conf
@@ -125,11 +126,27 @@ class SmsHandler(core.Handler):
         if len(uop.udata) == 0:
             return error(UAURET.NODATA)
 
+        store_role = [define.UYU_USER_ROLE_STORE, define.UYU_USER_ROLE_HOSPITAL, define.UYU_USER_ROLE_EYESIGHT]
+        user_type = uop.udata.get('user_type')
+        if user_type not in store_role:
+            log.debug('sms handler mobile=%s user_type=%s not in %s', mobile, user_type, store_role)
+            return error(UAURET.ROLEERR)
+
         vop = VCode()
         vcode = vop.gen_vcode(mobile)
         log.debug("get vcode: %s", vcode)
         if not vcode:
             return error(UAURET.VCODEERR)
+        sms_op = UYUSendSMS()
+        ret = sms_op.send_sms(mobile, [vcode, 1], define.RONG_YUN_SMS_UYU_TEMPID_VERIFY_CODE)
+        if not ret:
+            log.debug('send_sms mobile=%s, vcode=%s except', mobile, vcode)
+        else:
+            status_code = ret.get('statusCode')
+            if status_code == '000000':
+                log.debug('send_sms mobile=%s, vcode=%s ok', mobile, vcode)
+            else:
+                log.debug('send_sms mobile=%s, vcode=%s fail', mobile, vcode)
         return success({})
 
     def POST(self, *args):
@@ -158,6 +175,17 @@ class ChangePassHandler(core.Handler):
         password = params["password"]
 
         u_op = UUser()
+        u_op.load_user_by_mobile(mobile)
+        if len(u_op.udata) == 0:
+            log.debug('change password handler mobile=%s not exists', mobile)
+            return error(UAURET.USERERR)
+
+        store_role = [define.UYU_USER_ROLE_STORE, define.UYU_USER_ROLE_HOSPITAL, define.UYU_USER_ROLE_EYESIGHT]
+        user_type = u_op.udata.get('user_type')
+        if user_type not in store_role:
+            log.debug('change password handler mobile=%s user_type=%s not in %s', mobile, user_type, store_role)
+            return error(UAURET.ROLEERR)
+
         respcd = u_op.change_password(mobile, vcode, password)
         if respcd != UAURET.OK:
             return error(respcd)
