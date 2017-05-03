@@ -39,8 +39,17 @@ class EyesightInfoHandler(core.Handler):
             curr_page = params.get('page')
             max_page_num = params.get('maxnum')
 
+
+            session_value = self.session.get_session()
+            log.debug('session value: %s', session_value)
+            print 'self.session get session store userid'
+            store_userid = session_value.get('userid')
+            log.debug('session store userid=%s', store_userid)
+
+
             uop = UUser()
-            uop.call('load_info_by_userid', self.user.userid)
+            # uop.call('load_info_by_userid', self.user.userid)
+            uop.call('load_info_by_userid', store_userid)
             self.store_id = uop.sdata['store_id']
 
             # start, end = tools.gen_ret_range(curr_page, max_page_num)
