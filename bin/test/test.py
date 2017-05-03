@@ -74,7 +74,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
         # self.send = {"se_userid": 51561, "mobile": "13802438755"}
@@ -109,10 +109,10 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_eyesight_list(self):
         self.url = '/store/v1/api/eyesight_list'
-        self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}
+        self.send = {'page': 2, 'maxnum': 10, 'se_userid': 51561}
         ret = self.client.get(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
@@ -132,7 +132,7 @@ class TestUyuStores(unittest.TestCase):
     @unittest.skip("skipping")
     def test_store_allocate_list(self):
         self.url = '/store/v1/api/store_allocate_list'
-        self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}
+        self.send = {'page': 2, 'maxnum': 10, 'se_userid': 51561}
         ret = self.client.get(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
