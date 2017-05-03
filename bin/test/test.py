@@ -20,7 +20,7 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=4bf3575c-c632-4f85-a28b-777aee40735e'}
+        self.headers = {'cookie': 'sessionid=8d7ca01d-b722-4c77-b046-a3e7523614f4'}
 
 
     @unittest.skip("skipping")
@@ -74,7 +74,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    #@unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
         # self.send = {"se_userid": 51561, "mobile": "13802438755"}
@@ -95,7 +95,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_pass_change(self):
         self.url = '/store/v1/api/passwd_change'
         self.send = {
