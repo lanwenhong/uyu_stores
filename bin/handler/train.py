@@ -106,4 +106,5 @@ class StoreToComsumer(core.Handler):
         return success({})
 
     def POST(self):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._post_handler()

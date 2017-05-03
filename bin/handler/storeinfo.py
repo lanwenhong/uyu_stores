@@ -116,4 +116,5 @@ class StoreInfoHandler(core.Handler):
         return success(ret)
 
     def GET(self, *args):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._get_handler()

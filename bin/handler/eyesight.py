@@ -82,6 +82,7 @@ class EyesightInfoHandler(core.Handler):
 
     def GET(self):
            try:
+               self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
                data = self._get_handler()
                log.debug('return data:%s', data)
                return data
@@ -139,6 +140,7 @@ class EyeSightHandler(core.Handler):
         return success(ret)
 
     def GET(self, *args):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._get_handler()
 
     @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
@@ -165,6 +167,7 @@ class EyeSightHandler(core.Handler):
             return error(UAURET.DATAEXIST)
 
     def POST(self, *arg):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._post_handler()
 
 
@@ -220,4 +223,5 @@ class EyeSightRegisterHandler(core.Handler):
 
 
     def POST(self, *arg):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._post_handler()

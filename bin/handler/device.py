@@ -72,6 +72,7 @@ class DeviceInfoHandler(core.Handler):
 
     def GET(self):
            try:
+               self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
                data = self._get_handler()
                log.debug('return data: %s', data)
                return data

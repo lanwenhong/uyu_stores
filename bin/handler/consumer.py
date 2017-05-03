@@ -91,6 +91,7 @@ class LoadConsumerDetailHandler(core.Handler):
         return success(data)
 
     def POST(self, *args):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._post_handler()
 
 
@@ -137,4 +138,5 @@ class LoadConsumerHandler(core.Handler):
         return success(ret)
 
     def POST(self, *args):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
         return self._post_handler()
