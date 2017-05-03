@@ -96,10 +96,11 @@ class StoreAllocateHandler(core.Handler):
             uop.call('load_info_by_userid', self.user.userid)
             self.store_id = uop.sdata['store_id']
 
-            start, end = tools.gen_ret_range(curr_page, max_page_num)
-            info_data = self._query_handler()
+            # start, end = tools.gen_ret_range(curr_page, max_page_num)
+            offset, limit = tools.gen_offset(curr_page, max_page_num)
+            info_data = self._query_handler(offset, limit)
 
-            data['info'] = self._trans_record(info_data[start:end])
+            data['info'] = self._trans_record(info_data)
             return success(data)
         except Exception as e:
             log.warn(e)
@@ -108,10 +109,10 @@ class StoreAllocateHandler(core.Handler):
 
 
     @with_database('uyu_core')
-    def _query_handler(self):
+    def _query_handler(self, offset, limit):
 
         where = {'store_id': self.store_id, 'busicd': define.BUSICD_CHAN_ALLOT_TO_COSUMER}
-        other = ' order by create_time desc'
+        other = ' order by create_time desc limit %d offset %d' % (limit, offset)
         keep_fields = [
             'orderno', 'consumer_id', 'training_times',
             'training_amt', 'status', 'buyer', 'create_time'

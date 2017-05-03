@@ -40,10 +40,11 @@ class DeviceInfoHandler(core.Handler):
             uop.call('load_info_by_userid', self.user.userid)
             self.store_id = uop.sdata['store_id']
 
-            start, end = tools.gen_ret_range(curr_page, max_page_num)
-            info_data = self._query_handler()
+            # start, end = tools.gen_ret_range(curr_page, max_page_num)
+            offset, limit = tools.gen_offset(curr_page, max_page_num)
+            info_data = self._query_handler(offset, limit)
 
-            data['info'] = self._trans_record(info_data[start:end])
+            data['info'] = self._trans_record(info_data)
             return success(data)
         except Exception as e:
             log.warn(e)
@@ -52,13 +53,14 @@ class DeviceInfoHandler(core.Handler):
 
 
     @with_database('uyu_core')
-    def _query_handler(self):
+    def _query_handler(self, offset, limit):
 
         where = {'store_id': self.store_id}
-        other = ' order by ctime desc'
+        other = ' order by ctime desc limit %d offset %d' % (limit, offset)
         keep_fields = ['device_name', 'hd_version', 'blooth_tag', 'status']
-        ret = self.db.select(table='device', fields=keep_fields, where=where)
+        ret = self.db.select(table='device', fields=keep_fields, where=where, other=other)
         return ret
+
 
     @with_database('uyu_core')
     def _trans_record(self, data):
