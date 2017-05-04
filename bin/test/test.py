@@ -23,13 +23,14 @@ class TestUyuStores(unittest.TestCase):
         self.headers = {'cookie': 'sessionid=fd67b4f9-cbd4-47a5-9ea0-847d3309f844'}
 
 
-    @unittest.skip("skipping")
+    # @unittest.skip("skipping")
     def test_login(self):
         self.url = '/store/v1/api/login'
         self.send = {
-            #"mobile": "13802438733",
-            "mobile": "15328159833",
-            "new_password": hashlib.md5('159833').hexdigest(),
+            # "mobile": "13802438733",
+            # "mobile": "15328159833",
+            "mobile": "13841458181",
+            "new_password": hashlib.md5('159834').hexdigest(),
             "old_password": '123456'
         }
         ret = self.client.post(self.url, self.send)
@@ -110,7 +111,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    # @unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_eyesight_list(self):
         self.url = '/store/v1/api/eyesight_list'
         # self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}
