@@ -61,9 +61,12 @@ class LoginHandler(core.Handler):
 
         u_op = UUser()
         ret = u_op.call("check_userlogin", mobile, new_password, UYU_SYS_ROLE_STORE, old_password)
+        if not u_op.udata:
+            return error(UAURET.USERNOTEXISTS)
+
         if not u_op.login or ret == UYU_OP_ERR:
             log.warn("mobile: %s login forbidden", mobile)
-            return error(UAURET.USERERR)
+            return error(UAURET.PWDERR)
 
         log.debug("get user data: %s", u_op.udata)
         log.debug("userid: %d login succ", u_op.udata["id"])
