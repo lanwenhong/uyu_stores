@@ -97,7 +97,7 @@ class StoreToComsumer(core.Handler):
 
         log.debug("after add client data: %s", params)
 
-        top = TrainingOP(params, self.user.udata)
+        top = TrainingOP(cdata=params, suser=self.user.udata, session=self.session)
         ret = top.create_store_allot_to_consumer_order()
         if top.respcd:
             return error(top.respcd)
