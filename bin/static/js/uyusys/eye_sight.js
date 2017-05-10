@@ -99,7 +99,12 @@ require(['../require-config'], function() {
                     unbindEyeSight:function (event) {
 
                         var target = event.target;
-                        alert(target.nodeName + target.getAttribute("data-index"));
+                        var index = parseInt(target.getAttribute("data-index"));
+                        var eyeSight = _this.eye_sights[index];
+
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', eyeSight, '.zheceng', function (respData) {
+                            alert("解绑成功");
+                        });
                     }
                     
                 }
