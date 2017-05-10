@@ -999,7 +999,7 @@ section.section_record_list .record_dev {
   float: left;
 }
 section.section_record_list .record_icon {
-  margin: 0.7rem 15px 0.7rem 0;
+  margin: 0.7rem 5px 0.7rem 0;
   width: 1.4rem;
   height: 1.4rem;
   border-radius: 5px;
@@ -1019,8 +1019,8 @@ section.section_record_list span {
   text-align: left;
   line-height: 0.8rem;
 }
-section.section_record_list .consumer_name {
-  margin: 0.2rem 0 ;
+section.section_record_list .record_name {
+  margin: 0.2rem 0;
 }
 section.section_record_list .buy_times {
   margin: 0 auto;
