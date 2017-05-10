@@ -99,8 +99,7 @@ require(['../require-config'], function() {
                     unbindEyeSight:function (event) {
 
                         var target = event.target;
-                        var parentNode = target.parentNode.parentNode;
-                        alert(parentNode.nodeName + parentNode.index);
+                        alert(target.nodeName + target.getAttribute("data-index"));
                     }
                     
                 }
