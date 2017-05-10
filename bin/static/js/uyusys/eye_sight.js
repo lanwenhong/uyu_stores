@@ -50,6 +50,7 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (eyesightArr.length == 0){
+                                        $('.section_nothing').html("门店还没有相关视光师的信息");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < eyesightArr.length; i++){
@@ -85,6 +86,7 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (eyesightArr.length == 0){
+                                        $('.section_nothing').html("该门店没有更多视光师");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < eyesightArr.length; i++){
@@ -114,7 +116,6 @@ require(['../require-config'], function() {
             });
             native.regNativeCallJS("unbindEyeSight", function (unbindCB) {
                 native.getUserIdFromObjC({}, function (useridCB) {
-                    var userid = cb['userid'];
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                         var unBindReq = {
                             se_userid: useridCB["userid"],
@@ -123,7 +124,6 @@ require(['../require-config'], function() {
                             sys_version: cb['sys_version'],
                             app_version: cb['app_version']
                         };
-                        alert(JSON.stringify(unBindReq));
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unBindReq, '.zheceng', function (respData) {
                             page = 1;
                             var len = vukk.eye_sights.length;
