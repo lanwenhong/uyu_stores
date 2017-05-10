@@ -21,7 +21,11 @@ require(['../require-config'], function() {
                             var userid = cb['userid'];
                             var login_id = cb['login_id'];
                             if (!yanzheng.strIsNullUndefine(userid) && !yanzheng.strIsNullUndefine(login_id)){
+                                alert("0000000");
+                                alert(userid);
+                                alert(login_id);
                                 if (userid === login_id){
+                                    alert("11111111");
                                     $('.eye_sight_delete').show();
                                 }else {
                                     $('.eye_sight_delete').hide();
