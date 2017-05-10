@@ -6,7 +6,7 @@ from zbase.web import template
 from zbase.web.validator import with_validator_self, Field, T_REG, T_INT, T_STR, T_FLOAT
 from zbase.base.dbpool import with_database
 from uyubase.base.response import success, error, UAURET
-from uyubase.base.usession import uyu_check_session, uyu_check_session_for_page
+from uyubase.base.usession import uyu_check_session, uyu_check_session_for_page, KickSession
 from uyubase.base.uyu_user import UUser
 from uyubase.base.uyu_user import gen_old_password
 from uyubase.uyu.define import UYU_SYS_ROLE_STORE
@@ -39,14 +39,24 @@ class EyesightInfoHandler(core.Handler):
             curr_page = params.get('page')
             max_page_num = params.get('maxnum')
 
+
+            session_value = self.session.get_session()
+            log.debug('session value: %s', session_value)
+            print 'self.session get session store userid'
+            store_userid = session_value.get('userid')
+            log.debug('session store userid=%s', store_userid)
+
+
             uop = UUser()
-            uop.call('load_info_by_userid', self.user.userid)
+            # uop.call('load_info_by_userid', self.user.userid)
+            uop.call('load_info_by_userid', store_userid)
             self.store_id = uop.sdata['store_id']
 
-            start, end = tools.gen_ret_range(curr_page, max_page_num)
-            info_data = self._query_handler()
+            # start, end = tools.gen_ret_range(curr_page, max_page_num)
+            offset, limit = tools.gen_offset(curr_page, max_page_num)
+            info_data = self._query_handler(offset, limit)
 
-            data['info'] = self._trans_record(info_data[start:end])
+            data['info'] = self._trans_record(info_data)
             return success(data)
         except Exception as e:
             log.warn(e)
@@ -55,10 +65,10 @@ class EyesightInfoHandler(core.Handler):
 
 
     @with_database('uyu_core')
-    def _query_handler(self):
+    def _query_handler(self, offset, limit):
 
         where = {'store_id': self.store_id, 'is_valid': define.UYU_STORE_EYESIGHT_BIND}
-        other = ' order by ctime desc'
+        other = ' order by ctime desc limit %d offset %d' % (limit, offset)
         keep_fields = [
             'store_eyesight_bind.id', 'store_eyesight_bind.eyesight_id',
             'store_eyesight_bind.ctime', 'auth_user.username', 'auth_user.phone_num'
@@ -221,6 +231,52 @@ class EyeSightRegisterHandler(core.Handler):
             log.warn(traceback.format_exc())
             return error(UAURET.DATAEXIST)
 
+
+    def POST(self, *arg):
+        self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})
+        return self._post_handler()
+
+
+class EyesightUnbindHandler(core.Handler):
+
+    _post_handler_fields = [
+        Field('eyesight_id', T_INT, False, match=r'^([0-9]{0,10})$'),
+        Field('userid', T_INT, False, match=r'^([0-9]{0,10})$'),
+    ]
+
+    def _post_handler_errfunc(self, msg):
+        return error(UAURET.PARAMERR, respmsg=msg)
+
+
+    @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
+    @with_validator_self
+    def _post_handler(self):
+        if not self.user.sauth:
+            return error(UAURET.SESSIONERR)
+        try:
+            params = self.validator.data
+            eyesight_id = params['eyesight_id']
+            store_userid = params['userid']
+
+            uop = UUser()
+            uop.call('load_info_by_userid', store_userid)
+            user_type = uop.udata.get('user_type')
+            if user_type not in (define.UYU_USER_ROLE_STORE, define.UYU_USER_ROLE_HOSPITAL):
+                return error(UAURET.ROLEERR)
+            store_id = uop.sdata["store_id"]
+
+            ret = uop.unbind_eyesight(eyesight_id, store_id)
+            if ret > 0:
+                k = KickSession(g_rt.redis_pool, eyesight_id)
+                k.kick()
+                return success({})
+            else:
+                return error(UAURET.UNBINDEYEERR)
+
+        except Exception as e:
+            log.warn(e)
+            log.warn(traceback.format_exc())
+            return error(UAURET.DATAEXIST)
 
     def POST(self, *arg):
         self.set_headers({'Content-Type': 'application/json; charset=UTF-8'})

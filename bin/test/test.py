@@ -20,7 +20,7 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=8d7ca01d-b722-4c77-b046-a3e7523614f4'}
+        self.headers = {'cookie': 'sessionid=1ddbb5ad-2a36-4498-b314-06730c68c65f'}
 
 
     @unittest.skip("skipping")
@@ -74,7 +74,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    #@unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
         # self.send = {"se_userid": 51561, "mobile": "13802438755"}
@@ -112,7 +112,8 @@ class TestUyuStores(unittest.TestCase):
     @unittest.skip("skipping")
     def test_eyesight_list(self):
         self.url = '/store/v1/api/eyesight_list'
-        self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}
+        # self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}
+        self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51576}
         ret = self.client.get(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
@@ -129,7 +130,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    # @unittest.skip("skipping")
     def test_store_allocate_list(self):
         self.url = '/store/v1/api/store_allocate_list'
         self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}

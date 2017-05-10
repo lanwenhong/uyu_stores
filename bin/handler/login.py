@@ -51,6 +51,11 @@ class LoginHandler(core.Handler):
         ret = self.db.select_one('stores', {'id': store_id})
         return ret
 
+    @with_database('uyu_core')
+    def _get_user(self, userid):
+        ret = self.db.select_one(table='auth_user', fields='*', where={'id': userid})
+        return ret
+
     @uyu_set_cookie(g_rt.redis_pool, cookie_conf, UYU_USER_ROLE_STORE)
     @with_validator_self
     def _post_handler(self, *args):
@@ -61,9 +66,12 @@ class LoginHandler(core.Handler):
 
         u_op = UUser()
         ret = u_op.call("check_userlogin", mobile, new_password, UYU_SYS_ROLE_STORE, old_password)
+        if not u_op.udata:
+            return error(UAURET.USERNOTEXISTS)
+
         if not u_op.login or ret == UYU_OP_ERR:
             log.warn("mobile: %s login forbidden", mobile)
-            return error(UAURET.USERERR)
+            return error(UAURET.PWDERR)
 
         log.debug("get user data: %s", u_op.udata)
         log.debug("userid: %d login succ", u_op.udata["id"])
@@ -78,6 +86,13 @@ class LoginHandler(core.Handler):
                 store_id = ret.get('store_id')
                 s_ret = self._get_store_userid(store_id)
                 userid = s_ret.get('userid')
+
+                store_ret = self._get_user(userid)
+                log.debug('store userid=%s, ret=%s', userid, store_ret)
+                store_status = store_ret.get('state')
+                if store_status != define.UYU_USER_STATE_OK:
+                    return error(UAURET.LOGINERR)
+
                 is_prepayment = s_ret.get('is_prepayment')
                 if login_id > 30000 and login_id < 40000:
                     login_old_id = login_id - 30000

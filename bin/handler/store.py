@@ -96,10 +96,11 @@ class StoreAllocateHandler(core.Handler):
             uop.call('load_info_by_userid', self.user.userid)
             self.store_id = uop.sdata['store_id']
 
-            start, end = tools.gen_ret_range(curr_page, max_page_num)
-            info_data = self._query_handler()
+            # start, end = tools.gen_ret_range(curr_page, max_page_num)
+            offset, limit = tools.gen_offset(curr_page, max_page_num)
+            info_data = self._query_handler(offset, limit)
 
-            data['info'] = self._trans_record(info_data[start:end])
+            data['info'] = self._trans_record(info_data)
             return success(data)
         except Exception as e:
             log.warn(e)
@@ -108,13 +109,14 @@ class StoreAllocateHandler(core.Handler):
 
 
     @with_database('uyu_core')
-    def _query_handler(self):
+    def _query_handler(self, offset, limit):
 
         where = {'store_id': self.store_id, 'busicd': define.BUSICD_CHAN_ALLOT_TO_COSUMER}
-        other = ' order by create_time desc'
+        other = ' order by create_time desc limit %d offset %d' % (limit, offset)
         keep_fields = [
             'orderno', 'consumer_id', 'training_times',
-            'training_amt', 'status', 'buyer', 'create_time'
+            'training_amt', 'status', 'buyer', 'create_time',
+            'op_id', 'op_name'
         ]
         ret = self.db.select(table='training_operator_record', fields=keep_fields, where=where, other=other)
         return ret
@@ -126,6 +128,20 @@ class StoreAllocateHandler(core.Handler):
 
         for item in data:
             item['create_time'] = datetime.datetime.strftime(item['create_time'], '%Y-%m-%d %H:%M:%S') if item['create_time'] else ''
+            if item['op_id']:
+                ret = self.db.select_one(table='auth_user', fields=['user_type', 'username'], where={'id': item['op_id']})
+                if not ret:
+                    log.debug('not find op_id=%d in auth_user', item['op_id'])
+                    item['op_role'] = define.UYU_USER_ROLE_STORE
+                else:
+                    item['op_role'] = ret.get('user_type')
+                    if not item['op_name']:
+                        item['op_name'] = ret.get('username')
+            else:
+                # 空的op_id当门店处理
+                item['op_role'] = define.UYU_USER_ROLE_STORE
+                item['op_name'] = ''
+
 
         return data
 
