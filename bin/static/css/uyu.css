@@ -1047,9 +1047,7 @@ section.section_dev_list .device_status {
 }
 section.section_eye_sight .eye_sight {
   width: 80%;
-  position: absolute;
   background-color: white;
-  z-index: 10;
   float: left;
 }
 section.section_eye_sight .eye_sight div {
