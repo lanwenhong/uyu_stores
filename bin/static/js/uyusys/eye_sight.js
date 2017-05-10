@@ -20,7 +20,9 @@ require(['../require-config'], function() {
                     var _this = this;
                     if (!yanzheng.strIsNullUndefine(_this.data.store_id) &&
                         !yanzheng.strIsNullUndefine(_this.data.user_login_id)){
+                        alert(_this.data.store_id);
                         if (_this.data.store_id === _this.data.user_login_id){
+                            alert('1111111111');
                             $('.eye_sight_delete').show();
                         }else {
                             $('.eye_sight_delete').hide();
