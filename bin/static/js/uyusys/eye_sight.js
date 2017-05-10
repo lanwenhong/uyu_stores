@@ -24,7 +24,6 @@ require(['../require-config'], function() {
                             $('.eye_sight_delete').hide();
                         }
                     });
-
                 },
                 methods: {
                     frist_list_page: function () {
@@ -96,7 +95,11 @@ require(['../require-config'], function() {
 
                         });
 
+                    },
+                    unbindEyeSight:function (index) {
+                        alert(index);
                     }
+                    
                 }
             });
 
