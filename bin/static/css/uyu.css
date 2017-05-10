@@ -1077,7 +1077,7 @@ section.section_eye_sight .eye_sight .eye_sight_info span {
   text-align: left;
 }
 section.section_eye_sight .eye_sight .eye_sight_delete {
-  float: right;
+  float: left;
   width: 20%;
   background-color: #00aba9;
 }
