@@ -102,7 +102,7 @@ require(['../require-config'], function() {
                         var index = parseInt(target.getAttribute("data-index"));
                         var eyeSight = _this.eye_sights[index];
                         eyeSight.JSUnbindEyeSightFunc = "unbindEyeSight";
-                        eyeSight.msg = "视光师: "+eyeSight["username"] + "将从本店解绑";
+                        eyeSight.msg = "视光师: "+eyeSight["username"] + " 将从本店解绑";
 
                         native.uyuOperatorAlert(eyeSight, function (cb) {
 
@@ -116,11 +116,25 @@ require(['../require-config'], function() {
                 var unbindReq = cb;
                 native.getUserIdFromObjC({}, function (cb) {
                     var userid = cb['userid'];
-                    unbindReq.se_userid=userid;
-                    ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unbindReq, '.zheceng', function (respData) {
-                        native.uyuAlert({msg:"视光师: "+unbindReq["username"]+" 已经从本店解绑"}, function (cb) {
+                    native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
+                        var listReq = {
+                            se_userid: userid,
+                            eyesight_id:unbindReq["eyesight_id"],
+                            os: cb['os'],
+                            sys_version: cb['sys_version'],
+                            app_version: cb['app_version']
+                        };
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unbindReq, '.zheceng', function (respData) {
+                            page = 1;
+                            var len = vukk.eye_sights.length;
+                            vukk.eye_sights.splice(0, len);
+                            vukk.next_list_page();
+
+                            native.uyuAlert({msg:"视光师: "+unbindReq["username"]+" 已经从本店解绑"}, function (cb) {
+                            });
                         });
                     });
+
                 })
 
             });
