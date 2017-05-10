@@ -102,6 +102,7 @@ require(['../require-config'], function() {
                         var index = parseInt(target.getAttribute("data-index"));
                         var eyeSight = _this.eye_sights[index];
                         eyeSight.JSUnbindEyeSightFunc = "unbindEyeSight";
+                        eyeSight.msg = "视光师: "+eyeSight["username"] + "将从本店解绑";
 
                         native.uyuOperatorAlert(eyeSight, function (cb) {
 
@@ -116,8 +117,8 @@ require(['../require-config'], function() {
                 native.getUserIdFromObjC({}, function (cb) {
                     var userid = cb['userid'];
                     unbindReq.se_userid=userid;
-                    ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', eyeSight, '.zheceng', function (respData) {
-                        native.uyuAlert({msg:"视光师: "+eyeSight["username"]+" 已经从本店解绑"}, function (cb) {
+                    ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unbindReq, '.zheceng', function (respData) {
+                        native.uyuAlert({msg:"视光师: "+unbindReq["username"]+" 已经从本店解绑"}, function (cb) {
                         });
                     });
                 })
