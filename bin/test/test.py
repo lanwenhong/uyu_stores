@@ -20,15 +20,17 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=1ddbb5ad-2a36-4498-b314-06730c68c65f'}
+        self.headers = {'cookie': 'sessionid=9aa9229e-182a-432a-968f-007c9a6dc02d'}
 
 
     @unittest.skip("skipping")
     def test_login(self):
         self.url = '/store/v1/api/login'
         self.send = {
-            "mobile": "13802438733",
-            "new_password": hashlib.md5('438733').hexdigest(),
+            # "mobile": "13802438733",
+            "mobile": "13475481254",
+            # "new_password": hashlib.md5('438733').hexdigest(),
+            "new_password": hashlib.md5('123456').hexdigest(),
             "old_password": '123456'
         }
         ret = self.client.post(self.url, self.send)
@@ -130,7 +132,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    # @unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_store_allocate_list(self):
         self.url = '/store/v1/api/store_allocate_list'
         self.send = {'page': 1, 'maxnum': 10, 'se_userid': 51561}
@@ -207,6 +209,18 @@ class TestUyuStores(unittest.TestCase):
         respcd = json.loads(ret).get('respcd')
         self.assertEqual(respcd, '0000')
 
+
+    # @unittest.skip("skipping")
+    def test_eyesight_unbind(self):
+        self.url = '/store/v1/api/eyesight_unbind'
+        self.send = {
+            'eyesight_id': 1217,
+            'se_userid': 51561
+        }
+        ret = self.client.post(self.url, self.send, headers=self.headers)
+        log.info(ret)
+        respcd = json.loads(ret).get('respcd')
+        self.assertEqual(respcd, '0000')
 
 
 suite = unittest.TestLoader().loadTestsFromTestCase(TestUyuStores)
