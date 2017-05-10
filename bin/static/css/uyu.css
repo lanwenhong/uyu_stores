@@ -1076,18 +1076,16 @@ section.section_eye_sight .eye_sight .eye_sight_info span {
   line-height: 0.6rem;
   text-align: left;
 }
-section.section_eye_sight .eye_sight .eye_sight_delete {
+section.section_eye_sight .eye_sight_delete {
   float: left;
   width: 20%;
   height: 1.6rem;
-  background-color: #00aba9;
 }
-section.section_eye_sight .eye_sight .eye_sight_delete span {
+section.section_eye_sight .eye_sight_delete span {
   display: block;
   width: 100%;
   hight: 1.6rem;
   color: red;
-  background-color: #3A9C62;
   text-align: center;
   line-height: 1.6rem;
 }
