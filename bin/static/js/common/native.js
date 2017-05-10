@@ -29,6 +29,18 @@ define(["jsbridge"], function(jsbridge) {
             }
         });
     };
+
+    var uyuOperatorAlert = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'uyuOperatorAlert',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
+
     var uyuLog = function(data, cb) {
         JSBridge.H5CallNative({
             name: 'uyuLog',
@@ -141,6 +153,7 @@ define(["jsbridge"], function(jsbridge) {
         getDeviceInfo:getDeviceInfo,
         uyuLog:uyuLog,
         uyuAlert:uyuAlert,
+        uyuOperatorAlert:uyuOperatorAlert,
         addRightBtn:addRightBtn,
         openUrl:openUrl,
         getUserIdFromObjC:getUserIdFromObjC,
