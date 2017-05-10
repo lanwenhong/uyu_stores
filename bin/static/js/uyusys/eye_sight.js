@@ -96,8 +96,9 @@ require(['../require-config'], function() {
                         });
 
                     },
-                    unbindEyeSight:function (index) {
-                        alert(index);
+                    unbindEyeSight:function (event) {
+                        var target = event.target;
+                        alert(target.getAttribute("data-index"));
                     }
                     
                 }
