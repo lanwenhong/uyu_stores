@@ -1090,6 +1090,9 @@ section.section_eye_sight .eye_sight_delete span {
   text-align: center;
   line-height: 1.6rem;
 }
+section.section_eye_sight .eye_sight_delete .index_span {
+  display: none;
+}
 section.section_bill_list {
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
