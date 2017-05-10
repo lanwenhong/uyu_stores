@@ -1045,15 +1045,12 @@ section.section_dev_list .device_status {
   padding-right: 15px;
   text-align: right;
 }
-section.section_eye_sight li {
-  position: relative;
-  height: 1.6rem;
-}
 section.section_eye_sight .eye_sight {
-  width: 100%;
+  width: 80%;
   position: absolute;
   background-color: white;
   z-index: 10;
+  float: left;
 }
 section.section_eye_sight .eye_sight div {
   float: left;
@@ -1080,6 +1077,16 @@ section.section_eye_sight .eye_sight .eye_sight_info span {
   display: block;
   line-height: 0.6rem;
   text-align: left;
+}
+section.section_eye_sight .eye_sight .eye_sight_delete {
+  float: right;
+  width: 20%;
+}
+section.section_eye_sight .eye_sight .eye_sight_delete span {
+  display: block;
+  width: 100%;
+  color: red;
+  line-height: 1.6rem;
 }
 section.section_bill_list {
   padding-top: 0.2rem;
