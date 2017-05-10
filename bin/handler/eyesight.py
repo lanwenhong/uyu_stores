@@ -241,7 +241,6 @@ class EyesightUnbindHandler(core.Handler):
 
     _post_handler_fields = [
         Field('eyesight_id', T_INT, False, match=r'^([0-9]{0,10})$'),
-        Field('userid', T_INT, False, match=r'^([0-9]{0,10})$'),
     ]
 
     def _post_handler_errfunc(self, msg):
@@ -256,13 +255,17 @@ class EyesightUnbindHandler(core.Handler):
         try:
             params = self.validator.data
             eyesight_id = params['eyesight_id']
-            store_userid = params['userid']
+            session_value = self.session.get_session()
+            login_id = session_value.get('login_id')
+            store_userid = session_value.get('userid')
+
+            if login_id != store_userid:
+                log.debug('login_id=%d, store_userid=%d not equal invalid store or hospital user', login_id, store_userid)
+                return error(UAURET.ROLEERR)
+
 
             uop = UUser()
             uop.call('load_info_by_userid', store_userid)
-            user_type = uop.udata.get('user_type')
-            if user_type not in (define.UYU_USER_ROLE_STORE, define.UYU_USER_ROLE_HOSPITAL):
-                return error(UAURET.ROLEERR)
             store_id = uop.sdata["store_id"]
 
             ret = uop.unbind_eyesight(eyesight_id, store_id)
