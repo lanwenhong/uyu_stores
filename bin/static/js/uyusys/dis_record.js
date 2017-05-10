@@ -90,7 +90,7 @@ require(['../require-config'], function() {
                 page = 1;
                 var len = vukk.allRecords.length;
                 vukk.allRecords.splice(0, len);
-                vukk.next_list_page();
+                vukk.frist_list_page();
             });
 
             native.pullUpRefresh(function (resp) {

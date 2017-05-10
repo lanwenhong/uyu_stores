@@ -123,11 +123,12 @@ require(['../require-config'], function() {
                             sys_version: cb['sys_version'],
                             app_version: cb['app_version']
                         };
+                        alert(JSON.stringify(unBindReq));
                         ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unBindReq, '.zheceng', function (respData) {
                             page = 1;
                             var len = vukk.eye_sights.length;
                             vukk.eye_sights.splice(0, len);
-                            vukk.next_list_page();
+                            vukk.frist_list_page();
                         });
                     });
 
@@ -180,7 +181,7 @@ require(['../require-config'], function() {
                 page = 1;
                 var len = vukk.eye_sights.length;
                 vukk.eye_sights.splice(0, len);
-                vukk.next_list_page();
+                vukk.frist_list_page();
             });
             //注册上拉加载的方法
             native.pullUpRefresh(function (resp) {
