@@ -101,7 +101,7 @@ require(['../require-config'], function() {
                         var target = event.target;
                         var indexNode = target.nextSibling;
                         alert(indexNode);
-                        alert(indexNode.nodeName + indexNode.text());
+                        alert(indexNode.nodeName + indexNode.value()+indexNode.text()+indexNode.innerHTML);
                     }
                     
                 }
