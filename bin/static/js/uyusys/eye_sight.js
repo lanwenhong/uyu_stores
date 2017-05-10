@@ -112,26 +112,22 @@ require(['../require-config'], function() {
                     
                 }
             });
-            native.regNativeCallJS("unbindEyeSight", function (cb) {
-                var unbindReq = cb;
-                native.getUserIdFromObjC({}, function (cb) {
+            native.regNativeCallJS("unbindEyeSight", function (unbindCB) {
+                native.getUserIdFromObjC({}, function (useridCB) {
                     var userid = cb['userid'];
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                        var listReq = {
-                            se_userid: userid,
-                            eyesight_id:unbindReq["eyesight_id"],
+                        var unBindReq = {
+                            se_userid: useridCB["userid"],
+                            eyesight_id:unbindCB["eyesight_id"],
                             os: cb['os'],
                             sys_version: cb['sys_version'],
                             app_version: cb['app_version']
                         };
-                        ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unbindReq, '.zheceng', function (respData) {
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight_unbind', 'POST', 'json', unBindReq, '.zheceng', function (respData) {
                             page = 1;
                             var len = vukk.eye_sights.length;
                             vukk.eye_sights.splice(0, len);
                             vukk.next_list_page();
-
-                            native.uyuAlert({msg:"视光师: "+unbindReq["username"]+" 已经从本店解绑"}, function (cb) {
-                            });
                         });
                     });
 
