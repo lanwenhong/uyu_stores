@@ -9,26 +9,22 @@ require(['../require-config'], function() {
             var vukk = new vue({
                 el: '#wap',
                 data: {
-                    store_id:"0",
-                    user_login_id:"0",
                     eye_sights: new Array(),
                 },
                 created: function () {
                     this.frist_list_page();//获取店铺数据
                 },
                 updated: function() {
-                    var _this = this;
-                    alert('asdfasdfasdfasdfasd');
-                    if (!yanzheng.strIsNullUndefine(_this.data.store_id) &&
-                        !yanzheng.strIsNullUndefine(_this.data.user_login_id)){
-                        alert(_this.data.store_id);
-                        if (_this.data.store_id === _this.data.user_login_id){
-                            alert('1111111111');
+                    native.getUserIdFromObjC({}, function (cb) {
+                        var userid = cb['userid'];
+                        var login_id = cb['login_id'];
+                        if (userid === login_id){
                             $('.eye_sight_delete').show();
                         }else {
                             $('.eye_sight_delete').hide();
                         }
-                    }
+                    });
+
                 },
                 methods: {
                     frist_list_page: function () {
@@ -36,8 +32,6 @@ require(['../require-config'], function() {
                         native.getUserIdFromObjC({}, function (cb) {
                             var userid = cb['userid'];
                             var login_id = cb['login_id'];
-                            _this.data.store_id = userid;
-                            _this.data.user_login_id = login_id;
 
                             native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                                 var listReq = {
@@ -73,8 +67,7 @@ require(['../require-config'], function() {
                         native.getUserIdFromObjC({}, function (cb) {
                             var userid = cb['userid'];
                             var login_id = cb['login_id'];
-                            _this.data.store_id = userid;
-                            _this.data.user_login_id = login_id;
+
                             native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                                 var listReq = {
                                     se_userid: userid,
