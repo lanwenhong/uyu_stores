@@ -97,6 +97,7 @@ require(['../require-config'], function() {
 
                     },
                     unbindEyeSight:function (event) {
+                        alert("111111");
                         var target = event.target;
                         var indexNode = target.nextSibling;
                         alert(indexNode.nodeName + indexNode.text());
