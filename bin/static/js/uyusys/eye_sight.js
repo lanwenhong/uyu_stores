@@ -100,6 +100,7 @@ require(['../require-config'], function() {
                         alert("111111");
                         var target = event.target;
                         var indexNode = target.nextSibling;
+                        alert(indexNode);
                         alert(indexNode.nodeName + indexNode.text());
                     }
                     
