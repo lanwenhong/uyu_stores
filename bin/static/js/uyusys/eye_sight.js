@@ -2,7 +2,7 @@
  * Created by mac on 17/3/15.
  */
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule", "vue", "native"],function($, ajax_rule, vue, native){
+    require(["zepto", "ajax_rule", "vue", "native", "yanzheng"],function($, ajax_rule, vue, native, yanzheng){
         $(document).ready(function() {
 
             var page = 1;
@@ -19,6 +19,14 @@ require(['../require-config'], function() {
                         var _this = this;
                         native.getUserIdFromObjC({}, function (cb) {
                             var userid = cb['userid'];
+                            var login_id = cb['login_id'];
+                            if (!yanzheng.strIsNullUndefine(userid) && !yanzheng.strIsNullUndefine(login_id)){
+                                if (userid === login_id){
+                                    $('.eye_sight_delete').show();
+                                }else {
+                                    $('.eye_sight_delete').hide();
+                                }
+                            }
                             native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                                 var listReq = {
                                     se_userid: userid,
@@ -52,6 +60,14 @@ require(['../require-config'], function() {
                         var _this = this;
                         native.getUserIdFromObjC({}, function (cb) {
                             var userid = cb['userid'];
+                            var login_id = cb['login_id'];
+                            if (!yanzheng.strIsNullUndefine(userid) && !yanzheng.strIsNullUndefine(login_id)){
+                                if (userid === login_id){
+                                    $('.eye_sight_delete').show();
+                                }else {
+                                    $('.eye_sight_delete').hide();
+                                }
+                            }
                             native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                                 var listReq = {
                                     se_userid: userid,

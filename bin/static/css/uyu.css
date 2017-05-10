@@ -1080,6 +1080,7 @@ section.section_eye_sight .eye_sight_delete {
   float: left;
   width: 20%;
   height: 1.6rem;
+  display: none;
 }
 section.section_eye_sight .eye_sight_delete span {
   display: block;
