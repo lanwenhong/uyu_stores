@@ -1079,11 +1079,13 @@ section.section_eye_sight .eye_sight .eye_sight_info span {
 section.section_eye_sight .eye_sight .eye_sight_delete {
   float: right;
   width: 20%;
+  background-color: #00aba9;
 }
 section.section_eye_sight .eye_sight .eye_sight_delete span {
   display: block;
   width: 100%;
   color: red;
+  background-color: #3A9C62;
   text-align: center;
   line-height: 1.6rem;
 }
