@@ -97,11 +97,10 @@ require(['../require-config'], function() {
 
                     },
                     unbindEyeSight:function (event) {
-                        alert("111111");
+
                         var target = event.target;
-                        var indexNode = target.nextSibling;
-                        alert(indexNode);
-                        alert(indexNode.nodeName + indexNode.value()+indexNode.text()+indexNode.innerHTML);
+                        var parentNode = target.parentNode.parentNode;
+                        alert(parentNode.nodeName + parentNode.index);
                     }
                     
                 }
