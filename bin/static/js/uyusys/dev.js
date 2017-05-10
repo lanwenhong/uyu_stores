@@ -40,6 +40,7 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (devArr.length == 0){
+                                        $('.section_nothing').text("门店还没有设备");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < devArr.length; i++){
@@ -74,6 +75,7 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (devArr.length == 0){
+                                        $('.section_nothing').text("门店还没有更多设备");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < devArr.length; i++){

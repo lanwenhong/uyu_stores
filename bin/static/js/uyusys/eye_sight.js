@@ -50,7 +50,7 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (eyesightArr.length == 0){
-                                        $('.section_nothing').html("门店还没有相关视光师的信息");
+                                        $('.section_nothing').text("门店还没有相关视光师的信息");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < eyesightArr.length; i++){
@@ -86,7 +86,7 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (eyesightArr.length == 0){
-                                        $('.section_nothing').html("该门店没有更多视光师");
+                                        $('.section_nothing').text("该门店没有更多视光师");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < eyesightArr.length; i++){
