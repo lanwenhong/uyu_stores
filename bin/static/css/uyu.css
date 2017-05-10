@@ -1084,6 +1084,7 @@ section.section_eye_sight .eye_sight .eye_sight_delete span {
   display: block;
   width: 100%;
   color: red;
+  text-align: center;
   line-height: 1.6rem;
 }
 section.section_bill_list {
