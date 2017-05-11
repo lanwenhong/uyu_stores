@@ -1343,8 +1343,7 @@ section.section_nothing {
   width: 100%;
   background-color: #00aba9;
 }
-section.section_nothing p {
-  margin: 0 auto;
+section.section_nothing div {
   width: 100%;
   background-color: red;
   line-height: 1.2rem;
