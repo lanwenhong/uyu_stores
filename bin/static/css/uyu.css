@@ -1029,20 +1029,22 @@ section.section_record_list .buy_times {
   line-height: 2.8rem;
 }
 section.section_dev_list li {
-  height: 1.4rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
 }
 section.section_dev_list span {
   display: block;
   margin: 0 0;
-  width: 4.5rem;
-  line-height: 1.2rem;
+  width: 50%;
+  height: 2rem;
+  line-height: 2rem;
   float: left;
 }
 section.section_dev_list .device_name {
   text-align: left;
 }
 section.section_dev_list .device_status {
-  padding-right: 15px;
   text-align: right;
 }
 section.section_eye_sight .eye_sight {
@@ -1095,7 +1097,6 @@ section.section_eye_sight .eye_sight_delete .index_span {
 }
 section.section_bill_list {
   padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
 }
 section.section_bill_list .left_content {
   float: left;
