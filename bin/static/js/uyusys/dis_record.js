@@ -39,7 +39,6 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (recordArr.length == 0){
-                                        $('.section_nothing').text("门店还没有分配记录");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < recordArr.length; i++){
@@ -74,7 +73,6 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (recordArr.length == 0){
-                                        $('.section_nothing').text("门店还没有更多分配记录");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < recordArr.length; i++){

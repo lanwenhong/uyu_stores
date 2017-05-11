@@ -40,7 +40,6 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (billArr.length == 0){
-                                        $('.section_nothing').text("门店还没有相关结算信息");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < billArr.length; i++){
@@ -76,7 +75,6 @@ require(['../require-config'], function() {
                                         page = page + 1;
                                         $('.section_nothing').hide();
                                     }else if (billArr.length == 0){
-                                        $('.section_nothing').text("门店还没有更多结算信息");
                                         $('.section_nothing').show();
                                     }
                                     for (var i = 0; i < billArr.length; i++){
