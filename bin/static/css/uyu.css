@@ -1339,6 +1339,7 @@ section.section_info dl.hang.success dd textarea.text {
   color: #606470;
 }
 section.section_nothing {
+  margin: 0 auto;
   display: none;
   width: 100%;
   background-color: #00aba9;
@@ -1348,7 +1349,6 @@ section.section_nothing div {
   width: 100%;
   line-height: 1.2rem;
   color: #A7A9AE;
-  text-align: center;
 }
 section.section_header {
   width: 100%;
