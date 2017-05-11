@@ -1344,8 +1344,8 @@ section.section_nothing {
   background-color: #00aba9;
 }
 section.section_nothing div {
+  margin: 0 auto;
   width: 100%;
-  background-color: red;
   line-height: 1.2rem;
   color: #A7A9AE;
   text-align: center;
