@@ -1054,8 +1054,8 @@ section.section_eye_sight .eye_sight div {
   float: left;
 }
 section.section_eye_sight .eye_sight .eye_sight_icon {
-  width: 1rem;
-  height: 1rem;
+  width: 1.4rem;
+  height: 1.4rem;
   margin-right: 15px;
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
@@ -1065,30 +1065,30 @@ section.section_eye_sight .eye_sight .eye_sight_icon {
   overflow: hidden;
 }
 section.section_eye_sight .eye_sight .eye_sight_icon img {
-  width: 1rem;
-  height: 1rem;
+  width: 1.4rem;
+  height: 1.4rem;
 }
 section.section_eye_sight .eye_sight .eye_sight_info {
   margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
 }
 section.section_eye_sight .eye_sight .eye_sight_info span {
   display: block;
-  line-height: 0.6rem;
+  line-height: 0.7rem;
   text-align: left;
 }
 section.section_eye_sight .eye_sight_delete {
   float: left;
   width: 20%;
-  height: 1.6rem;
   display: none;
 }
 section.section_eye_sight .eye_sight_delete span {
   display: block;
   width: 100%;
-  hight: 1.6rem;
+  hight: 2remrem;
   color: red;
   text-align: center;
-  line-height: 1.6rem;
+  line-height: 2rem;
 }
 section.section_eye_sight .eye_sight_delete .index_span {
   display: none;
@@ -1341,10 +1341,12 @@ section.section_info dl.hang.success dd textarea.text {
 section.section_nothing {
   display: none;
   width: 100%;
+  background-color: #00aba9;
 }
 section.section_nothing p {
   margin: 0 auto;
   width: 100%;
+  background-color: red;
   line-height: 1.2rem;
   color: #A7A9AE;
   text-align: center;
