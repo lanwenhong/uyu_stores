@@ -20,7 +20,7 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=9aa9229e-182a-432a-968f-007c9a6dc02d'}
+        self.headers = {'cookie': 'sessionid=6fa2ec7d-dcc0-4caa-89e6-76046af00595'}
 
 
     @unittest.skip("skipping")
@@ -29,7 +29,7 @@ class TestUyuStores(unittest.TestCase):
         self.send = {
             # "mobile": "13802438733",
             "mobile": "13475481254",
-            # "new_password": hashlib.md5('438733').hexdigest(),
+            #"new_password": hashlib.md5('438733').hexdigest(),
             "new_password": hashlib.md5('123456').hexdigest(),
             "old_password": '123456'
         }
@@ -40,7 +40,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    # @unittest.skip("skipping")
     def test_store_info(self):
         self.url = '/store/v1/api/store_info'
         self.send = {"se_userid": 51561, "userid": 51561}
@@ -210,7 +210,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    # @unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_eyesight_unbind(self):
         self.url = '/store/v1/api/eyesight_unbind'
         self.send = {

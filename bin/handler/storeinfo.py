@@ -88,6 +88,12 @@ class StoreInfoHandler(core.Handler):
         return dbret.get("is_prepayment", 0)
 
 
+    @with_database('uyu_core')
+    def _get_login_nickname(self, login_id, keep_fields):
+        dbret = self.db.select_one(table='auth_user', fields=keep_fields, where={'id': login_id})
+        return dbret.get('login_nickname', '')
+
+
     @uyu_check_session(g_rt.redis_pool, cookie_conf, UYU_SYS_ROLE_STORE)
     @with_validator_self
     def _get_handler(self):
@@ -106,6 +112,19 @@ class StoreInfoHandler(core.Handler):
 
         if not self.user.udata or not self.user.pdata or not self.user.sdata:
             return error(UAURET.USERERR)
+
+        session_value = self.session.get_session()
+        login_id = session_value.get('login_id')
+        store_userid = session_value.get('userid')
+        if login_id == store_userid:
+            # 门店查username
+            keep_fields = 'username as login_nickname'
+        else:
+            # 视光师查nick_name
+            keep_fields = 'nick_name as login_nickname'
+
+        login_nickname = self._get_login_nickname(login_id, keep_fields)
+
         ret = {}
         ret["store_name"] = self.user.sdata.get("store_name", "")
         ret["remain_times"] = self.user.sdata.get("remain_times", 0)
@@ -114,6 +133,7 @@ class StoreInfoHandler(core.Handler):
         ret["m_train"] = m_t
         ret["m_amt"] = m_amt
         ret["is_prepayment"] = self._get_prepayflag(self.user.sdata["channel_id"])
+        ret["login_nickname"] = login_nickname
 
         return success(ret)
 
