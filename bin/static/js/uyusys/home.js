@@ -3,7 +3,7 @@
  */
 
 require(['../require-config'], function() {
-    require(["zepto", "ajax_rule", "native"],function($, ajax_rule, native){
+    require(["zepto", "ajax_rule", "native", "yanzheng"],function($, ajax_rule, native, yanzheng){
         $(function() {
             $(document).ready(function() {
                 var rightConfig = {
@@ -28,12 +28,17 @@ require(['../require-config'], function() {
                         });
 
                         ajax_rule.ajax_rule('/store/v1/api/store_info', 'GET', 'json', getInfoData, '.zheceng', function (respData) {
-                            $("#store_name").text(respData["store_name"]);
+                            $("#store_name").text(respData["login_nickname"]);
                             $("#store_left_times").text(respData["remain_times"]);
                             $("#month_distribute").text(respData["m_train"]);
                             $("#month_earned_money").text(respData["m_amt"]);
                             $("#day_distribute").text(respData["d_train"]);
                             $("#day_earned_money").text(respData["d_amt"]);
+                            var store_name = respData["store_name"];
+                            if (!yanzheng.strIsNullUndefine(store_name)) {
+                                native.setNavigationTitle({title: store_name}, function (cb) {
+                                });
+                            }
                         });
                     });
                 }

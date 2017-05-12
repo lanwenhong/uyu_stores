@@ -40,6 +40,16 @@ define(["jsbridge"], function(jsbridge) {
         });
     };
 
+    var setNavigationTitle = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'setNavigationTitle',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
 
     var uyuLog = function(data, cb) {
         JSBridge.H5CallNative({
@@ -154,6 +164,7 @@ define(["jsbridge"], function(jsbridge) {
         uyuLog:uyuLog,
         uyuAlert:uyuAlert,
         uyuOperatorAlert:uyuOperatorAlert,
+        setNavigationTitle:setNavigationTitle,
         addRightBtn:addRightBtn,
         openUrl:openUrl,
         getUserIdFromObjC:getUserIdFromObjC,
