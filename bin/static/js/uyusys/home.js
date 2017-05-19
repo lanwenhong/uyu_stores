@@ -189,6 +189,21 @@ require(['../require-config'], function() {
                     }
                 });
 
+                $(".js_goto_check_history").on("click", function () {
+                    var openUrl = 'uyu://check_history';
+                    if (window.WebViewJavascriptBridge !== "undefined") {
+                        var openUrlData ={
+                            url:openUrl,
+                            pullDown:"0",
+                            pullUp:"0"
+                        };
+                        native.openUrl(openUrlData, function (cb) {
+                            console.log("call back");
+                        })
+                    } else {
+                        location.href = openUrl;
+                    }
+                });
                 //获取userid
                 native.getUserIdFromObjC({}, function (cb) {
                     var store_user_id = cb['userid'];
