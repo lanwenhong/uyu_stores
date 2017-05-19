@@ -59,7 +59,7 @@ require(['../require-config'], function() {
             fetch_left_Times();
 
             $(".js_distribute_times").on("click", function () {
-                var accountOrMobile = $('.js_search_phone').val();
+                var accountOrMobile = $('.consumer_phone').val();
                 var buy_times = $('.consumer_buy_times').val();
 
                 var val_exp = /^[0-9]*$/;
