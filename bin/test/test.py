@@ -20,7 +20,7 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=51c1899e-39ec-4f9d-af7e-bf5ccb88bc9c'}
+        self.headers = {'cookie': 'sessionid=a321f535-c242-484b-8028-603a5f313515'}
 
 
     @unittest.skip("skipping")
@@ -67,9 +67,8 @@ class TestUyuStores(unittest.TestCase):
     @unittest.skip("skipping")
     def test_load_consumer(self):
         self.url = '/store/v1/api/load_consumer'
-        # self.send = {"se_userid": 51561, "mobile": "13802438755"}
-        # self.send = {"se_userid": 51561, "mobile": "张三"}
-        self.send = {"se_userid": 51561, "mobile": ","}
+        self.send = {"se_userid": 51561, "mobile": "13928478198"}
+        # self.send = {"se_userid": 51561, "mobile": "ccd8198"}
         ret = self.client.post(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
@@ -79,10 +78,10 @@ class TestUyuStores(unittest.TestCase):
     # @unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
-        self.send = {"se_userid": 51561, "mobile": "13928478198"}
+        # self.send = {"se_userid": 51561, "mobile": "13928478198"}
         # self.send = {"se_userid": 51561, "mobile": ","}
         # self.send = {"se_userid": 51561, "mobile": "张三"}
-        # self.send = {"se_userid": 51561, "mobile": "ccd8198"}
+        self.send = {"se_userid": 51561, "mobile": "ccd8198"}
         ret = self.client.post(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')
