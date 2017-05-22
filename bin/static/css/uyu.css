@@ -999,7 +999,7 @@ section.section_record_list .record_dev {
   float: left;
 }
 section.section_record_list .record_icon {
-  margin: 0.6rem 5px 0.6rem 0;
+  margin: 0.6rem 0.1rem 0.6rem 0;
   width: 1.4rem;
   height: 1.4rem;
   border-radius: 5px;
@@ -1013,7 +1013,9 @@ section.section_record_list .record_icon img {
 section.section_record_list span {
   display: block;
   text-align: left;
+  height: 0.6rem;
   line-height: 0.6rem;
+  overflow: hidden;
 }
 section.section_record_list .buy_times {
   color: #318D50;
@@ -1027,6 +1029,9 @@ section.section_record_list .buy_date {
 section.section_record_list .record_name {
   margin-top: 0.1rem;
   margin-bottom: 0.1rem;
+  width: 8.2rem;
+  height: 2.6rem;
+  overflow: hidden;
 }
 section.section_dev_list li {
   width: 100%;
