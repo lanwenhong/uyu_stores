@@ -1029,7 +1029,7 @@ section.section_record_list .buy_date {
 section.section_record_list .record_name {
   margin-top: 0.1rem;
   margin-bottom: 0.1rem;
-  width: 8.2rem;
+  width: 8rem;
   height: 2.6rem;
   overflow: hidden;
 }
