@@ -999,7 +999,7 @@ section.section_record_list .record_dev {
   float: left;
 }
 section.section_record_list .record_icon {
-  margin: 0.7rem 5px 0.7rem 0;
+  margin: 0.6rem 0.1rem 0.6rem 0;
   width: 1.4rem;
   height: 1.4rem;
   border-radius: 5px;
@@ -1010,23 +1010,28 @@ section.section_record_list .record_icon img {
   width: 1.4rem;
   height: 1.4rem;
 }
-section.section_record_list .record_times {
-  float: right;
-  padding-right: 15px;
-}
 section.section_record_list span {
   display: block;
   text-align: left;
-  line-height: 0.8rem;
-}
-section.section_record_list .record_name {
-  margin: 0.2rem 0;
+  height: 0.6rem;
+  line-height: 0.6rem;
+  overflow: hidden;
 }
 section.section_record_list .buy_times {
-  margin: 0 auto;
-  display: block;
-  text-align: right;
-  line-height: 2.8rem;
+  color: #318D50;
+}
+section.section_record_list .sight_name {
+  color: #A7A9AE;
+}
+section.section_record_list .buy_date {
+  color: #A7A9AE;
+}
+section.section_record_list .record_name {
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+  width: 8rem;
+  height: 2.4rem;
+  overflow: hidden;
 }
 section.section_dev_list li {
   width: 100%;
