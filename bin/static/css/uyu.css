@@ -1010,23 +1010,20 @@ section.section_record_list .record_icon img {
   width: 1.4rem;
   height: 1.4rem;
 }
-section.section_record_list .record_times {
-  float: right;
-  padding-right: 15px;
-}
 section.section_record_list span {
   display: block;
   text-align: left;
   line-height: 0.8rem;
 }
-section.section_record_list .record_name {
-  margin: 0.2rem 0;
-}
 section.section_record_list .buy_times {
-  margin: 0 auto;
-  display: block;
-  text-align: right;
-  line-height: 2.8rem;
+  color: #318D50;
+}
+section.section_record_list .sight_name .buy_date {
+  color: lightgrey;
+}
+section.section_record_list .record_name {
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
 }
 section.section_dev_list li {
   width: 100%;
