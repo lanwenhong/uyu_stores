@@ -999,7 +999,7 @@ section.section_record_list .record_dev {
   float: left;
 }
 section.section_record_list .record_icon {
-  margin: 0.7rem 5px 0.7rem 0;
+  margin: 0.6rem 5px 0.6rem 0;
   width: 1.4rem;
   height: 1.4rem;
   border-radius: 5px;
@@ -1013,13 +1013,16 @@ section.section_record_list .record_icon img {
 section.section_record_list span {
   display: block;
   text-align: left;
-  line-height: 0.8rem;
+  line-height: 0.6rem;
 }
 section.section_record_list .buy_times {
   color: #318D50;
 }
-section.section_record_list .sight_name .buy_date {
-  color: lightgrey;
+section.section_record_list .sight_name {
+  color: #A7A9AE;
+}
+section.section_record_list .buy_date {
+  color: #A7A9AE;
 }
 section.section_record_list .record_name {
   margin-top: 0.1rem;
