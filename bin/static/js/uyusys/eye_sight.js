@@ -103,9 +103,7 @@ require(['../require-config'], function() {
                         var eyeSight = _this.eye_sights[index];
                         eyeSight.JSUnbindEyeSightFunc = "unbindEyeSight";
                         eyeSight.msg = "视光师: "+eyeSight["username"] + " 将从本店解绑";
-                        alert("kkkkkkk");
                         native.uyuOperatorAlert(eyeSight, function (cb) {
-
                         });
 
                     }
