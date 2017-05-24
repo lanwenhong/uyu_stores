@@ -342,7 +342,6 @@ html body .ui-group-theme-a footer a.tex_c:visited {
   z-index: 16;
   bottom: 0;
   width: 100%;
-  max-width: 10rem;
   padding: 0 0 0;
   background: #318D50;
 }
@@ -1122,7 +1121,7 @@ section.distribute_find div {
   margin: 0 auto;
   padding: 0 0.375rem;
   height: 1rem;
-  width: 10rem;
+  width: 100%;
   position: absolute;
   z-index: 1;
   line-height: 1rem;
