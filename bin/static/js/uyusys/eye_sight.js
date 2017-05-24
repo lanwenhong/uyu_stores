@@ -4,7 +4,6 @@
 require(['../require-config'], function() {
     require(["zepto", "ajax_rule", "vue", "native", "yanzheng"],function($, ajax_rule, vue, native, yanzheng){
         $(document).ready(function() {
-
             var page = 1;
             var vukk = new vue({
                 el: '#wap',
@@ -92,7 +91,6 @@ require(['../require-config'], function() {
                                     }
                                 });
                             });
-
                         });
 
                     },
