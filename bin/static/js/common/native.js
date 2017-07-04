@@ -80,6 +80,16 @@ define(["jsbridge"], function(jsbridge) {
         });
     };
 
+    var handlePassword = function(data, cb) {
+        JSBridge.H5CallNative({
+            name: 'handlePassword',
+            data: data || {},
+            callback: function(res) {
+                cb(res)
+            }
+        });
+    };
+
     var popToRootVC = function(data, cb) {
         JSBridge.H5CallNative({
             name: 'popToRootVC',
@@ -160,6 +170,7 @@ define(["jsbridge"], function(jsbridge) {
     return {
         popToRootVC:popToRootVC,
         md5Password:md5Password,
+        handlePassword:handlePassword,
         getDeviceInfo:getDeviceInfo,
         uyuLog:uyuLog,
         uyuAlert:uyuAlert,

@@ -26,6 +26,9 @@ require(['../require-config'], function() {
                 var nickName = $('.js_nick_name').val();
                 var userName = $('.js_user_name').val();
                 var emailStr = $('.js_email').val();
+                var passworld = $('.js_password').val();
+                var passworld_sure = $('.js_password_sure');
+
                 if (!yanzheng.available_phone(phone)){
                     return;
                 }
@@ -39,32 +42,63 @@ require(['../require-config'], function() {
                     });
                     return;
                 }
+                if (yanzheng.strIsNullUndefine(passworld)){
+                    native.uyuAlert({msg:"请输入密码"}, function (cb) {
+                    });
+                    return;
+                }
+                if (yanzheng.strIsNullUndefine(passworld_sure)){
+                    native.uyuAlert({msg:"请确认密码"}, function (cb) {
+                    });
+                    return;
+                }
+                if (passworld.length < 6 || passworld.length > 18){
+                    native.uyuAlert({msg:"请输入6~18位密码"}, function (cb) {
+                    });
+                    return;
+                }
+                if (passworld_sure.length < 6 || passworld_sure.length > 18){
+                    native.uyuAlert({msg:"请输入6~18位密码"}, function (cb) {
+                    });
+                    return;
+                }
+                if (passworld === passworld_sure){
+                    native.uyuAlert({msg:"两次输入的密码不一致,请重新输入"}, function (cb) {
+                    });
+                    return;
+                }
 
 
                 native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
-                    var regData = {
-                        mobile:phone,
-                        nick_name:nickName,
-                        username:userName,
-                        os:cb['os'],
-                        sys_version:cb['sys_version'],
-                        app_version:cb['app_version']
-                    };
-                    if (!yanzheng.strIsNullUndefine(emailStr)){
-                        if (!yanzheng.available_email(emailStr)) {
-                            return;
+                    var deviceInfo = cb;
+                    native.handlePassword({'password':passworld}, function (cb) {
+                        var regData = {
+                            mobile:phone,
+                            nick_name:nickName,
+                            username:userName,
+                            old_passworld:deviceInfo['old_passworld'],
+                            new_passworld:deviceInfo['new_passworld'],
+                            os:deviceInfo['os'],
+                            sys_version:deviceInfo['sys_version'],
+                            app_version:deviceInfo['app_version']
+                        };
+                        if (!yanzheng.strIsNullUndefine(emailStr)){
+                            if (!yanzheng.available_email(emailStr)) {
+                                return;
+                            }
+                            regData.email =emailStr;
                         }
-                        regData.email =emailStr;
-                    }
-                    ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', regData, '.zheceng', function (respData) {
-                        //发送验证码成功
+                        ajax_rule.ajax_rule('/store/v1/api/eyesight_register', 'POST', 'json', regData, '.zheceng', function (respData) {
+                            //发送验证码成功
 
-                        native.uyuAlert({msg:"注册成功"}, function (cb) {
-                            native.popToRootVC({msg:"退回根页面"}, function (cb) {
+                            native.uyuAlert({msg:"注册成功"}, function (cb) {
+                                native.popToRootVC({msg:"退回根页面"}, function (cb) {
+                                });
                             });
-                        });
 
+                        });
                     });
+
                 });
             });
 
