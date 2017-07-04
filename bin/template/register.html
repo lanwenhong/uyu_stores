@@ -15,32 +15,44 @@
 <body>
 <div id="wap" class="js_regin_index">
     <section class="section_header">
-    <p class="tips_msg">密码默认为手机号后6位</p>
     </section>
     <section class="section_register">
         <dl class="hang">
             <dt>手机号</dt>
             <dd>
-                <input class="text js_phone" type="text" placeholder="必填" maxlength="11"/>
+                <input class="text js_phone" type="text" placeholder="必填" maxlength="11" minlength="11"/>
             </dd>
         </dl>
 
         <dl class="hang">
             <dt>昵称</dt>
             <dd>
-                <input class="text js_nick_name" type="text" placeholder="必填" maxlength="12"/>
+                <input class="text js_nick_name" type="text" placeholder="必填" maxlength="12" minlength="1"/>
             </dd>
         </dl>
         <dl class="hang">
             <dt>用户姓名</dt>
             <dd>
-                <input class="text js_user_name" type="text" placeholder="必填" maxlength="12"/>
+                <input class="text js_user_name" type="text" placeholder="必填" maxlength="12" minlength="2"/>
             </dd>
         </dl>
         <dl class="hang">
             <dt>邮箱</dt>
             <dd>
                 <input class="text js_email" type="text" placeholder="ex@example.com" />
+            </dd>
+        </dl>
+
+        <dl class="hang">
+            <dt>密码</dt>
+            <dd>
+                <input class="text js_password" type="text" placeholder="必填" maxlength="18" minlength="6"/>
+            </dd>
+        </dl>
+        <dl class="hang">
+            <dt>确认密码</dt>
+            <dd>
+                <input class="text js_password_surc" type="text" placeholder="必填" maxlength="18" minlength="6"/>
             </dd>
         </dl>
     </section>
