@@ -16,11 +16,11 @@ class TestUyuStores(unittest.TestCase):
         self.url = ''
         self.send = {}
         self.host = '127.0.0.1'
-        self.port = 8086
+        self.port = 8089
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=a321f535-c242-484b-8028-603a5f313515'}
+        self.headers = {'cookie': 'sessionid=dcba198e-edd2-43a3-a53d-578406188ad0'}
 
 
     @unittest.skip("skipping")
@@ -75,7 +75,7 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    # @unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
         # self.send = {"se_userid": 51561, "mobile": "13928478198"}
@@ -195,14 +195,16 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    # @unittest.skip("skipping")
     def test_eyesight_register(self):
         self.url = '/store/v1/api/eyesight_register'
         self.send = {
-            'mobile': '13928478196',
-            'nick_name': '小8196',
-            'username': '王小8196',
-            'email': '13928478196@cc.com'
+            'mobile': '13928488201',
+            'nick_name': '小8201',
+            'username': '王小8201',
+            'email': '13928478201@cc.com',
+            'new_password': 123456,
+            'old_password': 123456
             }
         ret = self.client.post(self.url, self.send)
         log.info(ret)
