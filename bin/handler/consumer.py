@@ -61,7 +61,7 @@ class LoadConsumerDetailHandler(core.Handler):
         if is_mobile:
             uu.load_user_by_mobile(mobile)
         else:
-            uu.load_user_by_login_name(mobile)
+            uu.load_user_by_login_or_nick_name(mobile)
         log.debug('##len:%s', len(uu.udata))
         log.debug('##udata:%s', uu.udata)
         if len(uu.udata) == 0:

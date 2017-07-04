@@ -68,8 +68,10 @@ template = os.path.join(HOME, 'template')
 # 服务地址
 HOST = '0.0.0.0'
 # 服务端口
-PORT = 8086
+PORT = 8089
 #redis
 redis_url = 'redis://127.0.0.1:4600/0'
 #cookie 配置
 cookie_conf = { 'expires':60*60*24*3, 'max_age':60*60*24*3, 'domain':'121.40.177.111', 'path':'/'}
+#绑定测试门店ID
+TEST_STORE_ID = 54

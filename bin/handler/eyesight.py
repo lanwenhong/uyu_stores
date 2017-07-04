@@ -14,6 +14,7 @@ from uyubase.uyu import define
 
 from runtime import g_rt
 from config import cookie_conf
+from config import TEST_STORE_ID
 import logging, datetime, time
 import tools
 log = logging.getLogger()
@@ -188,6 +189,8 @@ class EyeSightRegisterHandler(core.Handler):
         Field('nick_name', T_STR, False),
         Field('username', T_STR, False),
         Field('email', T_STR, True, match=r'^[a-zA-Z0-9_\-\'\.]+@[a-zA-Z0-9_]+(\.[a-z]+){1,2}$'),
+        Field('new_password', T_STR, False),
+        Field('old_password', T_STR, False),
     ]
 
     def _post_handler_errfunc(self, msg):
@@ -202,8 +205,14 @@ class EyeSightRegisterHandler(core.Handler):
             nick_name = params.get('nick_name')
             email = params.get('email')
             params['user_type'] = define.UYU_USER_ROLE_EYESIGHT
-            params['password'] = mobile[-6:]
+            # params['password'] = mobile[-6:]
             params['sex'] = 0
+            new_password = params.pop('new_password')
+            old_password = params.pop('old_password')
+            if new_password != old_password:
+                log.warn('new_password=%s|old_password=%s|not equal', new_password, old_password)
+                return error(UAURET.DATAERR)
+            params['password'] = new_password
             uop = UUser()
             flag, userid = uop.internal_user_register(params)
             if flag:
@@ -211,7 +220,8 @@ class EyeSightRegisterHandler(core.Handler):
                 now = datetime.datetime.now()
                 data['id'] = userid
                 data['login_name'] = mobile
-                data['password'] = gen_old_password(mobile[-6:])
+                # data['password'] = gen_old_password(mobile[-6:])
+                data['password'] = gen_old_password(new_password)
                 data['phone_num'] = mobile
                 data['nick_name'] = nick_name
                 data['optometrist_type'] = 2
@@ -223,6 +233,8 @@ class EyeSightRegisterHandler(core.Handler):
                 data['portrait_type'] = ''
                 data['email'] = email
                 uop.call('record_optometrists', data)
+                if TEST_STORE_ID not in ['', None]:
+                    tools.bind_default_store(userid)
                 return success({'userid': userid})
             else:
                 return error(UAURET.DATAEXIST)
