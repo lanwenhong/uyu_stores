@@ -75,8 +75,8 @@ require(['../require-config'], function() {
                             mobile:phone,
                             nick_name:nickName,
                             username:userName,
-                            old_passworld:pwdCB['old_password'],
-                            new_passworld:pwdCB['new_password'],
+                            old_password:pwdCB['old_password'],
+                            new_password:pwdCB['new_password'],
                             os:deviceInfo['os'],
                             sys_version:deviceInfo['sys_version'],
                             app_version:deviceInfo['app_version']
