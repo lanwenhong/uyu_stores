@@ -68,16 +68,15 @@ require(['../require-config'], function() {
                     return;
                 }
 
-
                 native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
                     var deviceInfo = cb;
-                    native.handlePassword({'password':passworld}, function (cb) {
+                    native.handlePassword({'password':passworld}, function (pwdCB) {
                         var regData = {
                             mobile:phone,
                             nick_name:nickName,
                             username:userName,
-                            old_passworld:deviceInfo['old_passworld'],
-                            new_passworld:deviceInfo['new_passworld'],
+                            old_passworld:pwdCB['old_passworld'],
+                            new_passworld:pwdCB['new_passworld'],
                             os:deviceInfo['os'],
                             sys_version:deviceInfo['sys_version'],
                             app_version:deviceInfo['app_version']
