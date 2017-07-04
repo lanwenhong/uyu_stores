@@ -62,7 +62,7 @@ require(['../require-config'], function() {
                     });
                     return;
                 }
-                if (passworld === passworld_sure){
+                if (passworld !== passworld_sure){
                     native.uyuAlert({msg:"两次输入的密码不一致,请重新输入"}, function (cb) {
                     });
                     return;
