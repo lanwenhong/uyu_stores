@@ -27,7 +27,7 @@ require(['../require-config'], function() {
                 var userName = $('.js_user_name').val();
                 var emailStr = $('.js_email').val();
                 var passworld = $('.js_password').val();
-                var passworld_sure = $('.js_password_sure');
+                var passworld_sure = $('.js_password_sure').val();
 
                 if (!yanzheng.available_phone(phone)){
                     return;
@@ -53,7 +53,7 @@ require(['../require-config'], function() {
                     return;
                 }
                 if (passworld.length < 6 || passworld.length > 18){
-                    native.uyuAlert({msg:"请输入6~18位密码"}, function (cb) {
+                    native.uyuAlert({msg:"请输入6~18位密码东东"}, function (cb) {
                     });
                     return;
                 }
