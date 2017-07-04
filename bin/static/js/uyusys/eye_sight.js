@@ -108,6 +108,7 @@ require(['../require-config'], function() {
                     
                 }
             });
+
             native.regNativeCallJS("unbindEyeSight", function (unbindCB) {
                 native.getUserIdFromObjC({}, function (useridCB) {
                     native.getDeviceInfo({"getDevInfo":"获取设备信息"}, function (cb) {
