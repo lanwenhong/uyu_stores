@@ -53,7 +53,7 @@ require(['../require-config'], function() {
                     return;
                 }
                 if (passworld.length < 6 || passworld.length > 18){
-                    native.uyuAlert({msg:"请输入6~18位密码东东"}, function (cb) {
+                    native.uyuAlert({msg:"请输入6~18位密码"}, function (cb) {
                     });
                     return;
                 }
@@ -75,8 +75,8 @@ require(['../require-config'], function() {
                             mobile:phone,
                             nick_name:nickName,
                             username:userName,
-                            old_passworld:pwdCB['old_passworld'],
-                            new_passworld:pwdCB['new_passworld'],
+                            old_passworld:pwdCB['old_password'],
+                            new_passworld:pwdCB['new_password'],
                             os:deviceInfo['os'],
                             sys_version:deviceInfo['sys_version'],
                             app_version:deviceInfo['app_version']
