@@ -261,7 +261,7 @@ class EyeSightRegisterHandler(core.Handler):
                     'is_prepayment': TEST_CHNL_MODE
                 }
                 log.debug('EyeSightRegisterHandler store mode')
-		ret = uop.call("create_store_transaction", udata, pdata, sdata)
+		ret = uop.call("create_store_transaction_new", udata, pdata, sdata)
 		if ret == define.UYU_OP_ERR:
 		    return error(UAURET.REGISTERERR)
                 else:
