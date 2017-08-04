@@ -15,6 +15,9 @@ from uyubase.uyu import define
 from runtime import g_rt
 from config import cookie_conf
 from config import TEST_STORE_ID
+from config import TEST_CHNL_ID
+from config import TEST_SWITCH
+from config import TEST_CHNL_MODE
 import logging, datetime, time
 import tools
 log = logging.getLogger()
@@ -214,30 +217,55 @@ class EyeSightRegisterHandler(core.Handler):
                 return error(UAURET.DATAERR)
             params['password'] = new_password
             uop = UUser()
-            flag, userid = uop.internal_user_register(params)
-            if flag:
-                data = {}
-                now = datetime.datetime.now()
-                data['id'] = userid
-                data['login_name'] = mobile
-                # data['password'] = gen_old_password(mobile[-6:])
-                data['password'] = gen_old_password(new_password)
-                data['phone_num'] = mobile
-                data['nick_name'] = nick_name
-                data['optometrist_type'] = 2
-                data['created_at'] = now
-                data['updated_at'] = now
-                data['sex'] = 0
-                data['recommend_code'] = str(uuid.uuid4())
-                data['portrait_data'] = ''
-                data['portrait_type'] = ''
-                data['email'] = email
-                uop.call('record_optometrists', data)
-                if TEST_STORE_ID not in ['', None]:
-                    tools.bind_default_store(userid)
-                return success({'userid': userid})
+            if not TEST_SWITCH:
+                log.debug('EyeSightRegisterHandler eyesight mode')
+                flag, userid = uop.internal_user_register(params)
+                if flag:
+                    data = {}
+                    now = datetime.datetime.now()
+                    data['id'] = userid
+                    data['login_name'] = mobile
+                    # data['password'] = gen_old_password(mobile[-6:])
+                    data['password'] = gen_old_password(new_password)
+                    data['phone_num'] = mobile
+                    data['nick_name'] = nick_name
+                    data['optometrist_type'] = 2
+                    data['created_at'] = now
+                    data['updated_at'] = now
+                    data['sex'] = 0
+                    data['recommend_code'] = str(uuid.uuid4())
+                    data['portrait_data'] = ''
+                    data['portrait_type'] = ''
+                    data['email'] = email
+                    uop.call('record_optometrists', data)
+                    if TEST_STORE_ID not in ['', None]:
+                        tools.bind_default_store(userid)
+                    return success({'userid': userid})
+                else:
+                    return error(UAURET.DATAEXIST)
             else:
-                return error(UAURET.DATAEXIST)
+                pdata = {}
+                udata = {
+                   'login_name': mobile,
+                   'nick_name': params.get('nick_name'),
+                   'phone_num': mobile,
+                   'password': params['password'],
+                   'email': params.get('email'),
+                   'username': params.get('username')       
+                }
+                sdata = {
+                    'store_type':  define.UYU_STORE_ROLE_STORE,
+                    'store_name': udata['username'],
+                    'store_mobile': mobile,
+                    'channel_id': TEST_CHNL_ID,
+                    'is_prepayment': TEST_CHNL_MODE
+                }
+                log.debug('EyeSightRegisterHandler store mode')
+		ret = uop.call("create_store_transaction", udata, pdata, sdata)
+		if ret == define.UYU_OP_ERR:
+		    return error(UAURET.REGISTERERR)
+                else:
+                    return success({'userid': uop.userid})
         except Exception as e:
             log.warn(e)
             log.warn(traceback.format_exc())

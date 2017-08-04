@@ -199,10 +199,10 @@ class TestUyuStores(unittest.TestCase):
     def test_eyesight_register(self):
         self.url = '/store/v1/api/eyesight_register'
         self.send = {
-            'mobile': '13928488201',
-            'nick_name': '小8201',
-            'username': '王小8201',
-            'email': '13928478201@cc.com',
+            'mobile': '13928488205',
+            'nick_name': '小8205',
+            'username': '王小8205',
+            'email': '13928478205@cc.com',
             'new_password': 123456,
             'old_password': 123456
             }

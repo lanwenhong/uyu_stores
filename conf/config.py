@@ -75,3 +75,9 @@ redis_url = 'redis://127.0.0.1:4600/0'
 cookie_conf = { 'expires':60*60*24*3, 'max_age':60*60*24*3, 'domain':'121.40.177.111', 'path':'/'}
 #绑定测试门店ID
 TEST_STORE_ID = 54
+#绑定测试渠道
+TEST_CHNL_ID = 108
+#测试渠道分成模式
+TEST_CHNL_MODE = 0
+#开启注册为门店模式True
+TEST_SWITCH = False
