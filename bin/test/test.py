@@ -20,10 +20,10 @@ class TestUyuStores(unittest.TestCase):
         self.timeout = 2000
         self.server = [{'addr':(self.host, self.port), 'timeout':self.timeout},]
         self.client = HttpClient(self.server, client_class = RequestsClient)
-        self.headers = {'cookie': 'sessionid=dcba198e-edd2-43a3-a53d-578406188ad0'}
+        self.headers = {'cookie': 'sessionid=5ab19920-879c-4480-8642-de3309e4bf48'}
 
 
-    # @unittest.skip("skipping")
+    @unittest.skip("skipping")
     def test_login(self):
         self.url = '/store/v1/api/login'
         self.send = {
@@ -73,13 +73,16 @@ class TestUyuStores(unittest.TestCase):
         self.assertEqual(respcd, '0000')
 
 
-    @unittest.skip("skipping")
+    # @unittest.skip("skipping")
     def test_load_consumer_detail(self):
         self.url = '/store/v1/api/load_consumer_detail'
         # self.send = {"se_userid": 51561, "mobile": "13928478198"}
         # self.send = {"se_userid": 51561, "mobile": ","}
         # self.send = {"se_userid": 51561, "mobile": "张三"}
-        self.send = {"se_userid": 51561, "mobile": "ccd8198"}
+        # self.send = {"se_userid": 51654, "mobile": "ccd8198"}
+        # self.send = {"se_userid": 51654, "mobile": "aaa"}
+        self.send = {"se_userid": 51654, "mobile": "小小"}
+        # self.send = {"se_userid": 51654, "mobile": "玉皇大帝孙悟空"}
         ret = self.client.post(self.url, self.send, headers=self.headers)
         log.info(ret)
         respcd = json.loads(ret).get('respcd')

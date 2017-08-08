@@ -60,34 +60,43 @@ class LoadConsumerDetailHandler(core.Handler):
         is_mobile = tools.check_mobile(mobile)
         if is_mobile:
             uu.load_user_by_mobile(mobile)
+            log.debug('##len:%s', len(uu.udata))
+            log.debug('##udata:%s', uu.udata)
+            if len(uu.udata) == 0:
+                log.debug('mobile=%s not exists', mobile)
+                return success(data)
+
+            if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] not in [UYU_USER_ROLE_COMSUMER, UYU_USER_ROLE_EYESIGHT]:
+                return error(UAURET.USERERR)
+            ret = {}
+            ret["userid"] = uu.udata["id"]
+            ret["mobile"] = uu.udata["phone_num"]
+            ret["username"] = uu.udata.get("username", "")
+            ret["nick_name"] = uu.udata.get("nick_name", "")
+            ret["email"] = uu.udata.get("email", "")
+            ret["login_name"] = uu.udata.get("login_name", "")
+            ret["phone_num"] = uu.udata.get("phone_num", "")
+            ret["state"] = define.UYU_USER_STATE_MAP.get(uu.udata.get("state"), '')
+            ret["create_time"] = datetime.datetime.strftime(uu.udata.get("ctime"), '%Y-%m-%d %H:%M:%S') if uu.udata.get("ctime") else ''
+            ret["remain_times"] = self._get_remain_times(uu.udata["id"])
+            if ret:
+                data['info'].append(ret)
         else:
-            uu.load_user_by_login_or_nick_name(mobile)
-        log.debug('##len:%s', len(uu.udata))
-        log.debug('##udata:%s', uu.udata)
-        if len(uu.udata) == 0:
-            log.debug('mobile=%s not exists', mobile)
-            # return error(UAURET.USERERR)
-            return success(data)
+            record = uu.load_user_by_login_or_nick_name(mobile)
+            if record:
+                for item in record:
+                    item["userid"] = item["id"]
+                    item["mobile"] = item["phone_num"]
+                    item["state"] = define.UYU_USER_STATE_MAP.get(item.get("state"), '')
+                    item["create_time"] = datetime.datetime.strftime(item.get("ctime"), '%Y-%m-%d %H:%M:%S') if item.get("ctime") else ''
+                    item["remain_times"] = self._get_remain_times(item["id"])
+                    item.pop("password")
+                    item.pop("utime")
+                    item.pop("user_type")
+                    item.pop("sex")
+                    item.pop("id")
+                data['info'].extend(record) 
 
-        # if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] != UYU_USER_ROLE_COMSUMER:
-        if uu.udata["state"]!= UYU_USER_STATE_OK or uu.udata["user_type"] not in [UYU_USER_ROLE_COMSUMER, UYU_USER_ROLE_EYESIGHT]:
-            return error(UAURET.USERERR)
-
-        ret = {}
-        ret["userid"] = uu.udata["id"]
-        ret["mobile"] = uu.udata["phone_num"]
-        ret["username"] = uu.udata.get("username", "")
-        ret["nick_name"] = uu.udata.get("nick_name", "")
-        ret["email"] = uu.udata.get("email", "")
-        ret["login_name"] = uu.udata.get("login_name", "")
-        ret["phone_num"] = uu.udata.get("phone_num", "")
-        ret["state"] = define.UYU_USER_STATE_MAP.get(uu.udata.get("state"), '')
-        ret["create_time"] = datetime.datetime.strftime(uu.udata.get("ctime"), '%Y-%m-%d %H:%M:%S') if uu.udata.get("ctime") else ''
-        ret["remain_times"] = self._get_remain_times(uu.udata["id"])
-
-
-        if ret:
-            data['info'].append(ret)
         return success(data)
 
     def POST(self, *args):
